@@ -14,6 +14,19 @@
 		E321C9811D179E6200D04FB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E321C97F1D179E6200D04FB4 /* LaunchScreen.storyboard */; };
 		E321C98C1D179E6300D04FB4 /* CoffeeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C98B1D179E6300D04FB4 /* CoffeeListTests.swift */; };
 		E321C9971D179E6300D04FB4 /* CoffeeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */; };
+		E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A41D1A209900D04FB4 /* Protocols.swift */; };
+		E321C9A71D1A20A300D04FB4 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A61D1A20A300D04FB4 /* Classes.swift */; };
+		E3224B881DD6B23A00FB204C /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3224B871DD6B23A00FB204C /* CSKit.framework */; };
+		E3224B891DD6B23A00FB204C /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3224B871DD6B23A00FB204C /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3264BDB1DA74CA40040A02B /* Extensions.swift */; };
+		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
+		E32E1B0E1DDCCBFE0018F8BE /* ViewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */; };
+		E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */; };
+		E3BEDD5F1DB31D640041B60E /* ManageListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */; };
+		E3BEDD621DB54ACD0041B60E /* EditListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditListController.swift */; };
+		E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD631DB5C51E0041B60E /* EntryList.swift */; };
+		E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768551D1D735800E4FCB3 /* EditEntryController.swift */; };
+		E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +46,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E3224B8A1DD6B23A00FB204C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E3224B891DD6B23A00FB204C /* CSKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E321C9731D179E6200D04FB4 /* CoffeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321C9761D179E6200D04FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +74,18 @@
 		E321C9921D179E6300D04FB4 /* CoffeeListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListUITests.swift; sourceTree = "<group>"; };
 		E321C9981D179E6300D04FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E321C9A41D1A209900D04FB4 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		E321C9A61D1A20A300D04FB4 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		E3224B871DD6B23A00FB204C /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
+		E3264BDB1DA74CA40040A02B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
+		E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewListController.swift; sourceTree = "<group>"; };
+		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
+		E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListsController.swift; sourceTree = "<group>"; };
+		E3BEDD611DB54ACD0041B60E /* EditListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListController.swift; sourceTree = "<group>"; };
+		E3BEDD631DB5C51E0041B60E /* EntryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryList.swift; sourceTree = "<group>"; };
+		E3C768551D1D735800E4FCB3 /* EditEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryController.swift; sourceTree = "<group>"; };
+		E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3224B881DD6B23A00FB204C /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +117,7 @@
 		E321C96A1D179E6100D04FB4 = {
 			isa = PBXGroup;
 			children = (
+				E3224B871DD6B23A00FB204C /* CSKit.framework */,
 				E321C9751D179E6200D04FB4 /* CoffeeList */,
 				E321C98A1D179E6300D04FB4 /* CoffeeListTests */,
 				E321C9951D179E6300D04FB4 /* CoffeeListUITests */,
@@ -98,7 +139,12 @@
 			isa = PBXGroup;
 			children = (
 				E321C9761D179E6200D04FB4 /* AppDelegate.swift */,
-				E321C9781D179E6200D04FB4 /* ViewController.swift */,
+				E3BEDD601DB31D770041B60E /* ViewControllers */,
+				E321C9A41D1A209900D04FB4 /* Protocols.swift */,
+				E3264BDB1DA74CA40040A02B /* Extensions.swift */,
+				E321C9A61D1A20A300D04FB4 /* Classes.swift */,
+				E32E1B0B1DDCC65F0018F8BE /* Equality.swift */,
+				E3BEDD631DB5C51E0041B60E /* EntryList.swift */,
 				E321C97A1D179E6200D04FB4 /* Main.storyboard */,
 				E321C97D1D179E6200D04FB4 /* Assets.xcassets */,
 				E321C97F1D179E6200D04FB4 /* LaunchScreen.storyboard */,
@@ -125,6 +171,20 @@
 			path = CoffeeListUITests;
 			sourceTree = "<group>";
 		};
+		E3BEDD601DB31D770041B60E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E321C9781D179E6200D04FB4 /* ViewController.swift */,
+				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
+				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
+				E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */,
+				E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */,
+				E3BEDD611DB54ACD0041B60E /* EditListController.swift */,
+				E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +195,7 @@
 				E321C96F1D179E6100D04FB4 /* Sources */,
 				E321C9701D179E6100D04FB4 /* Frameworks */,
 				E321C9711D179E6100D04FB4 /* Resources */,
+				E3224B8A1DD6B23A00FB204C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,7 +249,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = SzatmaryInc;
 				TargetAttributes = {
 					E321C9721D179E6100D04FB4 = {
@@ -265,8 +326,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3BEDD5F1DB31D640041B60E /* ManageListsController.swift in Sources */,
+				E32E1B0E1DDCCBFE0018F8BE /* ViewListController.swift in Sources */,
+				E3BEDD621DB54ACD0041B60E /* EditListController.swift in Sources */,
+				E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */,
+				E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */,
+				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
+				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* ViewController.swift in Sources */,
+				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
+				E321C9A71D1A20A300D04FB4 /* Classes.swift in Sources */,
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
+				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
+				E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,8 +408,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -359,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -383,8 +457,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -400,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -412,7 +488,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BS5UQBU3ML;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,7 +506,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BS5UQBU3ML;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,6 +525,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CoffeeListTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -450,6 +539,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CoffeeListTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -501,6 +591,7 @@
 				E321C99D1D179E6300D04FB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E321C99E1D179E6300D04FB4 /* Build configuration list for PBXNativeTarget "CoffeeListTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +600,7 @@
 				E321C9A01D179E6300D04FB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E321C9A11D179E6300D04FB4 /* Build configuration list for PBXNativeTarget "CoffeeListUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +609,7 @@
 				E321C9A31D179E6300D04FB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
