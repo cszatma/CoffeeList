@@ -10,7 +10,7 @@ import UIKit
 import CSKit
 
 
-class ViewListController: UITableViewController, SegueHandlerType {
+class ViewListController: UITableViewController, SegueHandlerType, ViewDataController {
     
     enum SegueIdentifier : String {
         case ShowEditSelectedList = "showEditSelectedList"
@@ -71,7 +71,7 @@ class ViewListController: UITableViewController, SegueHandlerType {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifierForSegue(segue: segue) {
         case .ShowEditSelectedList:
-            let editListController: EditListController = segue.destination as! EditListController
+            let editListController: EditEntryListController = segue.destination as! EditEntryListController
             editListController.isNewList = false
             editListController.list = selectedEntryList
             editListController.selectedEntries = selectedEntryList.entries!

@@ -16,8 +16,8 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     }
     
     enum SegueIdentifier: String {
-        case ShowEditList = "showEditList"
-        case ShowViewList = "showViewList"
+        case ShowEditList = "showEditEntryList"
+        case ShowViewList = "showViewEntryList"
     }
     
     enum editingAction: String {
@@ -121,7 +121,7 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifierForSegue(segue: segue) {
         case .ShowEditList:
-            let editListController = segue.destination as! EditListController
+            let editListController = segue.destination as! EditEntryListController
             editListController.isNewList = true
             editListController.list = selectedList
         case .ShowViewList:
@@ -152,12 +152,12 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
             //Executed if the user is creating a new list
             if editingAction == .NewEntryList {
                 self.selectedList = EntryList(listName: textField.text!, entries: nil)
+                print(self.selectedList?.name)
                 self.performSegueWithIdentifier(segueIdentifier: .ShowEditList, sender: nil)
             } else if editingAction == .RenameEntryList { //Executed if the user is renaming an existing list
                 //let newList = EntryList(listName: textField.text!, entries: list?.entries)
                 //newList.updateEntryList(originalEntryList: list!)
                 self.savedLists![index!] ~= textField.text!
-                self.savedLists = sortEntryLists(entryLists: self.savedLists!)
                 self.saveObject(object: self.savedLists!, key: .SavedLists)
                 self.listsTableView.reloadData()
                 //self.dismiss(animated: true, completion: nil)

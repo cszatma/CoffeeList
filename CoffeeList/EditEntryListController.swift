@@ -9,7 +9,7 @@
 import UIKit
 import CSKit
 
-class EditListController: UITableViewController, DataSaver {
+class EditListController: UITableViewController, DataSaver, EditController {
     
     enum dataKey: String {
         case SavedLists = "savedLists"
@@ -24,13 +24,13 @@ class EditListController: UITableViewController, DataSaver {
     @IBOutlet var addEntriesList: UITableView!
     
     //Sets up view controller
-    override func viewDidLoad() {
+    override  func  viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditListController.cancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditListController.save))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.title = "Save"
-        setUpView(isNewList: isNewList)
+        self.title = "Select Entries"
+        setUpView(isNewData: isNewList)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,7 +38,7 @@ class EditListController: UITableViewController, DataSaver {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        loadEntries()
+        //loadEntries()
         guard savedEntries != nil else {
             return 0
         }
@@ -101,22 +101,16 @@ class EditListController: UITableViewController, DataSaver {
         }
         
         newList.saveEntryList()
-        _ = self.navigationController?.popViewController(animated: true)
+        cancel()
     }
     
     func cancel() {
-        _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: isNewList)
     }
     
-    func loadEntries() {
-//        guard let loadedEntries = getSavedObject(key: .SavedEntries) as? [Entry] else {
-//            return
-//        }
-//        savedEntries = sortEntries(entries: loadedEntries)
-        //savedEntries = getSavedObject(key: .SavedEntries) as? [Entry]
-    }
-    
-    func setUpView(isNewList: Bool) {
+    func setUpView(isNewData: Bool) {
+        savedEntries = loadSavedData(ofType: Entry.self)
+        addEntriesList.reloadData()
         guard !(isNewList) else {
             return
         }
@@ -124,17 +118,17 @@ class EditListController: UITableViewController, DataSaver {
         let entries = list?.entries
         print(savedEntries)
         for entry in entries! {
-            guard let index = savedEntries?.index(of: entry) else {
+            guard let index = savedEntries?.index(where: { $0 == entry }) else {
                 return
             }
             print("selecting")
             let path = IndexPath(row: index, section: 0)
             //addEntriesList.selectRow(at: path, animated: true, scrollPosition: .none)
+            
             let cell = addEntriesList.cellForRow(at: path)
-            cell?.checkCell()
+            cell!.checkCell()
         }
         
     }
-
     
 }

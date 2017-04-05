@@ -36,7 +36,7 @@ class Entry : NSObject, NSCoding, DataSaver {
     
     ///Automatically saves the given entry to the system allowing for access of it later.
     func saveEntry() {
-        var savedEntries = getSavedObject(key: .SavedEntries) as? [Entry]
+        var savedEntries = loadSavedEntries()
         guard savedEntries.hasValue else {
             self.duplicateNumber = 0
             let savedEntries = [self]
@@ -51,7 +51,7 @@ class Entry : NSObject, NSCoding, DataSaver {
     
     ///Updates the given entry by overwriting the previous version of the entry specified
     func updateEntry(originalEntry: Entry) {
-        var savedEntries = getSavedObject(key: .SavedEntries) as! [Entry]
+        var savedEntries = loadSavedEntries()!
         self.checkForDuplicate(inEntries: savedEntries)
         guard let index = getIndex(ofEntry: originalEntry, list: savedEntries) else {
             fatalError("Entry isn't in savedEntries")
@@ -73,12 +73,12 @@ class Entry : NSObject, NSCoding, DataSaver {
     
     func loadSavedEntries() -> [Entry]? {
         
-        guard let savedEntries = getSavedObject(key: .SavedEntries) as? [Entry] else {
-            return nil
-        }
-        
-        return savedEntries
-        
+//        guard let savedEntries = getSavedObject(key: .SavedEntries) as? [Entry] else {
+//            return nil
+//        }
+//        
+//        return savedEntries
+        return getSavedObject(key: .SavedEntries) as? [Entry]
     }
     
     ///String representation of Entry class. This allows type Entry to be converted into type String
@@ -150,24 +150,7 @@ class Entry : NSObject, NSCoding, DataSaver {
     
 }
 
-extension Entry/* : Equatable*/ {
-    
-//    static func == (entry1: Entry, entry2: Entry) -> Bool {
-//        return (entry1.name == entry2.name) && (entry1.coffeeType == entry2.coffeeType) && (entry1.favCoffeeShop == entry2.favCoffeeShop) && (entry1.comments == entry2.comments) && (entry1.duplicateNumber == entry2.duplicateNumber)
-//    }
-//    
-//    static func != (entry1: Entry, entry2: Entry) -> Bool {
-//        return !(entry1 == entry2)
-//    }
-//    
-//    ///Comparision of entries where duplicateNumber doesn't matter
-//    func isEqual(entry: Entry) -> Bool {
-//        return (self.name == entry.name) && (self.coffeeType == entry.coffeeType) && (self.favCoffeeShop == entry.favCoffeeShop) && (self.comments == entry.comments)
-//    }
-//    
-//    func isNotEqual(entry: Entry) -> Bool {
-//        return !(self.isEqual(entry: entry))
-//    }
+extension Entry {
     
     func getIndex(ofEntry: Entry, list: [Entry]?) -> Int? {
         
@@ -195,20 +178,25 @@ extension Entry/* : Equatable*/ {
 public class Singleton {
     
     static let sharedInstance = Singleton()
-    public var shouldUpdate = Bool()
-    var selectedEntry: Entry?
-    var selectedEntryList: EntryList?
+    /*private(set)*/ var shouldUpdate = Bool()
+    /*private(set)*/ var selectedEntry: Entry?
+    /*private(set)*/ var selectedEntryList: EntryList?
     
     func clearAll() {
         shouldUpdate = false
         selectedEntry = nil
+        selectedEntryList = nil
     }
     
-    init() {
-        print("\(self) is being initialized")
-    }
-    
-    deinit {
-        print("\(self) is being deinitialized")
+    func select(value: Any, manageController: UIViewController) {
+        guard (value is Entry || value is EntryList) && manageController is ManageController else {
+            fatalError("Unauthorized access of Singleton")
+        }
+        
+        if value is Entry {
+            selectedEntry = value as? Entry
+        } else if value is EntryList {
+            selectedEntryList = value as? EntryList
+        }
     }
 }

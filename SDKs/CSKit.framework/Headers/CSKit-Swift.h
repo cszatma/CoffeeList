@@ -116,6 +116,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+@import ObjectiveC;
+@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -139,9 +141,58 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 */
 - (void)dismissKeyboard;
 /**
-  Displays a UIAlertController with given title and message to alert the user of an error
+  Displays a UIAlertController with given title and message to alert the user of an error in their use of the application.
+  \param errorTitle The title of the Alert.
+
+  \param errorMessage The message to be displayed to the user.
+
+  \param buttonTitle The title of the button displayed.
+
 */
 - (void)displayErrorMessageWithErrorTitle:(NSString * _Nonnull)errorTitle errorMessage:(NSString * _Nonnull)errorMessage buttonTitle:(NSString * _Nonnull)buttonTitle;
+@end
+
+@class NSCoder;
+
+SWIFT_CLASS("_TtC5CSKit8Vector3D")
+@interface Vector3D : NSObject <NSCoding>
+/**
+  The x component of the given vector.
+*/
+@property (nonatomic) double x;
+/**
+  The y component of the given vector.
+*/
+@property (nonatomic) double y;
+/**
+  The z component of the given vector.
+*/
+@property (nonatomic) double z;
+/**
+  Magnitude of the given vector.
+*/
+@property (nonatomic, readonly) double magnitude;
+/**
+  Creates a vector with the given components.
+  \param x The x component of the vector.
+
+  \param y The y component of the vector.
+
+  \param z The z component of the vector.
+
+*/
+- (nonnull instancetype)initWithX:(double)x y:(double)y z:(double)z OBJC_DESIGNATED_INITIALIZER;
+/**
+  Creates a vector between two given points.
+*/
+- (nonnull instancetype)initWithX1:(double)x1 y1:(double)y1 z1:(double)z1 x2:(double)x2 y2:(double)y2 z2:(double)z2;
+- (nonnull instancetype)init;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+/**
+  The string format of a Vector.
+*/
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @end
 
 #pragma clang diagnostic pop
