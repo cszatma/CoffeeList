@@ -20,7 +20,6 @@ func ==<T: Equatable>(left: [T]?, right: [T]?) -> Bool {
     return false
 }
 
-
 func == (left: Entry?, right: Entry?) -> Bool {
     if !(left.hasValue) && !(right.hasValue) {
         return true //Both are nil

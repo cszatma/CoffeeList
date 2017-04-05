@@ -6,4 +6,8 @@
 //  Copyright © 2017 SzatmaryInc. All rights reserved.
 //
 
-import Foundation
+import CSKit
+
+protocol EntryHandlerViewerDelegate {
+    func updateEntryType<T: EntryHandler>(with entryHandler: T)
+}

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* EntryHandler.swift */; };
+		E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */; };
+		E301819E1E74E8A400C72FED /* ManageEntryHandlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */; };
+		E307312E1E84AB240069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
+		E307312F1E84AB240069EC09 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E30731301E84AB380069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
+		E30731311E84AB440069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
+		E30A7EE91E7630F70041166F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A7EE81E7630F70041166F /* Enums.swift */; };
+		E31D86B91E4E782200417867 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D86B81E4E782200417867 /* Functions.swift */; };
 		E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9761D179E6200D04FB4 /* AppDelegate.swift */; };
 		E321C9791D179E6200D04FB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9781D179E6200D04FB4 /* ViewController.swift */; };
 		E321C97C1D179E6200D04FB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E321C97A1D179E6200D04FB4 /* Main.storyboard */; };
@@ -15,15 +24,13 @@
 		E321C98C1D179E6300D04FB4 /* CoffeeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C98B1D179E6300D04FB4 /* CoffeeListTests.swift */; };
 		E321C9971D179E6300D04FB4 /* CoffeeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */; };
 		E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A41D1A209900D04FB4 /* Protocols.swift */; };
-		E321C9A71D1A20A300D04FB4 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A61D1A20A300D04FB4 /* Classes.swift */; };
-		E3224B881DD6B23A00FB204C /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3224B871DD6B23A00FB204C /* CSKit.framework */; };
-		E3224B891DD6B23A00FB204C /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3224B871DD6B23A00FB204C /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A61D1A20A300D04FB4 /* Entry.swift */; };
 		E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3264BDB1DA74CA40040A02B /* Extensions.swift */; };
 		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
-		E32E1B0E1DDCCBFE0018F8BE /* ViewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */; };
+		E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */; };
 		E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */; };
-		E3BEDD5F1DB31D640041B60E /* ManageListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */; };
-		E3BEDD621DB54ACD0041B60E /* EditListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditListController.swift */; };
+		E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */; };
+		E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */; };
 		E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD631DB5C51E0041B60E /* EntryList.swift */; };
 		E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768551D1D735800E4FCB3 /* EditEntryController.swift */; };
 		E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */; };
@@ -47,13 +54,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E3224B8A1DD6B23A00FB204C /* Embed Frameworks */ = {
+		E3F774E61E84937800BF9F47 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E3224B891DD6B23A00FB204C /* CSKit.framework in Embed Frameworks */,
+				E307312F1E84AB240069EC09 /* CSKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +68,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E30181991E73AD6700C72FED /* EntryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandler.swift; sourceTree = "<group>"; };
+		E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandlerViewerDelegate.swift; sourceTree = "<group>"; };
+		E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryHandlerController.swift; sourceTree = "<group>"; };
+		E307312D1E84AB240069EC09 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
+		E30A7EE81E7630F70041166F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E31D86B81E4E782200417867 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		E321C9731D179E6200D04FB4 /* CoffeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321C9761D179E6200D04FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E321C9781D179E6200D04FB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,14 +88,13 @@
 		E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListUITests.swift; sourceTree = "<group>"; };
 		E321C9981D179E6300D04FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E321C9A41D1A209900D04FB4 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		E321C9A61D1A20A300D04FB4 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
-		E3224B871DD6B23A00FB204C /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
+		E321C9A61D1A20A300D04FB4 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		E3264BDB1DA74CA40040A02B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
-		E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewListController.swift; sourceTree = "<group>"; };
+		E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryListController.swift; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
-		E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListsController.swift; sourceTree = "<group>"; };
-		E3BEDD611DB54ACD0041B60E /* EditListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListController.swift; sourceTree = "<group>"; };
+		E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryListsController.swift; sourceTree = "<group>"; };
+		E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryListController.swift; sourceTree = "<group>"; };
 		E3BEDD631DB5C51E0041B60E /* EntryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryList.swift; sourceTree = "<group>"; };
 		E3C768551D1D735800E4FCB3 /* EditEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryController.swift; sourceTree = "<group>"; };
 		E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryController.swift; sourceTree = "<group>"; };
@@ -93,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3224B881DD6B23A00FB204C /* CSKit.framework in Frameworks */,
+				E307312E1E84AB240069EC09 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E30731301E84AB380069EC09 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,16 +121,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E30731311E84AB440069EC09 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E30181981E73AA6E00C72FED /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E321C9A41D1A209900D04FB4 /* Protocols.swift */,
+				E30181991E73AD6700C72FED /* EntryHandler.swift */,
+				E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		E31D86BA1E4E783000417867 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
+				E3BEDD631DB5C51E0041B60E /* EntryList.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		E321C96A1D179E6100D04FB4 = {
 			isa = PBXGroup;
 			children = (
-				E3224B871DD6B23A00FB204C /* CSKit.framework */,
+				E307312D1E84AB240069EC09 /* CSKit.framework */,
 				E321C9751D179E6200D04FB4 /* CoffeeList */,
 				E321C98A1D179E6300D04FB4 /* CoffeeListTests */,
 				E321C9951D179E6300D04FB4 /* CoffeeListUITests */,
@@ -140,11 +173,12 @@
 			children = (
 				E321C9761D179E6200D04FB4 /* AppDelegate.swift */,
 				E3BEDD601DB31D770041B60E /* ViewControllers */,
-				E321C9A41D1A209900D04FB4 /* Protocols.swift */,
+				E31D86BA1E4E783000417867 /* Classes */,
+				E30181981E73AA6E00C72FED /* Protocols */,
 				E3264BDB1DA74CA40040A02B /* Extensions.swift */,
-				E321C9A61D1A20A300D04FB4 /* Classes.swift */,
+				E30A7EE81E7630F70041166F /* Enums.swift */,
+				E31D86B81E4E782200417867 /* Functions.swift */,
 				E32E1B0B1DDCC65F0018F8BE /* Equality.swift */,
-				E3BEDD631DB5C51E0041B60E /* EntryList.swift */,
 				E321C97A1D179E6200D04FB4 /* Main.storyboard */,
 				E321C97D1D179E6200D04FB4 /* Assets.xcassets */,
 				E321C97F1D179E6200D04FB4 /* LaunchScreen.storyboard */,
@@ -175,12 +209,13 @@
 			isa = PBXGroup;
 			children = (
 				E321C9781D179E6200D04FB4 /* ViewController.swift */,
+				E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */,
 				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
 				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
 				E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */,
-				E3BEDD5E1DB31D640041B60E /* ManageListsController.swift */,
-				E3BEDD611DB54ACD0041B60E /* EditListController.swift */,
-				E32E1B0D1DDCCBFE0018F8BE /* ViewListController.swift */,
+				E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */,
+				E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */,
+				E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -195,7 +230,7 @@
 				E321C96F1D179E6100D04FB4 /* Sources */,
 				E321C9701D179E6100D04FB4 /* Frameworks */,
 				E321C9711D179E6100D04FB4 /* Resources */,
-				E3224B8A1DD6B23A00FB204C /* Embed Frameworks */,
+				E3F774E61E84937800BF9F47 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,19 +361,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3BEDD5F1DB31D640041B60E /* ManageListsController.swift in Sources */,
-				E32E1B0E1DDCCBFE0018F8BE /* ViewListController.swift in Sources */,
-				E3BEDD621DB54ACD0041B60E /* EditListController.swift in Sources */,
+				E301819E1E74E8A400C72FED /* ManageEntryHandlerController.swift in Sources */,
+				E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */,
+				E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */,
+				E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */,
 				E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */,
 				E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */,
 				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
 				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
+				E31D86B91E4E782200417867 /* Functions.swift in Sources */,
+				E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* ViewController.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
-				E321C9A71D1A20A300D04FB4 /* Classes.swift in Sources */,
+				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
+				E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */,
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
 				E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */,
+				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -476,7 +516,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -494,7 +534,7 @@
 					"$(PROJECT_DIR)/SDKs",
 				);
 				INFOPLIST_FILE = CoffeeList/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,7 +552,7 @@
 					"$(PROJECT_DIR)/SDKs",
 				);
 				INFOPLIST_FILE = CoffeeList/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -524,8 +564,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeListTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,8 +582,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeListTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -551,6 +599,10 @@
 		E321C9A21D179E6300D04FB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeListUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListUITests;
@@ -563,6 +615,10 @@
 		E321C9A31D179E6300D04FB4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKs",
+				);
 				INFOPLIST_FILE = CoffeeListUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeListUITests;

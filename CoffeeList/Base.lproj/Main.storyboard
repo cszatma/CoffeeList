@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -49,16 +49,16 @@
             </objects>
             <point key="canvasLocation" x="-958" y="-416"/>
         </scene>
-        <!--Manage Lists Controller-->
+        <!--Manage Entry Lists Controller-->
         <scene sceneID="d5m-9u-60g">
             <objects>
-                <tableViewController id="gB3-Hu-FAw" customClass="ManageListsController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gB3-Hu-FAw" customClass="ManageEntryListsController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="56C-hK-wRi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="p05-AV-HQh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryTypeCell" id="p05-AV-HQh">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p05-AV-HQh" id="3tG-gE-l7s">
@@ -74,9 +74,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="lxU-97-lzv"/>
                     <connections>
-                        <outlet property="listsTableView" destination="56C-hK-wRi" id="TZJ-Wj-TcD"/>
-                        <segue destination="Wqp-8N-TFX" kind="show" identifier="showEditList" id="NVi-kw-ftz"/>
-                        <segue destination="RGd-sw-Bmu" kind="show" identifier="showViewList" id="Z4E-Se-fo8"/>
+                        <segue destination="Wqp-8N-TFX" kind="show" identifier="showEditEntryList" id="NVi-kw-ftz"/>
+                        <segue destination="RGd-sw-Bmu" kind="show" identifier="showViewEntryList" id="Z4E-Se-fo8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P3-Dh-uIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entryCell" id="Ctw-Jd-dQi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entryTypeCell" id="Ctw-Jd-dQi">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ctw-Jd-dQi" id="7nW-VR-gJl">
@@ -109,8 +108,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="UH3-PF-qfg"/>
                     <connections>
-                        <outlet property="entriesTableView" destination="PTU-SB-kv8" id="PGX-n1-fAq"/>
-                        <segue destination="kpa-4q-9E7" kind="show" identifier="showEditEntry" id="OS1-PW-pSf"/>
+                        <segue destination="CAr-HW-rYw" kind="show" identifier="showEditEntry" id="OS1-PW-pSf"/>
                         <segue destination="Ak0-M6-Ij4" kind="show" identifier="showViewEntry" id="DCF-nX-267"/>
                     </connections>
                 </tableViewController>
@@ -167,17 +165,17 @@
                         <outlet property="lblFavCoffeeShop" destination="Ol5-27-4X8" id="jIf-Cr-n4q"/>
                         <outlet property="lblName" destination="sKU-kb-wv2" id="2Xg-n9-jR3"/>
                         <outlet property="txtComments" destination="imZ-Wx-tad" id="JgJ-JB-fee"/>
-                        <segue destination="kpa-4q-9E7" kind="show" identifier="showEditSelectedEntry" id="6JY-7V-2ZC"/>
+                        <segue destination="CAr-HW-rYw" kind="presentation" identifier="showEditSelectedEntry" modalTransitionStyle="crossDissolve" id="6JY-7V-2ZC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SQ-HL-Dex" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2338" y="-783"/>
         </scene>
-        <!--View List Controller-->
+        <!--View Entry List Controller-->
         <scene sceneID="1cC-d8-4VJ">
             <objects>
-                <tableViewController id="RGd-sw-Bmu" customClass="ViewListController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RGd-sw-Bmu" customClass="ViewEntryListController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="u10-OW-rq6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,7 +185,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b3B-9O-f5H" id="xMX-8o-qpb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -198,18 +196,17 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="viewListTableView" destination="u10-OW-rq6" id="dZL-sy-lEi"/>
-                        <segue destination="Wqp-8N-TFX" kind="show" identifier="showEditSelectedList" id="OP0-GR-Wx7"/>
+                        <segue destination="Wqp-8N-TFX" kind="show" identifier="showEditSelectedList" animates="NO" id="OP0-GR-Wx7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUL-gs-RBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2337" y="-73"/>
         </scene>
-        <!--Edit List Controller-->
+        <!--Edit Entry List Controller-->
         <scene sceneID="dSw-6O-mju">
             <objects>
-                <tableViewController id="Wqp-8N-TFX" customClass="EditListController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Wqp-8N-TFX" customClass="EditEntryListController" customModule="CoffeeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QgR-l6-FIf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,9 +226,6 @@
                             <outlet property="delegate" destination="Wqp-8N-TFX" id="hKh-WP-dR8"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="addEntriesList" destination="QgR-l6-FIf" id="eyS-Kx-LBy"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgF-jI-R11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,21 +243,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIg-wH-iEr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIg-wH-iEr">
                                 <rect key="frame" x="86" y="94" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFk-fT-6cm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Coffee Type" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFk-fT-6cm">
                                 <rect key="frame" x="86" y="191" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOc-BW-msD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Favorite Coffee Shop" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOc-BW-msD">
                                 <rect key="frame" x="86" y="294" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -287,6 +281,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="UU2-0H-SoR"/>
                     <connections>
                         <outlet property="txtCoffeeType" destination="dFk-fT-6cm" id="7Ud-sB-h9y"/>
                         <outlet property="txtComments" destination="Wsg-gn-HIQ" id="lnS-ty-VsK"/>
@@ -296,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPi-qI-Jhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3112" y="-1604"/>
+            <point key="canvasLocation" x="4050.4000000000001" y="-1604.3478260869567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SGo-VB-FnD">
@@ -334,9 +329,27 @@
             </objects>
             <point key="canvasLocation" x="206" y="-73"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5bc-Jq-SrF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CAr-HW-rYw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ig6-5U-Q4o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kpa-4q-9E7" kind="relationship" relationship="rootViewController" id="RHj-j9-FJR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OB5-q1-S6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3111.1999999999998" y="-1604.3478260869567"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OP0-GR-Wx7"/>
-        <segue reference="6JY-7V-2ZC"/>
+        <segue reference="OS1-PW-pSf"/>
+        <segue reference="NVi-kw-ftz"/>
     </inferredMetricsTieBreakers>
 </document>

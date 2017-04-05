@@ -1,36 +1,30 @@
 //
-//  EditListController.swift
+//  EditEntryListController.swift
 //  CoffeeList
 //
 //  Created by Christopher Szatmary on 2016-10-17.
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import UIKit
 import CSKit
 
-class EditListController: UITableViewController, DataSaver, EditController {
+class EditEntryListController: UITableViewController, EditController {
     
-    enum dataKey: String {
-        case SavedLists = "savedLists"
-        case SavedEntries = "savedEntries"
-    }
-    
-    var isNewList = Bool() //Determines whether the user is creating a new list or editing an existing one
+    var listName: String!
     var list: EntryList?
     var savedEntries: [Entry]?
     var selectedEntries = [Entry]() //Entries that user selects
     
-    @IBOutlet var addEntriesList: UITableView!
+    var entryHandlerDelegate: EntryHandlerViewerDelegate?
     
     //Sets up view controller
     override  func  viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditListController.cancel))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditListController.save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditEntryListController.cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryListController.save))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.title = "Select Entries"
-        setUpView(isNewData: isNewList)
+        setUpView()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,11 +32,8 @@ class EditListController: UITableViewController, DataSaver, EditController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //loadEntries()
-        guard savedEntries != nil else {
-            return 0
-        }
-        return savedEntries!.count
+        savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
+        return savedEntries?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,7 +46,6 @@ class EditListController: UITableViewController, DataSaver, EditController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedEntry: Entry = (savedEntries?[indexPath.item])!
         if let cell = tableView.cellForRow(at: indexPath) {
-            //cell.accessoryType = .checkmark
             guard !(cell.isChecked) else {
                 cell.accessoryType = .none
                 cell.backgroundColor = UIColor.white
@@ -76,47 +66,37 @@ class EditListController: UITableViewController, DataSaver, EditController {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
             selectedEntries.append(selectedEntry)
-            
-            
         }
         
     }
     
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        if let cell = tableView.cellForRow(at: indexPath) {
-//            cell.accessoryType = .none
-//        }
-//        selectedEntries.remove(at: indexPath.item)
-//    }
-    
     func save() {
-        //selectedEntries = sortEntries(entries: selectedEntries)
-        let newList = EntryList(listName: list!.name, entries: selectedEntries)
+        let newList = EntryList(listName: listName, entries: selectedEntries)
         
-        guard isNewList else {
-            newList.updateEntryList(originalEntryList: list!)
-            Singleton.sharedInstance.shouldUpdate = true
-            Singleton.sharedInstance.selectedEntryList = newList
+        guard !list.hasValue else {
+            newList.update(original: list!)
+            entryHandlerDelegate?.updateEntryType(with: newList)
             return
         }
         
-        newList.saveEntryList()
+        newList.save()
         cancel()
     }
     
     func cancel() {
-        _ = self.navigationController?.popViewController(animated: isNewList)
+        _ = self.navigationController?.popViewController(animated: !list.hasValue)
     }
     
-    func setUpView(isNewData: Bool) {
-        savedEntries = loadSavedData(ofType: Entry.self)
-        addEntriesList.reloadData()
-        guard !(isNewList) else {
+    
+    
+    func setUpView() {
+        //savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
+        self.tableView.reloadData()
+        guard list.hasValue else {
             return
         }
-        print("editing")
+        
         let entries = list?.entries
-        print(savedEntries)
         for entry in entries! {
             guard let index = savedEntries?.index(where: { $0 == entry }) else {
                 return
@@ -125,7 +105,7 @@ class EditListController: UITableViewController, DataSaver, EditController {
             let path = IndexPath(row: index, section: 0)
             //addEntriesList.selectRow(at: path, animated: true, scrollPosition: .none)
             
-            let cell = addEntriesList.cellForRow(at: path)
+            let cell = self.tableView.cellForRow(at: path)
             cell!.checkCell()
         }
         

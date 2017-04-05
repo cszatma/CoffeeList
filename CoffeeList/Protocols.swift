@@ -6,17 +6,13 @@
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import UIKit
 import CSKit
 
-protocol EntryViewer {
-    
+protocol EditController {
+    func save()
+    func setUpView()
 }
 
-extension EntryViewer {
+extension EditController where Self: UIViewController {
     
 }
-
-//extension DataSaver where Self: UIViewController {
-//    
-//}

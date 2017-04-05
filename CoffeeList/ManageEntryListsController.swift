@@ -1,19 +1,14 @@
 //
-//  ManageListsController.swift
+//  ManageEntryListsController.swift
 //  CoffeeList
 //
 //  Created by Christopher Szatmary on 2016-10-15.
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import UIKit
 import CSKit
 
-class ManageListsController: UITableViewController, DataSaver, SegueHandlerType {
-    
-    enum dataKey: String {
-        case SavedLists = "savedLists"
-    }
+class ManageEntryListsController: UITableViewController, SegueHandlerType {
     
     enum SegueIdentifier: String {
         case ShowEditList = "showEditEntryList"
@@ -27,22 +22,19 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     
     var savedLists: [EntryList]?
     var selectedListIndex = Int()
-    var selectedList: EntryList?
+    var newListName: String!
     weak var actionToEnable: UIAlertAction?
-    
-    @IBOutlet var listsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(ManageListsController.back))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageListsController.add))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(ManageEntryListsController.back))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntryListsController.add))
         self.title = "Manage Lists"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        selectedList = nil
-        listsTableView.reloadData()
+        self.tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,7 +50,7 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "entryTypeCell", for: indexPath)
         let usedList = savedLists?[indexPath.item]
         cell.textLabel?.text = usedList?.name
         return cell
@@ -66,7 +58,7 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedListIndex = indexPath.row
-        performSegueWithIdentifier(segueIdentifier: .ShowViewList, sender: nil)
+        performSegue(withIdentifier: .ShowViewList, sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -93,8 +85,8 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
             //self.listsTableView.deleteRows(at: [indexPath], with: .none)
             print("List is being deleted")
             let selected = self.savedLists?[indexPath.item]
-            selected?.removeFrom(entryLists: self.savedLists!)
-            self.listsTableView.reloadData()
+            selected?.delete()
+            self.tableView.reloadData()
         })
         
         rename.backgroundColor = UIColor.orange
@@ -107,7 +99,7 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     
     ///Gets all the saved EntryLists and sorts them alphabetically
     func loadLists() {
-        savedLists = getSavedObject(key: .SavedLists) as? [EntryList]
+        savedLists = EntryLists.getFromUserDefaults(withKey: .SavedLists)
         guard savedLists.hasValue else {
             return
         }
@@ -119,13 +111,12 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifierForSegue(segue: segue) {
+        switch segueIdentifier(forSegue: segue) {
         case .ShowEditList:
             let editListController = segue.destination as! EditEntryListController
-            editListController.isNewList = true
-            editListController.list = selectedList
+            editListController.listName = newListName
         case .ShowViewList:
-            let viewListController = segue.destination as! ViewListController
+            let viewListController = segue.destination as! ViewEntryListController
             viewListController.selectedEntryList = savedLists![selectedListIndex]
         }
     }
@@ -151,16 +142,12 @@ class ManageListsController: UITableViewController, DataSaver, SegueHandlerType 
             
             //Executed if the user is creating a new list
             if editingAction == .NewEntryList {
-                self.selectedList = EntryList(listName: textField.text!, entries: nil)
-                print(self.selectedList?.name)
-                self.performSegueWithIdentifier(segueIdentifier: .ShowEditList, sender: nil)
+                self.newListName = textField.text!
+                self.performSegue(withIdentifier: .ShowEditList, sender: nil)
             } else if editingAction == .RenameEntryList { //Executed if the user is renaming an existing list
-                //let newList = EntryList(listName: textField.text!, entries: list?.entries)
-                //newList.updateEntryList(originalEntryList: list!)
-                self.savedLists![index!] ~= textField.text!
-                self.saveObject(object: self.savedLists!, key: .SavedLists)
-                self.listsTableView.reloadData()
-                //self.dismiss(animated: true, completion: nil)
+                self.savedLists![index!].name = textField.text!
+                self.savedLists?.saveToUserDefaults(withKey: .SavedLists)
+                self.tableView.reloadData()
                 alertController.dismiss(animated: true, completion: nil)
             }
         })

@@ -6,37 +6,28 @@
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import UIKit
 import CSKit
 
-class ManageEntriesController: UITableViewController, SegueHandlerType, DataSaver {
+class ManageEntriesController: UITableViewController, SegueHandlerType {
     
     enum SegueIdentifier: String {
         case ShowEditEntry = "showEditEntry"
         case ShowViewEntry = "showViewEntry"
     }
     
-    enum dataKey: String {
-        case SavedEntries = "savedEntries"
-    }
-    
-    var savedEntries: [Entry]?
-    var selectedEntry = Int()
-    
-    //var newEntry = Bool()
-    
-    @IBOutlet var entriesTableView: UITableView!
+    private var savedEntries: [Entry]?
+    private var selectedEntry = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(ManageEntriesController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(ManageEntriesController.back))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntriesController.add))
         self.title = "Manage Entries"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        entriesTableView.reloadData()
+        self.tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,18 +35,14 @@ class ManageEntriesController: UITableViewController, SegueHandlerType, DataSave
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        loadEntries()
-        //savedEntries.update
+        savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
         
-        guard savedEntries != nil else {
-            return 0
-        }
-        return savedEntries!.count
+        return savedEntries?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "entryTypeCell", for: indexPath)
             let usedEntry = savedEntries?[indexPath.item]
             cell.textLabel?.text = usedEntry?.name
             return cell
@@ -65,7 +52,7 @@ class ManageEntriesController: UITableViewController, SegueHandlerType, DataSave
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell number: \(indexPath.row)")
         selectedEntry = indexPath.row
-        performSegueWithIdentifier(segueIdentifier: .ShowViewEntry, sender: nil)
+        performSegue(withIdentifier: .ShowViewEntry, sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -75,35 +62,21 @@ class ManageEntriesController: UITableViewController, SegueHandlerType, DataSave
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             let selectedEntry = savedEntries?[indexPath.item]
-            selectedEntry?.removeFrom(entries: savedEntries!)
-            entriesTableView.reloadData()
+            selectedEntry?.delete()
+            self.tableView.reloadData()
             
         }
     }
     
-    func loadEntries() {
-        guard let loadedEntries = getSavedObject(key: .SavedEntries) as? [Entry] else {
-            return
-        }
-        savedEntries = sortEntries(entries: loadedEntries)
-    }
-    
     func add() {
-        performSegueWithIdentifier(segueIdentifier: .ShowEditEntry, sender: nil)
+        performSegue(withIdentifier: .ShowEditEntry, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifierForSegue(segue: segue) {
-        case .ShowEditEntry:
-            let editEntryController: EditEntryController = segue.destination as! EditEntryController
-            editEntryController.isNewEntry = true
-        case .ShowViewEntry:
-            let viewEntryController: ViewEntryController = segue.destination as! ViewEntryController
-            viewEntryController.selectedEntry = savedEntries?[selectedEntry]
-           return
+        guard segueIdentifier(forSegue: segue) == .ShowViewEntry else {
+            return
         }
-        
-        
+        (segue.destination as! ViewEntryController).selectedEntry = savedEntries?[selectedEntry]
     }
     
 }
