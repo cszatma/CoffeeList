@@ -44,26 +44,16 @@ class EditEntryListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedEntry: Entry = User.instance.entries[indexPath.item]
         if let cell = tableView.cellForRow(at: indexPath) {
-            guard !(cell.isChecked) else {
-                cell.accessoryType = .none
-                cell.backgroundColor = UIColor.white
-                guard let index = selectedEntries.index(of: selectedEntry) else {
-                    return
-                }
-                
+            if (cell.isChecked) {
+                cell.setState(.none)
+                guard let index = selectedEntries.index(of: selectedEntry) else { return }
                 selectedEntries.remove(at: index)
-                if selectedEntries.count == 0 {
-                    self.navigationItem.rightBarButtonItem?.isEnabled = false
-                }
-                return
+            } else {
+                cell.setState(.checkmark)
+                selectedEntries.append(selectedEntry)
             }
             
-            cell.accessoryType = .checkmark
-            cell.backgroundColor = #colorLiteral(red: 0.2674255417, green: 1, blue: 0.3940180105, alpha: 1)
-            if selectedEntries.count == 0 {
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-            }
-            selectedEntries.append(selectedEntry)
+            self.navigationItem.rightBarButtonItem?.isEnabled = selectedEntries.count == 0 ? false : true
         }
         
     }
@@ -99,12 +89,11 @@ class EditEntryListController: UITableViewController {
             guard let index = User.instance.entries.index(where: { $0 == entry }) else {
                 return
             }
-            print("selecting")
             let path = IndexPath(row: index, section: 0)
             //addEntriesList.selectRow(at: path, animated: true, scrollPosition: .none)
             
             let cell = self.tableView.cellForRow(at: path)
-            cell!.checkCell()
+            cell!.setState(.checkmark)
         }
         
     }
