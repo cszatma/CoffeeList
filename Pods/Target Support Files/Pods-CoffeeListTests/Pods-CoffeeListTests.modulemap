@@ -1,0 +1,6 @@
+framework module Pods_CoffeeListTests {
+  umbrella header "Pods-CoffeeListTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
