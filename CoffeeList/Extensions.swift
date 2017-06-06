@@ -24,14 +24,16 @@ extension UITableViewCell {
         }
     }
     
-    func checkCell() {
-        switch isChecked {
-        case true:
-            self.accessoryType = .none
-            self.backgroundColor = UIColor.white
-        case false:
+    func setState(_ state: UITableViewCellAccessoryType) {
+        switch state {
+        case .checkmark:
             self.accessoryType = .checkmark
             self.backgroundColor = #colorLiteral(red: 0.2674255417, green: 1, blue: 0.3940180105, alpha: 1)
+        case .none:
+            self.accessoryType = .none
+            self.backgroundColor = UIColor.white
+        default:
+            return
         }
     }
     
