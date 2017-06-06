@@ -9,7 +9,7 @@
 import CSKit
 
 
-class ViewController: UIViewController, SegueHandlerType {
+class ViewController: UIViewController, SegueHandler {
     
     enum SegueIdentifier: String {
         case ShowManageEntries = "showManageEntries"
@@ -18,9 +18,7 @@ class ViewController: UIViewController, SegueHandlerType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        let savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
-        print(savedEntries)
+        print(User.instance.entries)
     }
 
     override func didReceiveMemoryWarning() {
