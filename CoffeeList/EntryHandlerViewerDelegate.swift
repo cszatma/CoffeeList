@@ -9,5 +9,5 @@
 import CSKit
 
 protocol EntryHandlerViewerDelegate {
-    func updateEntryType<T: EntryHandler>(with entryHandler: T)
+    func updateEntryType()
 }

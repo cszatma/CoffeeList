@@ -8,11 +8,10 @@
 
 import CSKit
 
-class EditEntryListController: UITableViewController, EditController {
+class EditEntryListController: UITableViewController {
     
     var listName: String!
     var list: EntryList?
-    var savedEntries: [Entry]?
     var selectedEntries = [Entry]() //Entries that user selects
     
     var entryHandlerDelegate: EntryHandlerViewerDelegate?
@@ -20,7 +19,7 @@ class EditEntryListController: UITableViewController, EditController {
     //Sets up view controller
     override  func  viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditEntryListController.cancel))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditEntryListController.dismissView))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryListController.save))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.title = "Select Entries"
@@ -32,19 +31,18 @@ class EditEntryListController: UITableViewController, EditController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
-        return savedEntries?.count ?? 0
+        return User.instance.entries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addEntryCell", for: indexPath)
-        let usedEntry  = savedEntries?[indexPath.item]
-        cell.textLabel?.text = usedEntry?.name
+        let usedEntry  = User.instance.entries[indexPath.item]
+        cell.textLabel?.text = usedEntry.name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEntry: Entry = (savedEntries?[indexPath.item])!
+        let selectedEntry: Entry = User.instance.entries[indexPath.item]
         if let cell = tableView.cellForRow(at: indexPath) {
             guard !(cell.isChecked) else {
                 cell.accessoryType = .none
@@ -71,19 +69,19 @@ class EditEntryListController: UITableViewController, EditController {
     }
     
     func save() {
-        let newList = EntryList(listName: listName, entries: selectedEntries)
         
-        guard !list.hasValue else {
-            newList.update(original: list!)
-            entryHandlerDelegate?.updateEntryType(with: newList)
-            return
+        if list.hasValue {
+            list?.entries = selectedEntries
+            entryHandlerDelegate?.updateEntryType()
+        } else {
+            let newList = EntryList(listName: listName, entries: selectedEntries)
+            User.instance.entryLists.append(newList)
         }
-        
-        newList.save()
-        cancel()
+        User.instance.save(selection: .EntryLists)
+        dismissView()
     }
     
-    func cancel() {
+    func dismissView() {
         _ = self.navigationController?.popViewController(animated: !list.hasValue)
     }
     
@@ -98,7 +96,7 @@ class EditEntryListController: UITableViewController, EditController {
         
         let entries = list?.entries
         for entry in entries! {
-            guard let index = savedEntries?.index(where: { $0 == entry }) else {
+            guard let index = User.instance.entries.index(where: { $0 == entry }) else {
                 return
             }
             print("selecting")

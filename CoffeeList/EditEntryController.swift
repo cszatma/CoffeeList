@@ -46,13 +46,17 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
     
     ///Saves the entry and any changes made to it
     func save() {
-        let newEntry = Entry(name: txtName.text!, coffeeType: txtCoffeeType.text!, favCoffeeShop: txtFavCoffeeShop.text!, comments: txtComments.text)
         if entry.hasValue {
-            newEntry.update(original: entry!)
-            entryHandlerDelegate?.updateEntryType(with: newEntry)
+            entry?.name = txtName.text!
+            entry?.coffeeType = txtCoffeeType.text!
+            entry?.favCoffeeShop = txtFavCoffeeShop.text!
+            entry?.comments = txtComments.text!
+            entryHandlerDelegate?.updateEntryType()
         } else {
-            newEntry.save()
+            let newEntry = Entry(name: txtName.text!, coffeeType: txtCoffeeType.text!, favCoffeeShop: txtFavCoffeeShop.text!, comments: txtComments.text)
+            User.instance.entries.append(newEntry)
         }
+        User.instance.save(selection: .Entries)
         dismissView()
         
     }
@@ -83,5 +87,5 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //TO DO: change textfield height based on number of lines user has - default 1 line, increases with each additional line, decreases with each deleted line
+    // TODO: change textfield height based on number of lines user has - default 1 line, increases with each additional line, decreases with each deleted line
 }

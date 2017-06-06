@@ -14,13 +14,14 @@ class EntryList: NSObject, NSCoding, EntryHandler {
     
     typealias dataKey = UserDefaultsKeys
     
-    var name = String()
+    var name: String
     var entries: [Entry]?
-    var duplicateNumber = Int()
+    let uid: UUID
     
-    init(listName: String, entries: [Entry]?) {
+    init(listName: String, entries: [Entry]?, uid: UUID = UUID()) {
         self.name = listName
         self.entries = entries
+        self.uid = uid
     }
     
     ///Required init from EntryHandler Protocol. Creates a default instance with the given name, and nil entries.
@@ -32,15 +33,14 @@ class EntryList: NSObject, NSCoding, EntryHandler {
     required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "listName") as! String
         let entries = aDecoder.decodeObject(forKey: "listEntries") as? [Entry]
-        let duplicateNumber = aDecoder.decodeInteger(forKey: "duplicateNumber")
-        self.init(listName: name, entries: entries)
-        self.duplicateNumber = duplicateNumber
+        let uid = UUID(uuidString: aDecoder.decodeObject(forKey: "uid") as! String)!
+        self.init(listName: name, entries: entries, uid: uid)
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: "listName")
         aCoder.encode(entries, forKey: "listEntries")
-        aCoder.encode(duplicateNumber, forKey: "duplicateNumber")
+        aCoder.encode(uid.uuidString, forKey: "uid")
     }
     
     ///String representation of EntryList class
@@ -52,7 +52,7 @@ class EntryList: NSObject, NSCoding, EntryHandler {
     }
     
     static func ==(lhs: EntryList, rhs: EntryList) -> Bool {
-        return lhs.name == rhs.name && lhs.entries == rhs.entries && lhs.duplicateNumber == rhs.duplicateNumber
+        return lhs.uid == rhs.uid
     }
     
     static func !=(lhs: EntryList, rhs: EntryList) -> Bool {

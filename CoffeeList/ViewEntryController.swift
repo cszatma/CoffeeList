@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ViewEntryController: UIViewController, SegueHandlerType, EntryHandlerViewerDelegate {
+class ViewEntryController: UIViewController, SegueHandler, EntryHandlerViewerDelegate {
     
     enum SegueIdentifier: String {
         case ShowEditSelectedEntry = "showEditSelectedEntry"
@@ -51,8 +51,7 @@ class ViewEntryController: UIViewController, SegueHandlerType, EntryHandlerViewe
         editEntryController.entryHandlerDelegate = self
     }
     
-    func updateEntryType<T: EntryHandler>(with entryHandler: T) {
-        selectedEntry = entryHandler as! Entry
+    func updateEntryType() {
         loadEntry()
     }
     

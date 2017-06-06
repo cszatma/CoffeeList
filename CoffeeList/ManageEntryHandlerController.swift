@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ManageEntryHandlerController<T: EntryHandler>: UITableViewController, SegueHandlerType {
+class ManageEntryHandlerController<T: EntryHandler>: UITableViewController, SegueHandler {
     
     //Used to conform to the SegueHandlerType protocol.
     typealias SegueIdentifier = EntryHandlerSegueIdentifiers
@@ -24,7 +24,7 @@ class ManageEntryHandlerController<T: EntryHandler>: UITableViewController, Segu
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(ManageEntryHandlerController.back))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntryHandlerController.add))
-        self.title = T(name: "") is Entry ? "Manage Entries" : "Manage Lists"
+        self.title = T.self is Entry.Type ? "Manage Entries" : "Manage Lists"
     }
     
     //Reloads the savedEntryTypes array to update thcse tableview with any changes.
@@ -54,7 +54,7 @@ class ManageEntryHandlerController<T: EntryHandler>: UITableViewController, Segu
     ///Initiates the segue to view the selected Entry or EntryList when a cell is tapped.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
-        let identifier = T(name: "") is Entry ? SegueIdentifier.ShowViewEntry : SegueIdentifier.ShowViewEntryList
+        let identifier = T.self is Entry.Type ? SegueIdentifier.ShowViewEntry : SegueIdentifier.ShowViewEntryList
         performSegue(withIdentifier: identifier, sender: nil)
     }
     
@@ -65,8 +65,14 @@ class ManageEntryHandlerController<T: EntryHandler>: UITableViewController, Segu
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let selectedEntryType = savedEntryTypes?[indexPath.row]
-            selectedEntryType?.delete()
+            if T.self is Entry.Type {
+                User.instance.entries.remove(at: indexPath.row)
+                User.instance.save(selection: .Entries)
+            } else {
+                User.instance.entryLists.remove(at: indexPath.row)
+                User.instance.save(selection: .EntryLists)
+            }
+            
             self.tableView.reloadData()
         }
     }

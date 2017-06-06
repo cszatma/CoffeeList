@@ -8,15 +8,11 @@
 
 import CSKit
 
-class ManageEntriesController: UITableViewController, SegueHandlerType {
+class ManageEntriesController: UITableViewController, SegueHandler {
     
-    enum SegueIdentifier: String {
-        case ShowEditEntry = "showEditEntry"
-        case ShowViewEntry = "showViewEntry"
-    }
+    typealias SegueIdentifier = EntryHandlerSegueIdentifiers
     
-    private var savedEntries: [Entry]?
-    private var selectedEntry = Int()
+    private var selectedIndex = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +31,20 @@ class ManageEntriesController: UITableViewController, SegueHandlerType {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
-        
-        return savedEntries?.count ?? 0
+        return User.instance.entries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "entryTypeCell", for: indexPath)
-            let usedEntry = savedEntries?[indexPath.item]
-            cell.textLabel?.text = usedEntry?.name
+            let usedEntry = User.instance.entries[indexPath.item]
+            cell.textLabel?.text = usedEntry.name
             return cell
-    
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell number: \(indexPath.row)")
-        selectedEntry = indexPath.row
+        selectedIndex = indexPath.row
         performSegue(withIdentifier: .ShowViewEntry, sender: nil)
     }
     
@@ -61,10 +54,9 @@ class ManageEntriesController: UITableViewController, SegueHandlerType {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let selectedEntry = savedEntries?[indexPath.item]
-            selectedEntry?.delete()
+            User.instance.entries.remove(at: indexPath.row)
+            User.instance.save(selection: .Entries)
             self.tableView.reloadData()
-            
         }
     }
     
@@ -76,7 +68,7 @@ class ManageEntriesController: UITableViewController, SegueHandlerType {
         guard segueIdentifier(forSegue: segue) == .ShowViewEntry else {
             return
         }
-        (segue.destination as! ViewEntryController).selectedEntry = savedEntries?[selectedEntry]
+        (segue.destination as! ViewEntryController).selectedEntry = User.instance.entries[selectedIndex]
     }
     
 }

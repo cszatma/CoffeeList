@@ -8,19 +8,15 @@
 
 import CSKit
 
-class ManageEntryListsController: UITableViewController, SegueHandlerType {
+class ManageEntryListsController: UITableViewController, SegueHandler {
     
-    enum SegueIdentifier: String {
-        case ShowEditList = "showEditEntryList"
-        case ShowViewList = "showViewEntryList"
-    }
+    typealias SegueIdentifier = EntryHandlerSegueIdentifiers
     
     enum editingAction: String {
         case NewEntryList = "newEntryList"
         case RenameEntryList = "renameEntryList"
     }
     
-    var savedLists: [EntryList]?
     var selectedListIndex = Int()
     var newListName: String!
     weak var actionToEnable: UIAlertAction?
@@ -42,23 +38,19 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        loadLists()
-        guard savedLists != nil else {
-            return 0
-        }
-        return savedLists!.count
+        return User.instance.entryLists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entryTypeCell", for: indexPath)
-        let usedList = savedLists?[indexPath.item]
-        cell.textLabel?.text = usedList?.name
+        let usedList = User.instance.entryLists[indexPath.item]
+        cell.textLabel?.text = usedList.name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedListIndex = indexPath.row
-        performSegue(withIdentifier: .ShowViewList, sender: nil)
+        performSegue(withIdentifier: .ShowViewEntryList, sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -83,9 +75,8 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
         //delete action
         let delete = UITableViewRowAction(style: .normal, title: "Delete", handler: {_,_ in
             //self.listsTableView.deleteRows(at: [indexPath], with: .none)
-            print("List is being deleted")
-            let selected = self.savedLists?[indexPath.item]
-            selected?.delete()
+            User.instance.entryLists.remove(at: indexPath.row)
+            User.instance.save(selection: .EntryLists)
             self.tableView.reloadData()
         })
         
@@ -97,14 +88,6 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
         return actions
     }
     
-    ///Gets all the saved EntryLists and sorts them alphabetically
-    func loadLists() {
-        savedLists = EntryLists.getFromUserDefaults(withKey: .SavedLists)
-        guard savedLists.hasValue else {
-            return
-        }
-    }
-    
     ///Called when user wants to add new EntryList
     func add() {
         showAlert(editingAction: .NewEntryList, index: nil)
@@ -112,12 +95,14 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(forSegue: segue) {
-        case .ShowEditList:
+        case .ShowEditEntryList:
             let editListController = segue.destination as! EditEntryListController
             editListController.listName = newListName
-        case .ShowViewList:
+        case .ShowViewEntryList:
             let viewListController = segue.destination as! ViewEntryListController
-            viewListController.selectedEntryList = savedLists![selectedListIndex]
+            viewListController.selectedEntryList = User.instance.entryLists[selectedListIndex]
+        default:
+            fatalError("Invalid segue identifier given.")
         }
     }
     
@@ -128,7 +113,7 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
         alertController.addTextField(configurationHandler: { (textField: UITextField!) -> Void in
             textField.placeholder = "List Name"
             if editingAction == .RenameEntryList {
-                textField.text = self.savedLists![index!].name
+                textField.text = User.instance.entryLists[index!].name
             }
             textField.addTarget(self, action: #selector(self.textChanged(sender:)), for: .editingChanged)
         })
@@ -143,10 +128,10 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
             //Executed if the user is creating a new list
             if editingAction == .NewEntryList {
                 self.newListName = textField.text!
-                self.performSegue(withIdentifier: .ShowEditList, sender: nil)
+                self.performSegue(withIdentifier: .ShowEditEntryList, sender: nil)
             } else if editingAction == .RenameEntryList { //Executed if the user is renaming an existing list
-                self.savedLists![index!].name = textField.text!
-                self.savedLists?.saveToUserDefaults(withKey: .SavedLists)
+                User.instance.entryLists[index!].name = textField.text!
+                User.instance.save(selection: .EntryLists)
                 self.tableView.reloadData()
                 alertController.dismiss(animated: true, completion: nil)
             }
@@ -173,6 +158,4 @@ class ManageEntryListsController: UITableViewController, SegueHandlerType {
         actionToEnable?.isEnabled = (sender.text! != "")
     }
     
-
 }
-

@@ -25,7 +25,7 @@ public enum UserDefaultsKeys: String {
     case SavedLists = "savedLists"
 }
 
-enum EntryHandlerAction: String {
-    case Add = "add"
-    case Remove = "remove"
+enum UserDefaultsError: Error {
+    case NoEntriesSaved
+    case NoEntryListsSaved
 }

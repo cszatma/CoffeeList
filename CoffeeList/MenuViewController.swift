@@ -9,7 +9,7 @@
 import CSKit
 
 
-class ViewController: UIViewController, SegueHandler {
+class MenuViewController: UIViewController, SegueHandler {
     
     enum SegueIdentifier: String {
         case ShowManageEntries = "showManageEntries"

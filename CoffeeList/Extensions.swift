@@ -37,6 +37,6 @@ extension UITableViewCell {
     
 }
 
-extension Array: DataSaver {
+extension Array: UserDefaultsHandler {
     public typealias dataKey = UserDefaultsKeys
 }

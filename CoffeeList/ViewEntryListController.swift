@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ViewEntryListController: UITableViewController, SegueHandlerType, EntryHandlerViewerDelegate {
+class ViewEntryListController: UITableViewController, SegueHandler, EntryHandlerViewerDelegate {
     
     enum SegueIdentifier : String {
         case ShowEditSelectedList = "showEditSelectedList"
@@ -59,8 +59,7 @@ class ViewEntryListController: UITableViewController, SegueHandlerType, EntryHan
         performSegue(withIdentifier: .ShowEditSelectedList, sender: nil)
     }
     
-    func updateEntryType<T>(with entryHandler: T) where T : EntryHandler {
-        selectedEntryList = entryHandler as! EntryList
+    func updateEntryType() {
         self.tableView.reloadData()
     }
 }

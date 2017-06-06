@@ -10,24 +10,22 @@
 		E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* EntryHandler.swift */; };
 		E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */; };
 		E301819E1E74E8A400C72FED /* ManageEntryHandlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */; };
-		E307312E1E84AB240069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
-		E307312F1E84AB240069EC09 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E30731301E84AB380069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
-		E30731311E84AB440069EC09 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E307312D1E84AB240069EC09 /* CSKit.framework */; };
 		E30A7EE91E7630F70041166F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A7EE81E7630F70041166F /* Enums.swift */; };
 		E31D86B91E4E782200417867 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D86B81E4E782200417867 /* Functions.swift */; };
 		E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9761D179E6200D04FB4 /* AppDelegate.swift */; };
-		E321C9791D179E6200D04FB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9781D179E6200D04FB4 /* ViewController.swift */; };
+		E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9781D179E6200D04FB4 /* MenuViewController.swift */; };
 		E321C97C1D179E6200D04FB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E321C97A1D179E6200D04FB4 /* Main.storyboard */; };
 		E321C97E1D179E6200D04FB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E321C97D1D179E6200D04FB4 /* Assets.xcassets */; };
 		E321C9811D179E6200D04FB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E321C97F1D179E6200D04FB4 /* LaunchScreen.storyboard */; };
 		E321C98C1D179E6300D04FB4 /* CoffeeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C98B1D179E6300D04FB4 /* CoffeeListTests.swift */; };
 		E321C9971D179E6300D04FB4 /* CoffeeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */; };
-		E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A41D1A209900D04FB4 /* Protocols.swift */; };
 		E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A61D1A20A300D04FB4 /* Entry.swift */; };
 		E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3264BDB1DA74CA40040A02B /* Extensions.swift */; };
 		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
 		E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */; };
+		E385D1161EE5195900568993 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385D1151EE5195900568993 /* User.swift */; };
+		E385D11E1EE60AED00568993 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385D11D1EE60AED00568993 /* CSKit.framework */; };
+		E385D11F1EE60AED00568993 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E385D11D1EE60AED00568993 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */; };
 		E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */; };
 		E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */; };
@@ -60,7 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E307312F1E84AB240069EC09 /* CSKit.framework in Embed Frameworks */,
+				E385D11F1EE60AED00568993 /* CSKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,12 +69,11 @@
 		E30181991E73AD6700C72FED /* EntryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandler.swift; sourceTree = "<group>"; };
 		E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandlerViewerDelegate.swift; sourceTree = "<group>"; };
 		E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryHandlerController.swift; sourceTree = "<group>"; };
-		E307312D1E84AB240069EC09 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E30A7EE81E7630F70041166F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E31D86B81E4E782200417867 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		E321C9731D179E6200D04FB4 /* CoffeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321C9761D179E6200D04FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E321C9781D179E6200D04FB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E321C9781D179E6200D04FB4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E321C97B1D179E6200D04FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E321C97D1D179E6200D04FB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E321C9801D179E6200D04FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,11 +84,12 @@
 		E321C9921D179E6300D04FB4 /* CoffeeListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321C9961D179E6300D04FB4 /* CoffeeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListUITests.swift; sourceTree = "<group>"; };
 		E321C9981D179E6300D04FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E321C9A41D1A209900D04FB4 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		E321C9A61D1A20A300D04FB4 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		E3264BDB1DA74CA40040A02B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
 		E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryListController.swift; sourceTree = "<group>"; };
+		E385D1151EE5195900568993 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E385D11D1EE60AED00568993 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
 		E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryListsController.swift; sourceTree = "<group>"; };
 		E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryListController.swift; sourceTree = "<group>"; };
@@ -105,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E307312E1E84AB240069EC09 /* CSKit.framework in Frameworks */,
+				E385D11E1EE60AED00568993 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +111,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E30731301E84AB380069EC09 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +118,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E30731311E84AB440069EC09 /* CSKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +127,6 @@
 		E30181981E73AA6E00C72FED /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E321C9A41D1A209900D04FB4 /* Protocols.swift */,
 				E30181991E73AD6700C72FED /* EntryHandler.swift */,
 				E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */,
 			);
@@ -143,6 +138,7 @@
 			children = (
 				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
 				E3BEDD631DB5C51E0041B60E /* EntryList.swift */,
+				E385D1151EE5195900568993 /* User.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -150,7 +146,7 @@
 		E321C96A1D179E6100D04FB4 = {
 			isa = PBXGroup;
 			children = (
-				E307312D1E84AB240069EC09 /* CSKit.framework */,
+				E385D11D1EE60AED00568993 /* CSKit.framework */,
 				E321C9751D179E6200D04FB4 /* CoffeeList */,
 				E321C98A1D179E6300D04FB4 /* CoffeeListTests */,
 				E321C9951D179E6300D04FB4 /* CoffeeListUITests */,
@@ -172,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				E321C9761D179E6200D04FB4 /* AppDelegate.swift */,
-				E3BEDD601DB31D770041B60E /* ViewControllers */,
+				E3BEDD601DB31D770041B60E /* View Controllers */,
 				E31D86BA1E4E783000417867 /* Classes */,
 				E30181981E73AA6E00C72FED /* Protocols */,
 				E3264BDB1DA74CA40040A02B /* Extensions.swift */,
@@ -205,10 +201,10 @@
 			path = CoffeeListUITests;
 			sourceTree = "<group>";
 		};
-		E3BEDD601DB31D770041B60E /* ViewControllers */ = {
+		E3BEDD601DB31D770041B60E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E321C9781D179E6200D04FB4 /* ViewController.swift */,
+				E321C9781D179E6200D04FB4 /* MenuViewController.swift */,
 				E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */,
 				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
 				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
@@ -217,7 +213,7 @@
 				E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */,
 				E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */,
 			);
-			name = ViewControllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,12 +362,11 @@
 				E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */,
 				E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */,
 				E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */,
-				E321C9A51D1A209900D04FB4 /* Protocols.swift in Sources */,
 				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
 				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
 				E31D86B91E4E782200417867 /* Functions.swift in Sources */,
 				E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */,
-				E321C9791D179E6200D04FB4 /* ViewController.swift in Sources */,
+				E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
 				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
@@ -379,6 +374,7 @@
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
 				E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */,
 				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,
+				E385D1161EE5195900568993 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

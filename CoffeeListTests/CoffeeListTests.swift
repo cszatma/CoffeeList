@@ -58,16 +58,11 @@ class CoffeeListTests: XCTestCase {
         debugPrint("john! identical to john2!: \(john! == john2!)")
         
         var entries = [john!]
-        john2!.checkForDuplicate(inArray: entries, action: .Add)
-        debugPrint("duplicateNumber of john2: \(john2!.duplicateNumber)")
         debugPrint("john identical to john2: \(john == john2)")
         debugPrint("john equal to john2: \(String(describing: john?.isEqual(to: john2!)))")
         debugPrint("john not equal to john2: \(String(describing: john?.isNotEqual(to: john2!)))")
         entries.append(john2!)
-        john?.checkForDuplicate(inArray: entries, action: .Remove)
         entries.remove(at: 0)
-        debugPrint("duplicateNumber of john2: \(john2!.duplicateNumber)")
-        //eddy ~= "ed"
         debugPrint(eddy)
     }
     

@@ -15,19 +15,19 @@ class Entry : NSObject, NSCoding, EntryHandler {
     
     typealias dataKey = UserDefaultsKeys
     
-    var name = String()
-    var coffeeType = String()
-    var favCoffeeShop = String()
+    var name: String
+    var coffeeType: String
+    var favCoffeeShop: String
     var comments: String?
-    var duplicateNumber = Int()
+    let uid: UUID
     
     ///Entry initialization
-    init(name: String, coffeeType: String, favCoffeeShop: String, comments: String?) {
+    init(name: String, coffeeType: String, favCoffeeShop: String, comments: String?, uid: UUID = UUID()) {
         self.name = name
         self.coffeeType = coffeeType
         self.favCoffeeShop = favCoffeeShop
         self.comments = comments
-        
+        self.uid = uid
     }
     
     ///Required init from EntryHandler Protocol. Creates a default instance with the given name, unknown coffeeType and unknown favCoffeeShop.
@@ -41,9 +41,8 @@ class Entry : NSObject, NSCoding, EntryHandler {
         let coffeeType = aDecoder.decodeObject(forKey: "coffeeType") as! String
         let favCoffeeShop = aDecoder.decodeObject(forKey: "favCoffeeShop") as! String
         let comments = aDecoder.decodeObject(forKey: "comments") as? String
-        let duplicateNumber = aDecoder.decodeInteger(forKey: "duplicateNumber")
-        self.init(name: name, coffeeType: coffeeType, favCoffeeShop: favCoffeeShop, comments: comments)
-        self.duplicateNumber = duplicateNumber
+        let uid = UUID(uuidString: aDecoder.decodeObject(forKey: "uid") as! String)!
+        self.init(name: name, coffeeType: coffeeType, favCoffeeShop: favCoffeeShop, comments: comments, uid: uid)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -51,23 +50,23 @@ class Entry : NSObject, NSCoding, EntryHandler {
         aCoder.encode(coffeeType, forKey: "coffeeType")
         aCoder.encode(favCoffeeShop, forKey: "favCoffeeShop")
         aCoder.encode(comments, forKey: "comments")
-        aCoder.encode(duplicateNumber, forKey: "duplicateNumber")
+        aCoder.encode(uid.uuidString, forKey: "uid")
     }
     
     ///String representation of Entry class. This allows type Entry to be converted into type String.
     override var description: String {
-        return "< \(name), \(coffeeType), \(favCoffeeShop), \(comments.hasValue), \(duplicateNumber) >"
+        return "< \(name), \(coffeeType), \(favCoffeeShop), \(comments.hasValue), \(uid) >"
     }
     
     static func ==(lhs: Entry, rhs: Entry) -> Bool {
-        return (lhs.name == rhs.name) && (lhs.coffeeType == rhs.coffeeType) && (lhs.favCoffeeShop == rhs.favCoffeeShop) && (lhs.comments == rhs.comments) && (lhs.duplicateNumber == rhs.duplicateNumber)
+        return lhs.uid == rhs.uid
     }
     
     static func !=(lhs: Entry, rhs: Entry) -> Bool {
         return !(lhs == rhs)
     }
     
-    ///Comparision of entries where duplicateNumber doesn't matter.
+    ///Comparision of entries where uid doesn't matter.
     /// - parameter to: Entry istance is being compared to.
     func isEqual(to: Entry) -> Bool {
         return (self.name == to.name) && (self.coffeeType == to.coffeeType) && (self.favCoffeeShop == to.favCoffeeShop) && (self.comments == to.comments)
