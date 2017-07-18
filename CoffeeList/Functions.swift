@@ -13,10 +13,7 @@ func sortEntryType<T: EntryHandler>(array: [T]) -> [T] {
 }
 
 func getDataKey<T: EntryHandler>(ofType: T.Type) -> UserDefaultsKeys {
-    guard T.self is Entry.Type else {
-        return UserDefaultsKeys.SavedLists
-    }
-    return UserDefaultsKeys.SavedEntries
+    return T.self is Entry.Type ? UserDefaultsKeys.SavedEntries : UserDefaultsKeys.SavedLists
 }
 
 

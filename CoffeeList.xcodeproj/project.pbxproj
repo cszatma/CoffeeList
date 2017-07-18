@@ -11,7 +11,6 @@
 		E2EFAC8D74A57033F0C112F8 /* Pods_CoffeeListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D3FCAC9C2407E806DC657B /* Pods_CoffeeListUITests.framework */; };
 		E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* EntryHandler.swift */; };
 		E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */; };
-		E301819E1E74E8A400C72FED /* ManageEntryHandlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */; };
 		E30A7EE91E7630F70041166F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A7EE81E7630F70041166F /* Enums.swift */; };
 		E31D86B91E4E782200417867 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D86B81E4E782200417867 /* Functions.swift */; };
 		E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9761D179E6200D04FB4 /* AppDelegate.swift */; };
@@ -79,7 +78,6 @@
 		DADDB6AAB1162C29DAC1A800 /* Pods-CoffeeListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeListTests/Pods-CoffeeListTests.release.xcconfig"; sourceTree = "<group>"; };
 		E30181991E73AD6700C72FED /* EntryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandler.swift; sourceTree = "<group>"; };
 		E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandlerViewerDelegate.swift; sourceTree = "<group>"; };
-		E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryHandlerController.swift; sourceTree = "<group>"; };
 		E30A7EE81E7630F70041166F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E31D86B81E4E782200417867 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		E321C9731D179E6200D04FB4 /* CoffeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,17 +239,32 @@
 			path = CoffeeListUITests;
 			sourceTree = "<group>";
 		};
+		E33179811EE88307008E0187 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
+				E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */,
+				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
+			);
+			name = Entry;
+			sourceTree = "<group>";
+		};
+		E33179821EE88318008E0187 /* EntryList */ = {
+			isa = PBXGroup;
+			children = (
+				E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */,
+				E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */,
+				E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */,
+			);
+			name = EntryList;
+			sourceTree = "<group>";
+		};
 		E3BEDD601DB31D770041B60E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E321C9781D179E6200D04FB4 /* MenuViewController.swift */,
-				E301819D1E74E8A400C72FED /* ManageEntryHandlerController.swift */,
-				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
-				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
-				E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */,
-				E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */,
-				E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */,
-				E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */,
+				E33179811EE88307008E0187 /* Entry */,
+				E33179821EE88318008E0187 /* EntryList */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -544,7 +557,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E301819E1E74E8A400C72FED /* ManageEntryHandlerController.swift in Sources */,
 				E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */,
 				E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */,
 				E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */,

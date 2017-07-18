@@ -8,49 +8,107 @@
 
 import CSKit
 
-class ViewEntryController: UIViewController, SegueHandler, EntryHandlerViewerDelegate {
+class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
     
-    enum SegueIdentifier: String {
-        case ShowEditSelectedEntry = "showEditSelectedEntry"
+    // *** Views *** //
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.backgroundColor = .gray
+        return label
+    }()
+    
+    let coffeeTypeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.backgroundColor = .gray
+        return label
+    }()
+    
+    let favCoffeeShopLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.backgroundColor = .gray
+        return label
+    }()
+    
+    let commentsTextView: UITextView = {
+        let textView = UITextView()
+        textView.textColor = .black
+        textView.isEditable = false
+        textView.setBorder(width: 2, color: .gray)
+        return textView
+    }()
+    
+    func generateLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
     }
+    // *** End Views *** //
     
     var selectedEntry: Entry!
     
-    @IBOutlet var lblName: UILabel!
-    @IBOutlet var lblCoffeeType: UILabel!
-    @IBOutlet var lblFavCoffeeShop: UILabel!
-    @IBOutlet var txtComments: UITextView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(ViewEntryController.editEntry))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(ViewEntryController.handleEditEntry))
+        view.backgroundColor = .white
+        setupView()
         loadEntry()
+    }
+    
+    func setupView() {
+        let topOffset = view.height / 8
+        // nameLabel
+        view.addSubview(nameLabel)
+        nameLabel.centerX(to: view)
+        nameLabel.top(to: view, offset: topOffset)
+        nameLabel.width(to: view, multiplier: 1/2)
+        nameLabel.height(to: view, multiplier: 1/8)
+        
+        // coffeeTypeLabel
+        view.addSubview(coffeeTypeLabel)
+        coffeeTypeLabel.centerX(to: view)
+        coffeeTypeLabel.topToBottom(of: nameLabel, offset: topOffset)
+        coffeeTypeLabel.width(to: nameLabel)
+        coffeeTypeLabel.height(to: nameLabel)
+        
+        // favCoffeeShopLabel
+        view.addSubview(favCoffeeShopLabel)
+        favCoffeeShopLabel.centerX(to: view)
+        favCoffeeShopLabel.topToBottom(of: coffeeTypeLabel, offset: topOffset)
+        favCoffeeShopLabel.width(to: nameLabel)
+        favCoffeeShopLabel.height(to: nameLabel)
+        
+        // commentsTextView
+        view.addSubview(commentsTextView)
+        commentsTextView.centerX(to: view)
+        commentsTextView.topToBottom(of: favCoffeeShopLabel, offset: topOffset)
+        commentsTextView.width(to: nameLabel)
+        commentsTextView.height(to: nameLabel, multiplier: 2)
     }
     
     ///Will load the selected entry
     func loadEntry() {
-        lblName.text = selectedEntry?.name
-        lblCoffeeType.text = selectedEntry?.coffeeType
-        lblFavCoffeeShop.text = selectedEntry?.favCoffeeShop
-        txtComments.text = selectedEntry?.comments
+        nameLabel.text = selectedEntry?.name
+        coffeeTypeLabel.text = selectedEntry?.coffeeType
+        favCoffeeShopLabel.text = selectedEntry?.favCoffeeShop
+        commentsTextView.text = selectedEntry?.comments
     }
     
     ///Called when the user touches the edit button
-    func editEntry() {
-        performSegue(withIdentifier: .ShowEditSelectedEntry, sender: nil)
+    func handleEditEntry() {
+        let viewController = EditEntryController()
+        viewController.entry = selectedEntry
+        viewController.entryHandlerDelegate = self
+        navigationController?.pushViewController(viewController, animated: false)
     }
     
-    ///Passes necessary data to EditEntryController when editing is about to begin
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segueIdentifier(forSegue: segue) == .ShowEditSelectedEntry else {
-            fatalError("Unknown Identifier used to initiate segue.")
-        }
-        let navController = segue.destination as! UINavigationController
-        let editEntryController = navController.viewControllers[0] as! EditEntryController
-        editEntryController.entry = selectedEntry
-        editEntryController.entryHandlerDelegate = self
-    }
-    
+    ///Notifies the ViewController to update the displayed values for the entry.
     func updateEntryType() {
         loadEntry()
     }

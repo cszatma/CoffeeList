@@ -8,22 +8,16 @@
 
 import CSKit
 
-class ManageEntriesController: UITableViewController, SegueHandler {
+class ManageEntriesController: UITableViewController, EntryHandlerViewerDelegate {
     
-    typealias SegueIdentifier = EntryHandlerSegueIdentifiers
-    
-    private var selectedIndex = Int()
+    fileprivate let cellId = "entryTypeCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(ManageEntriesController.back))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntriesController.add))
-        self.title = "Manage Entries"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.tableView.reloadData()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(ManageEntriesController.back))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntriesController.handleAddEntry))
+        title = "Manage Entries"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,17 +29,13 @@ class ManageEntriesController: UITableViewController, SegueHandler {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-            let cell = tableView.dequeueReusableCell(withIdentifier: "entryTypeCell", for: indexPath)
-            let usedEntry = User.instance.entries[indexPath.item]
-            cell.textLabel?.text = usedEntry.name
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+            cell.textLabel?.text = User.instance.entries[indexPath.row].name
             return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell number: \(indexPath.row)")
-        selectedIndex = indexPath.row
-        performSegue(withIdentifier: .ShowViewEntry, sender: nil)
+        showEntry(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -56,19 +46,24 @@ class ManageEntriesController: UITableViewController, SegueHandler {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             User.instance.entries.remove(at: indexPath.row)
             User.instance.save(selection: .Entries)
-            self.tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
-    func add() {
-        performSegue(withIdentifier: .ShowEditEntry, sender: nil)
+    func handleAddEntry() {
+        let viewController = EditEntryController()
+        viewController.entryHandlerDelegate = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segueIdentifier(forSegue: segue) == .ShowViewEntry else {
-            return
-        }
-        (segue.destination as! ViewEntryController).selectedEntry = User.instance.entries[selectedIndex]
+    func showEntry(index: Int) {
+        let viewController = ViewEntryController()
+        viewController.selectedEntry = User.instance.entries[index]
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func updateEntryType() {
+        tableView.reloadData()
     }
     
 }

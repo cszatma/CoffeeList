@@ -9,31 +9,60 @@
 import CSKit
 
 
-class MenuViewController: UIViewController, SegueHandler {
+class MenuViewController: UIViewController {
     
-    enum SegueIdentifier: String {
-        case ShowManageEntries = "showManageEntries"
-        case ShowManageLists = "showManageLists"
-    }
+    // *** Views *** //
+    let entriesButton: UIButton = {
+        let button = CSButton()
+        button.setTitle("Entries", for: .normal)
+        button.backgroundColor = .lightGray
+        button.cornerRadius = 40
+        button.addTarget(self, action: #selector(handleButtonTouch(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    let listsButton: UIButton = {
+        let button = CSButton()
+        button.setTitle("Lists", for: .normal)
+        button.backgroundColor = .lightGray
+        button.cornerRadius = 40
+        button.addTarget(self, action: #selector(handleButtonTouch(_:)), for: .touchUpInside)
+        return button
+    }()
+    // *** End Views *** //
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(User.instance.entries)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func btnManageEntries_Touch(_ sender: AnyObject) {
-        performSegue(withIdentifier: .ShowManageEntries, sender: nil)
-    }
-
-    @IBAction func btnManageLists_Touch(_ sender: AnyObject) {
-        performSegue(withIdentifier: .ShowManageLists, sender: nil)
+        view.backgroundColor = .white
+        setupView()
     }
     
+    /// Sets up and necessary constraints and adds created views to main view.
+    func setupView() {
+        
+        // entriesButton
+        view.addSubview(entriesButton)
+        entriesButton.centerX(to: view)
+        entriesButton.top(to: view, offset: view.height / 4)
+        entriesButton.width(to: view, multiplier: 1/2)
+        entriesButton.height(to: view, multiplier: 1/8)
+        
+        // listsButton
+        view.addSubview(listsButton)
+        listsButton.centerX(to: view)
+        listsButton.topToBottom(of: entriesButton, offset: view.height / 6)
+        listsButton.width(to: entriesButton)
+        listsButton.height(to: entriesButton)
+    }
+    
+    /// Handles the touch events for each button.
+    func handleButtonTouch(_ sender: UIButton) {
+        if sender == entriesButton {
+            present(UINavigationController(rootViewController: ManageEntriesController()), animated: true, completion: nil)
+        } else {
+            
+        }
+    }
 }
 
 
