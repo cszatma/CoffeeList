@@ -104,10 +104,7 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
     ///Saves the entry and any changes made to it
     func save() {
         if entry.hasValue {
-            entry?.name = nameTextField.text!
-            entry?.coffeeType = coffeeTypeTextField.text!
-            entry?.favCoffeeShop = favCoffeeShopTextField.text!
-            entry?.comments = commentsTextView.text!
+            entry?.update(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text)
         } else {
             User.instance.entries.append(Entry(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text))
         }
