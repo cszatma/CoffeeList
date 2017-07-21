@@ -111,6 +111,7 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
     ///Notifies the ViewController to update the displayed values for the entry.
     func updateEntryType() {
         loadEntry()
+        (navigationController?.viewControllers[0] as! ManageEntriesController).updateEntryType()
     }
     
 }
