@@ -9,7 +9,7 @@
 import UIKit
 
 
-class EditEntryController: UIViewController, UITextFieldDelegate {
+class EditEntryController: UITableViewController, UITextFieldDelegate {
     
     // *** Views *** //
     let nameTextField: UITextField = {
@@ -44,6 +44,8 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
     weak var saveBarButton: UIBarButtonItem?
     var entryHandlerDelegate: EntryHandlerViewerDelegate?
     
+    fileprivate let cellId = "entryPropertyCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -52,48 +54,46 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
         saveBarButton = navigationItem.rightBarButtonItem
         saveBarButton?.isEnabled = false
         title = entry.hasValue ? "Add Entry" : "Edit Entry"
-        setupView()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.hideKeyboardWhenTappedAround()
         for case let textField as UITextField in self.view.subviews {
             textField.delegate = self
             textField.addTarget(self, action: #selector(textChanged(sender:)), for: .editingChanged)
         }
+        tableView.allowsSelection = false
     }
     
-    func setupView() {
-        let topOffset = view.height / 8
-        // nameTextField
-        view.addSubview(nameTextField)
-        nameTextField.centerX(to: view)
-        nameTextField.top(to: view, offset: topOffset)
-        nameTextField.width(to: view, multiplier: 1/2)
-        nameTextField.height(to: view, multiplier: 1/8)
-        nameTextField.text = entry?.name
-        
-        // coffeeTypeTextField
-        view.addSubview(coffeeTypeTextField)
-        coffeeTypeTextField.centerX(to: view)
-        coffeeTypeTextField.topToBottom(of: nameTextField, offset: topOffset)
-        coffeeTypeTextField.width(to: nameTextField)
-        coffeeTypeTextField.height(to: nameTextField)
-        coffeeTypeTextField.text = entry?.coffeeType
-        
-        // favCoffeeShopTextField
-        view.addSubview(favCoffeeShopTextField)
-        favCoffeeShopTextField.centerX(to: view)
-        favCoffeeShopTextField.topToBottom(of: coffeeTypeTextField, offset: topOffset)
-        favCoffeeShopTextField.width(to: nameTextField)
-        favCoffeeShopTextField.height(to: nameTextField)
-        favCoffeeShopTextField.text = entry?.favCoffeeShop
-        
-        // commentsTextView
-        view.addSubview(commentsTextView)
-        commentsTextView.centerX(to: view)
-        commentsTextView.topToBottom(of: favCoffeeShopTextField, offset: topOffset)
-        commentsTextView.width(to: nameTextField)
-        commentsTextView.height(to: nameTextField, multiplier: 2)
-        commentsTextView.text = entry?.comments
+    // *** TableView Setup *** //
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        if indexPath.row == 3 {
+            cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: nil)
+//            (cell as! CSTableViewTextViewCell).textView.sizeToFit()
+            (cell as! CSTableViewTextViewCell).textView.backgroundColor = .red
+            (cell as! CSTableViewTextViewCell).textView.text = "TEST"
+            (cell as! CSTableViewTextViewCell).textView.font = UIFont.systemFont(ofSize: 17)
+        } else {
+            cell = CSTableViewTextFieldCell(placeholder: "Enter Text", reuseIdentifier: nil)
+            (cell as! CSTableViewTextFieldCell).textField.delegate = self
+        }
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 3 {
+            return 100
+        }
+        return 44
+    }
+    // *** End TableView Setup *** //
     
     ///Exit editing viewcontroller without saving
     func dismissView() {
@@ -117,18 +117,20 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case nameTextField:
-            coffeeTypeTextField.becomeFirstResponder()
-        case coffeeTypeTextField:
-            favCoffeeShopTextField.becomeFirstResponder()
-        default:
-            textField.resignFirstResponder()
-        }
+//        switch textField {
+//        case nameTextField:
+//            coffeeTypeTextField.becomeFirstResponder()
+//        case coffeeTypeTextField:
+//            favCoffeeShopTextField.becomeFirstResponder()
+//        default:
+//            textField.resignFirstResponder()
+//        }
+        print(textField.superview)
         return true
     }
     
     func textChanged(sender: UITextField) {
+        print("Changed")
         if !nameTextField.text!.isEmpty && !coffeeTypeTextField.text!.isEmpty && !favCoffeeShopTextField.text!.isEmpty {
             saveBarButton?.isEnabled = true
         }
