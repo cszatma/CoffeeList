@@ -72,5 +72,10 @@ class Entry : NSObject, NSCoding, EntryHandler {
         return (self.name == to.name) && (self.coffeeType == to.coffeeType) && (self.favCoffeeShop == to.favCoffeeShop) && (self.comments == to.comments)
     }
     
-    
+    func update(name: String, coffeeType: String, favCoffeeShop: String, comments: String?) {
+        self.name = name
+        self.coffeeType = coffeeType
+        self.favCoffeeShop = favCoffeeShop
+        self.comments = comments
+    }
 }
