@@ -29,3 +29,8 @@ enum UserDefaultsError: Error {
     case NoEntriesSaved
     case NoEntryListsSaved
 }
+
+enum AnimationType: String {
+    case push = "push"
+    case fade = "fade"
+}

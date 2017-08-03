@@ -105,7 +105,7 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         let viewController = EditEntryController()
         viewController.entry = selectedEntry
         viewController.entryHandlerDelegate = self
-        navigationController?.pushViewController(viewController, animated: false)
+        navigationController?.present(viewController: viewController, animationType: .fade)
     }
     
     ///Notifies the ViewController to update the displayed values for the entry.

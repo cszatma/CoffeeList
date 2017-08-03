@@ -11,6 +11,7 @@
 		E2EFAC8D74A57033F0C112F8 /* Pods_CoffeeListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D3FCAC9C2407E806DC657B /* Pods_CoffeeListUITests.framework */; };
 		E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* EntryHandler.swift */; };
 		E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */; };
+		E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */; };
 		E30A7EE91E7630F70041166F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A7EE81E7630F70041166F /* Enums.swift */; };
 		E31D86B91E4E782200417867 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D86B81E4E782200417867 /* Functions.swift */; };
 		E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9761D179E6200D04FB4 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3264BDB1DA74CA40040A02B /* Extensions.swift */; };
 		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
 		E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */; };
+		E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */; };
 		E385D1161EE5195900568993 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385D1151EE5195900568993 /* User.swift */; };
 		E385D1231EE70D0000568993 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; };
 		E385D1241EE70D0000568993 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -78,6 +80,7 @@
 		DADDB6AAB1162C29DAC1A800 /* Pods-CoffeeListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeListTests/Pods-CoffeeListTests.release.xcconfig"; sourceTree = "<group>"; };
 		E30181991E73AD6700C72FED /* EntryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandler.swift; sourceTree = "<group>"; };
 		E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandlerViewerDelegate.swift; sourceTree = "<group>"; };
+		E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextViewCell.swift; sourceTree = "<group>"; };
 		E30A7EE81E7630F70041166F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E31D86B81E4E782200417867 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		E321C9731D179E6200D04FB4 /* CoffeeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,7 @@
 		E3264BDB1DA74CA40040A02B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
 		E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryListController.swift; sourceTree = "<group>"; };
+		E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextFieldCell.swift; sourceTree = "<group>"; };
 		E385D1151EE5195900568993 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E385D1221EE70D0000568993 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
@@ -169,6 +173,15 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		E301EA101F227F04001945F7 /* CSViews */ = {
+			isa = PBXGroup;
+			children = (
+				E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */,
+				E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */,
+			);
+			name = CSViews;
+			sourceTree = "<group>";
+		};
 		E31D86BA1E4E783000417867 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +220,7 @@
 			children = (
 				E321C9761D179E6200D04FB4 /* AppDelegate.swift */,
 				E3BEDD601DB31D770041B60E /* View Controllers */,
+				E301EA101F227F04001945F7 /* CSViews */,
 				E31D86BA1E4E783000417867 /* Classes */,
 				E30181981E73AA6E00C72FED /* Protocols */,
 				E3264BDB1DA74CA40040A02B /* Extensions.swift */,
@@ -567,12 +581,14 @@
 				E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
+				E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */,
 				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
 				E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */,
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
 				E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */,
 				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,
+				E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */,
 				E385D1161EE5195900568993 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

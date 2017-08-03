@@ -9,40 +9,20 @@
 import UIKit
 
 
-class EditEntryController: UIViewController, UITextFieldDelegate {
+class EditEntryController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
     
     // *** Views *** //
-    let nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Name"
-        return textField
-    }()
-    
-    let coffeeTypeTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Coffee Type"
-        return textField
-    }()
-    
-    let favCoffeeShopTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Favourite Coffee Shop"
-        return textField
-    }()
-    
-    let commentsTextView: UITextView = {
-        let textView = UITextView()
-        textView.setBorder(width: 2, color: .gray)
-        return textView
-    }()
+    var nameTextField: UITextField!
+    var coffeeTypeTextField: UITextField!
+    var favCoffeeShopTextField: UITextField!
+    var commentsTextView: UITextView!
     // *** End Views *** //
     
     var entry: Entry?
     weak var saveBarButton: UIBarButtonItem?
     var entryHandlerDelegate: EntryHandlerViewerDelegate?
+    
+    fileprivate let cellId = "entryPropertyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,54 +31,71 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryController.save))
         saveBarButton = navigationItem.rightBarButtonItem
         saveBarButton?.isEnabled = false
-        title = entry.hasValue ? "Add Entry" : "Edit Entry"
-        setupView()
+        title = entry.hasValue ? "Edit Entry" : "Add Entry"
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.hideKeyboardWhenTappedAround()
-        for case let textField as UITextField in self.view.subviews {
-            textField.delegate = self
-            textField.addTarget(self, action: #selector(textChanged(sender:)), for: .editingChanged)
-        }
+        tableView.allowsSelection = false
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    func setupView() {
-        let topOffset = view.height / 8
-        // nameTextField
-        view.addSubview(nameTextField)
-        nameTextField.centerX(to: view)
-        nameTextField.top(to: view, offset: topOffset)
-        nameTextField.width(to: view, multiplier: 1/2)
-        nameTextField.height(to: view, multiplier: 1/8)
-        nameTextField.text = entry?.name
-        
-        // coffeeTypeTextField
-        view.addSubview(coffeeTypeTextField)
-        coffeeTypeTextField.centerX(to: view)
-        coffeeTypeTextField.topToBottom(of: nameTextField, offset: topOffset)
-        coffeeTypeTextField.width(to: nameTextField)
-        coffeeTypeTextField.height(to: nameTextField)
-        coffeeTypeTextField.text = entry?.coffeeType
-        
-        // favCoffeeShopTextField
-        view.addSubview(favCoffeeShopTextField)
-        favCoffeeShopTextField.centerX(to: view)
-        favCoffeeShopTextField.topToBottom(of: coffeeTypeTextField, offset: topOffset)
-        favCoffeeShopTextField.width(to: nameTextField)
-        favCoffeeShopTextField.height(to: nameTextField)
-        favCoffeeShopTextField.text = entry?.favCoffeeShop
-        
-        // commentsTextView
-        view.addSubview(commentsTextView)
-        commentsTextView.centerX(to: view)
-        commentsTextView.topToBottom(of: favCoffeeShopTextField, offset: topOffset)
-        commentsTextView.width(to: nameTextField)
-        commentsTextView.height(to: nameTextField, multiplier: 2)
-        commentsTextView.text = entry?.comments
+    // *** TableView Setup *** //
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        var textField: UITextField?
+        
+        switch indexPath.row {
+        case 0:
+            cell = CSTableViewTextFieldCell(placeholder: "Name", reuseIdentifier: cellId)
+            nameTextField = (cell as! CSTableViewTextFieldCell).textField
+            textField = nameTextField
+            nameTextField.text = entry?.name
+        case 1:
+            cell = CSTableViewTextFieldCell(placeholder: "Coffee Type", reuseIdentifier: cellId)
+            coffeeTypeTextField = (cell as! CSTableViewTextFieldCell).textField
+            textField = coffeeTypeTextField
+            coffeeTypeTextField.text = entry?.coffeeType
+        case 2:
+            cell = CSTableViewTextFieldCell(placeholder: "Favourite Coffee Shop", reuseIdentifier: cellId)
+            favCoffeeShopTextField = (cell as! CSTableViewTextFieldCell).textField
+            textField = favCoffeeShopTextField
+            favCoffeeShopTextField.text = entry?.favCoffeeShop
+        default:
+            cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: nil)
+            commentsTextView = (cell as! CSTableViewTextViewCell).textView
+//            commentsTextView.sizeToFit()
+            commentsTextView.font = UIFont.systemFont(ofSize: 17)
+            commentsTextView.text = entry?.comments
+            commentsTextView.delegate = self
+        }
+        
+        textField?.delegate = self
+        textField?.addTarget(self, action: #selector(textChanged(sender:)), for: .editingChanged)
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 3 {
+//            return 100
+            return UITableViewAutomaticDimension
+        }
+        return 44
+    }
+    // *** End TableView Setup *** //
     
     ///Exit editing viewcontroller without saving
     func dismissView() {
         self.dismissKeyboard()
-        navigationController?.popViewController(animated: true)
+        let animationType: AnimationType? = entry.hasValue ? .fade : .push
+        navigationController?.popViewController(animationType: animationType)
     }
     
     ///Saves the entry and any changes made to it
@@ -106,7 +103,11 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
         if entry.hasValue {
             entry?.update(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text)
         } else {
-            User.instance.entries.append(Entry(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text))
+            entry = Entry(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text)
+            User.instance.entries.append(entry!)
+            let viewController = ViewEntryController()
+            viewController.selectedEntry = entry
+            navigationController?.viewControllers.insert(viewController, at: 1)
         }
         User.instance.save(selection: .Entries)
         entryHandlerDelegate?.updateEntryType()
@@ -135,6 +136,25 @@ class EditEntryController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+//        let fixedWidth = textView.frame.size.width
+//        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+//        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+//        var newFrame = textView.frame
+//        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+//        textView.frame = newFrame;
+//        let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! CSTableViewTextViewCell
+//        let textViewHeightConstraint = cell.textViewHeightConstraint
+//        textViewHeightConstraint.constant = newFrame.size.height
+//        cell.height = 44 + newFrame.size.height
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
     
-    // TODO: change textfield height based on number of lines user has - default 1 line, increases with each additional line, decreases with each deleted line
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+////        tableView.setContentOffset(CGPoint(x: 0, y: commentsTextView.center.y - 60), animated: true)
+//        view.height += 70
+//    }
+    
 }
