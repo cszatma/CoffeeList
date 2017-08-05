@@ -8,6 +8,7 @@
 
 import UIKit
 
+typealias PropertyStatus = (Bool, Bool, Bool, Bool)
 
 class EditEntryController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -21,22 +22,27 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     var entry: Entry?
     weak var saveBarButton: UIBarButtonItem?
     var entryHandlerDelegate: EntryHandlerViewerDelegate?
-    
-    fileprivate let cellId = "entryPropertyCell"
+    private var propertyStatus: PropertyStatus = (false, false, false, false)
+    private let cellId = "entryPropertyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set up tableview
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.allowsSelection = false
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(CSTableViewTextFieldCell.self, forCellReuseIdentifier: cellId)
+        
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(EditEntryController.dismissView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryController.save))
         saveBarButton = navigationItem.rightBarButtonItem
         saveBarButton?.isEnabled = false
         title = entry.hasValue ? "Edit Entry" : "Add Entry"
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.hideKeyboardWhenTappedAround()
-        tableView.allowsSelection = false
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        propertyStatus.3 = entry.hasValue ? false : true
     }
     
     // *** TableView Setup *** //
@@ -71,7 +77,6 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         default:
             cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: nil)
             commentsTextView = (cell as! CSTableViewTextViewCell).textView
-//            commentsTextView.sizeToFit()
             commentsTextView.font = UIFont.systemFont(ofSize: 17)
             commentsTextView.text = entry?.comments
             commentsTextView.delegate = self
@@ -84,7 +89,6 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 3 {
-//            return 100
             return UITableViewAutomaticDimension
         }
         return 44
@@ -127,34 +131,44 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     }
     
     func textChanged(sender: UITextField) {
-        if !nameTextField.text!.isEmpty && !coffeeTypeTextField.text!.isEmpty && !favCoffeeShopTextField.text!.isEmpty {
-            saveBarButton?.isEnabled = true
+        // Make sure textField isn't empty and that text isn't equal to entry property.
+        switch sender {
+        case nameTextField:
+            propertyStatus.0 = entry.hasValue ? nameTextField.text! != entry?.name && !nameTextField.text!.isEmpty : !nameTextField.text!.isEmpty
+        case coffeeTypeTextField:
+            propertyStatus.1 = entry.hasValue ? coffeeTypeTextField.text! != entry?.coffeeType && !coffeeTypeTextField.text!.isEmpty : !coffeeTypeTextField.text!.isEmpty
+        default:
+            propertyStatus.2 = entry.hasValue ? favCoffeeShopTextField.text! != entry?.favCoffeeShop && !favCoffeeShopTextField.text!.isEmpty : !favCoffeeShopTextField.text!.isEmpty
         }
         
-        if nameTextField.text! == entry?.name && coffeeTypeTextField.text! == entry?.coffeeType && favCoffeeShopTextField.text! == entry?.favCoffeeShop && commentsTextView.text! == entry?.comments {
-            saveBarButton?.isEnabled = false
-        }
+        checkChanges()
     }
     
     func textViewDidChange(_ textView: UITextView) {
-//        let fixedWidth = textView.frame.size.width
-//        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-//        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-//        var newFrame = textView.frame
-//        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-//        textView.frame = newFrame;
-//        let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! CSTableViewTextViewCell
-//        let textViewHeightConstraint = cell.textViewHeightConstraint
-//        textViewHeightConstraint.constant = newFrame.size.height
-//        cell.height = 44 + newFrame.size.height
+        let size = textView.bounds.size
+        let newSize = textView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
         
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        if size.height != newSize.height {
+            print("resizing")
+            UIView.setAnimationsEnabled(false)
+            tableView.beginUpdates()
+            textView.scrollRangeToVisible(NSMakeRange(textView.text.characters.count-1, 0))
+            tableView.endUpdates()
+            UIView.setAnimationsEnabled(true)
+            tableView.scrollToRow(at: IndexPath(row: 3, section: 0), at: .bottom, animated: false)
+        }
+        
+        propertyStatus.3 = commentsTextView.text != entry?.comments
+        
+        checkChanges()
     }
     
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-////        tableView.setContentOffset(CGPoint(x: 0, y: commentsTextView.center.y - 60), animated: true)
-//        view.height += 70
-//    }
-    
+    func checkChanges() {
+        if entry.hasValue {
+            saveBarButton?.isEnabled = propertyStatus == (false, false, false, false) ? false : true
+        } else {
+            saveBarButton?.isEnabled = propertyStatus == (true, true, true, true) ? true : false
+        }
+    }
+
 }
