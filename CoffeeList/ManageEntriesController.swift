@@ -18,6 +18,7 @@ class ManageEntriesController: UITableViewController, EntryHandlerViewerDelegate
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageEntriesController.handleAddEntry))
         title = "Manage Entries"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
