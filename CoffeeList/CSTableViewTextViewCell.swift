@@ -13,7 +13,6 @@ class CSTableViewTextViewCell: UITableViewCell {
     
     let label: UILabel = UILabel()
     let textView: UITextView = UITextView()
-    var textViewHeightConstraint = Constraint()
     
     init(labelText: String?, reuseIdentifier: String?, textViewHeight: CGFloat = 56) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -28,7 +27,6 @@ class CSTableViewTextViewCell: UITableViewCell {
         textView.topToBottom(of: label)
         textView.bottom(to: self)
         textView.width(to: self, multiplier: 0.9)
-//        textViewHeightConstraint = textView.height(textViewHeight)
         textView.isScrollEnabled = false
     }
     
