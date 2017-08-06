@@ -36,7 +36,7 @@ class ManageEntriesController: UITableViewController, EntryHandlerViewerDelegate
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showEntry(index: indexPath.row)
+        presentController(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -45,21 +45,24 @@ class ManageEntriesController: UITableViewController, EntryHandlerViewerDelegate
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            User.instance.entries.remove(at: indexPath.row)
-            User.instance.save(selection: .Entries)
+            User.instance.removeElement(from: .Entries, at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     func handleAddEntry() {
-        let viewController = EditEntryController()
-        viewController.entryHandlerDelegate = self
-        navigationController?.pushViewController(viewController, animated: true)
+        presentController(index: nil)
     }
     
-    func showEntry(index: Int) {
-        let viewController = ViewEntryController()
-        viewController.selectedEntry = User.instance.entries[index]
+    func presentController(index: Int?) {
+        let viewController: UIViewController
+        if let entryIndex = index {
+            viewController = ViewEntryController()
+            (viewController as! ViewEntryController).selectedEntry = User.instance.entries[entryIndex]
+        } else {
+            viewController = EditEntryController()
+            (viewController as! EditEntryController).entryHandlerDelegate = self
+        }
         navigationController?.pushViewController(viewController, animated: true)
     }
     
