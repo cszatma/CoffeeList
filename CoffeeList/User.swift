@@ -52,4 +52,18 @@ class User {
             entryLists.saveToUserDefaults(withKey: .SavedLists)
         }
     }
+    
+    func removeElement(from selection: UserData, at index: Int, shouldSave: Bool = true) {
+        if selection == .Entries || selection == .All {
+            entries.remove(at: index)
+        }
+        
+        if selection == .EntryLists || selection == .All {
+            entryLists.remove(at: index)
+        }
+        
+        if shouldSave {
+            save(selection: selection)   
+        }
+    }
 }
