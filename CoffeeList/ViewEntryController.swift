@@ -16,6 +16,8 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         label.textColor = .black
         label.textAlignment = .center
         label.backgroundColor = .gray
+        label.cornerRadius = 10
+        label.font = label.font.withSize(20)
         return label
     }()
     
@@ -24,6 +26,8 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         label.textColor = .black
         label.textAlignment = .center
         label.backgroundColor = .gray
+        label.cornerRadius = 10
+        label.font = label.font.withSize(20)
         return label
     }()
     
@@ -32,14 +36,17 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         label.textColor = .black
         label.textAlignment = .center
         label.backgroundColor = .gray
+        label.cornerRadius = 10
+        label.font = label.font.withSize(20)
         return label
     }()
     
-    let commentsTextView: UITextView = {
+    let notesTextView: UITextView = {
         let textView = UITextView()
         textView.textColor = .black
         textView.isEditable = false
         textView.setBorder(width: 2, color: .gray)
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     
@@ -47,6 +54,8 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .center
+        label.cornerRadius = 10
+        label.font = label.font.withSize(20)
         return label
     }
     // *** End Views *** //
@@ -62,13 +71,13 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
     }
     
     func setupView() {
-        let topOffset = view.height / 8
+        let topOffset = view.height / 16
         // nameLabel
         view.addSubview(nameLabel)
         nameLabel.centerX(to: view)
-        nameLabel.top(to: view, offset: topOffset)
-        nameLabel.width(to: view, multiplier: 1/2)
-        nameLabel.height(to: view, multiplier: 1/8)
+        nameLabel.top(to: view, offset: navigationController!.navigationBar.height + 30)
+        nameLabel.width(to: view, offset: -20)
+        nameLabel.height(to: view, multiplier: 1/10)
         
         // coffeeTypeLabel
         view.addSubview(coffeeTypeLabel)
@@ -84,12 +93,13 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         favCoffeeShopLabel.width(to: nameLabel)
         favCoffeeShopLabel.height(to: nameLabel)
         
-        // commentsTextView
-        view.addSubview(commentsTextView)
-        commentsTextView.centerX(to: view)
-        commentsTextView.topToBottom(of: favCoffeeShopLabel, offset: topOffset)
-        commentsTextView.width(to: nameLabel)
-        commentsTextView.height(to: nameLabel, multiplier: 2)
+        // notesTextView
+        view.addSubview(notesTextView)
+        notesTextView.centerX(to: view)
+        notesTextView.topToBottom(of: favCoffeeShopLabel, offset: topOffset)
+        notesTextView.width(to: nameLabel)
+//        notesTextView.height(to: nameLabel, multiplier: 2)
+        notesTextView.bottom(to: view, offset: -30)
     }
     
     ///Will load the selected entry
@@ -97,7 +107,7 @@ class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
         nameLabel.text = selectedEntry?.name
         coffeeTypeLabel.text = selectedEntry?.coffeeType
         favCoffeeShopLabel.text = selectedEntry?.favCoffeeShop
-        commentsTextView.text = selectedEntry?.comments
+        notesTextView.text = selectedEntry?.notes
     }
     
     ///Called when the user touches the edit button

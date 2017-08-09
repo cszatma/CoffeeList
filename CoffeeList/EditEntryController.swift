@@ -16,7 +16,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     var nameTextField: UITextField!
     var coffeeTypeTextField: UITextField!
     var favCoffeeShopTextField: UITextField!
-    var commentsTextView: UITextView!
+    var notesTextView: UITextView!
     // *** End Views *** //
     
     var entry: Entry?
@@ -76,10 +76,10 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
             favCoffeeShopTextField.text = entry?.favCoffeeShop
         default:
             cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: nil)
-            commentsTextView = (cell as! CSTableViewTextViewCell).textView
-            commentsTextView.font = UIFont.systemFont(ofSize: 17)
-            commentsTextView.text = entry?.comments
-            commentsTextView.delegate = self
+            notesTextView = (cell as! CSTableViewTextViewCell).textView
+            notesTextView.font = UIFont.systemFont(ofSize: 17)
+            notesTextView.text = entry?.notes
+            notesTextView.delegate = self
         }
         
         textField?.delegate = self
@@ -105,9 +105,9 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     ///Saves the entry and any changes made to it
     func save() {
         if entry.hasValue {
-            entry?.update(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text)
+            entry?.update(name: nameTextField.trimmedText, coffeeType: coffeeTypeTextField.trimmedText, favCoffeeShop: favCoffeeShopTextField.trimmedText, notes: notesTextView.text)
         } else {
-            entry = Entry(name: nameTextField.text!, coffeeType: coffeeTypeTextField.text!, favCoffeeShop: favCoffeeShopTextField.text!, comments: commentsTextView.text)
+            entry = Entry(name: nameTextField.trimmedText, coffeeType: coffeeTypeTextField.trimmedText, favCoffeeShop: favCoffeeShopTextField.trimmedText, notes: notesTextView.text)
             User.instance.entries.append(entry!)
             let viewController = ViewEntryController()
             viewController.selectedEntry = entry
@@ -158,7 +158,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
             tableView.scrollToRow(at: IndexPath(row: 3, section: 0), at: .bottom, animated: false)
         }
         
-        propertyStatus.3 = commentsTextView.text != entry?.comments
+        propertyStatus.3 = notesTextView.text != entry?.notes
         
         checkChanges()
     }
