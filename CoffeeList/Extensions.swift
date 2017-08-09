@@ -8,7 +8,6 @@
 
 import CSKit
 
-
 extension UITableViewCell {
     
     var isChecked: Bool {
@@ -77,6 +76,14 @@ extension UINavigationController {
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = type.rawValue
         return transition
+    }
+    
+}
+
+extension UITextField {
+    
+    var trimmedText: String {
+        return text!.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
 }
