@@ -9,37 +9,36 @@
 import CSKit
 
 typealias EntryLists = [EntryList]
+typealias CoffeeDictionary = [String: Int]
 
 class EntryList: NSObject, NSCoding, EntryHandler {
     
     typealias dataKey = UserDefaultsKeys
     
     var name: String
-    var entries: [Entry]?
+    var entries: Entries?
+    var notes: String
     let uid: UUID
     
-    init(listName: String, entries: [Entry]?, uid: UUID = UUID()) {
+    init(listName: String, entries: Entries?, notes: String, uid: UUID = UUID()) {
         self.name = listName
         self.entries = entries
+        self.notes = notes
         self.uid = uid
-    }
-    
-    ///Required init from EntryHandler Protocol. Creates a default instance with the given name, and nil entries.
-    /// - parameter name: Name of EntryList.
-    required convenience init(name: String) {
-        self.init(listName: name, entries: nil)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "listName") as! String
-        let entries = aDecoder.decodeObject(forKey: "listEntries") as? [Entry]
+        let entries = aDecoder.decodeObject(forKey: "listEntries") as? Entries
+        let notes = aDecoder.decodeObject(forKey: "notes") as! String
         let uid = UUID(uuidString: aDecoder.decodeObject(forKey: "uid") as! String)!
-        self.init(listName: name, entries: entries, uid: uid)
+        self.init(listName: name, entries: entries, notes: notes, uid: uid)
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: "listName")
         aCoder.encode(entries, forKey: "listEntries")
+        aCoder.encode(notes, forKey: "notes")
         aCoder.encode(uid.uuidString, forKey: "uid")
     }
     
@@ -60,7 +59,24 @@ class EntryList: NSObject, NSCoding, EntryHandler {
     }
     
     func isEqual(to: EntryList) -> Bool {
-        return self.name == to.name && self.entries == to.entries
+        return self.name == to.name && self.entries == to.entries && self.notes == to.notes
+    }
+    
+    func update(name: String, entries: Entries, notes: String) {
+        self.name = name
+        self.entries = entries
+        self.notes = notes
+    }
+    
+    func generateCoffeeDictionary() -> CoffeeDictionary? {
+        guard let entries = entries else { return nil }
+        
+        var dictionary = CoffeeDictionary()
+        for entry in entries {
+            dictionary[entry.coffeeType] = (dictionary[entry.coffeeType] ?? 0) + 1
+        }
+        
+        return dictionary
     }
     
 }
