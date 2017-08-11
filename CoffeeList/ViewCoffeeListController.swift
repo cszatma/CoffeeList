@@ -47,10 +47,10 @@ class ViewCoffeeListController: UITableViewController, SegueHandler, CLTypeViewe
         switch segueIdentifier(forSegue: segue) {
         case .ShowEditSelectedList:
             let editListController: EditCoffeeListController = segue.destination as! EditCoffeeListController
-            editListController.listName = selectedCoffeeList.name
+//            editListController.listName = selectedCoffeeList.name
             editListController.list = selectedCoffeeList
             editListController.selectedEntries = selectedCoffeeList.entries!
-            editListController.entryHandlerDelegate = self
+            editListController.delegate = self
             return
         }
     }

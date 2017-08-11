@@ -182,7 +182,7 @@ class ManageCoffeeListsController: UITableViewController, CLTypeViewerDelegate {
             (viewController as! ViewCoffeeListController).selectedCoffeeList = User.instance.coffeeLists[coffeeListIndex]
         } else {
             viewController = EditCoffeeListController()
-            (viewController as! EditCoffeeListController).entryHandlerDelegate = self
+            (viewController as! EditCoffeeListController).delegate = self
         }
         navigationController?.pushViewController(viewController, animated: true)
 

@@ -114,7 +114,7 @@ class ViewEntryController: UIViewController, CLTypeViewerDelegate {
     func handleEditEntry() {
         let viewController = EditEntryController()
         viewController.entry = selectedEntry
-        viewController.entryHandlerDelegate = self
+        viewController.delegate = self
         navigationController?.present(viewController: viewController, animationType: .fade)
     }
     

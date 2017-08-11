@@ -61,7 +61,7 @@ class ManageEntriesController: UITableViewController, CLTypeViewerDelegate {
             (viewController as! ViewEntryController).selectedEntry = User.instance.entries[entryIndex]
         } else {
             viewController = EditEntryController()
-            (viewController as! EditEntryController).entryHandlerDelegate = self
+            (viewController as! EditEntryController).delegate = self
         }
         navigationController?.pushViewController(viewController, animated: true)
     }

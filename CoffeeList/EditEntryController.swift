@@ -21,7 +21,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     
     var entry: Entry?
     weak var saveBarButton: UIBarButtonItem?
-    var entryHandlerDelegate: CLTypeViewerDelegate?
+    var delegate: CLTypeViewerDelegate?
     private var propertyStatus: PropertyStatus = (false, false, false, false)
     private let cellId = "entryPropertyCell"
     
@@ -114,7 +114,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
             navigationController?.viewControllers.insert(viewController, at: 1)
         }
         User.instance.save(selection: .Entries)
-        entryHandlerDelegate?.updateEntryType()
+        delegate?.updateEntryType()
         dismissView()
     }
     
