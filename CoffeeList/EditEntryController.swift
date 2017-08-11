@@ -21,7 +21,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     
     var entry: Entry?
     weak var saveBarButton: UIBarButtonItem?
-    var entryHandlerDelegate: EntryHandlerViewerDelegate?
+    var entryHandlerDelegate: CLTypeViewerDelegate?
     private var propertyStatus: PropertyStatus = (false, false, false, false)
     private let cellId = "entryPropertyCell"
     

@@ -11,7 +11,7 @@ import CSKit
 typealias Entries = [Entry]
 
 ///The Entry class allows for the creation of user entries that can be used for Coffee Lists.
-class Entry : NSObject, NSCoding, EntryHandler {
+class Entry : NSObject, NSCoding, CLType {
     
     typealias dataKey = UserDefaultsKeys
     

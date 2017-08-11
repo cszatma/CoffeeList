@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ViewCoffeeListController: UITableViewController, SegueHandler, EntryHandlerViewerDelegate {
+class ViewCoffeeListController: UITableViewController, SegueHandler, CLTypeViewerDelegate {
     
     enum SegueIdentifier : String {
         case ShowEditSelectedList = "showEditSelectedList"

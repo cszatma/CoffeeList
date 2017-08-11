@@ -14,7 +14,7 @@ class EditCoffeeListController: UITableViewController {
     var list: CoffeeList?
     var selectedEntries = [Entry]() //Entries that user selects
     
-    var entryHandlerDelegate: EntryHandlerViewerDelegate?
+    var entryHandlerDelegate: CLTypeViewerDelegate?
     private var cellId = "listPropertyCell"
     
     //Sets up view controller

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		5874F93024369465119B7CCF /* Pods_CoffeeList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EACF9605267666BBFBE7249 /* Pods_CoffeeList.framework */; };
 		E2EFAC8D74A57033F0C112F8 /* Pods_CoffeeListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D3FCAC9C2407E806DC657B /* Pods_CoffeeListUITests.framework */; };
-		E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* EntryHandler.swift */; };
-		E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */; };
+		E301819A1E73AD6700C72FED /* CLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30181991E73AD6700C72FED /* CLType.swift */; };
+		E301819C1E74D4F300C72FED /* CLTypeViewerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */; };
 		E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */; };
 		E30A7EE91E7630F70041166F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A7EE81E7630F70041166F /* Enums.swift */; };
 		E31D86B91E4E782200417867 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D86B81E4E782200417867 /* Functions.swift */; };
@@ -78,8 +78,8 @@
 		BB72E97B5A92E69166686EDC /* Pods-CoffeeList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeList/Pods-CoffeeList.debug.xcconfig"; sourceTree = "<group>"; };
 		CD3420EC2109AB9F593CF35E /* Pods-CoffeeList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeList.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeList/Pods-CoffeeList.release.xcconfig"; sourceTree = "<group>"; };
 		DADDB6AAB1162C29DAC1A800 /* Pods-CoffeeListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoffeeListTests/Pods-CoffeeListTests.release.xcconfig"; sourceTree = "<group>"; };
-		E30181991E73AD6700C72FED /* EntryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandler.swift; sourceTree = "<group>"; };
-		E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryHandlerViewerDelegate.swift; sourceTree = "<group>"; };
+		E30181991E73AD6700C72FED /* CLType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLType.swift; sourceTree = "<group>"; };
+		E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLTypeViewerDelegate.swift; sourceTree = "<group>"; };
 		E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextViewCell.swift; sourceTree = "<group>"; };
 		E30A7EE81E7630F70041166F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E31D86B81E4E782200417867 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		E30181981E73AA6E00C72FED /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E30181991E73AD6700C72FED /* EntryHandler.swift */,
-				E301819B1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift */,
+				E30181991E73AD6700C72FED /* CLType.swift */,
+				E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -578,13 +578,13 @@
 				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
 				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
 				E31D86B91E4E782200417867 /* Functions.swift in Sources */,
-				E301819C1E74D4F300C72FED /* EntryHandlerViewerDelegate.swift in Sources */,
+				E301819C1E74D4F300C72FED /* CLTypeViewerDelegate.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
 				E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */,
 				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
-				E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */,
+				E301819A1E73AD6700C72FED /* CLType.swift in Sources */,
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
 				E3BEDD641DB5C51E0041B60E /* CoffeeList.swift in Sources */,
 				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,

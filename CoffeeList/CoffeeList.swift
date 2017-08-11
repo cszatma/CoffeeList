@@ -11,7 +11,7 @@ import CSKit
 typealias CoffeeLists = [CoffeeList]
 typealias CoffeeDictionary = [String: Int]
 
-class CoffeeList: NSObject, NSCoding, EntryHandler {
+class CoffeeList: NSObject, NSCoding, CLType {
     
     typealias dataKey = UserDefaultsKeys
     

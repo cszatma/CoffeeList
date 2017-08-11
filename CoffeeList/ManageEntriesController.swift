@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ManageEntriesController: UITableViewController, EntryHandlerViewerDelegate {
+class ManageEntriesController: UITableViewController, CLTypeViewerDelegate {
     
     fileprivate let cellId = "entryTypeCell"
 

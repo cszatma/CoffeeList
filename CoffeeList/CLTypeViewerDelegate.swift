@@ -1,5 +1,5 @@
 //
-//  EntryHandlerViewerDelegate.swift
+//  CLTypeViewerDelegate.swift
 //  CoffeeList
 //
 //  Created by Christopher Szatmary on 2017-03-11.
@@ -8,6 +8,6 @@
 
 import CSKit
 
-protocol EntryHandlerViewerDelegate {
+protocol CLTypeViewerDelegate {
     func updateEntryType()
 }

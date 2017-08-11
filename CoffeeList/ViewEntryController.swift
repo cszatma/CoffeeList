@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ViewEntryController: UIViewController, EntryHandlerViewerDelegate {
+class ViewEntryController: UIViewController, CLTypeViewerDelegate {
     
     // *** Views *** //
     let nameLabel: UILabel = {

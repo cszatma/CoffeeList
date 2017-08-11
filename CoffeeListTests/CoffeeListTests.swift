@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import CoffeeList
+import CSKit
 
 class CoffeeListTests: XCTestCase {
     
@@ -43,7 +44,7 @@ class CoffeeListTests: XCTestCase {
         
     }
     
-    func testEntryHandler() {
+    func testCLType() {
         let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
         let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
         let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", comments: nil)
@@ -66,20 +67,30 @@ class CoffeeListTests: XCTestCase {
         debugPrint(eddy)
     }
     
-    func testEntryHandlerMethods() {
-        let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", comments: nil)
-        john?.save()
-        john2?.save()
-        eddy.save()
-        let savedEntries = Entries.getFromUserDefaults(withKey: .SavedEntries)
-        print(savedEntries ?? "No Entries")
+    func testHasValue() {
+        let x: Int? = nil
+        self.measure {
+            if x.hasValue {}
+        }
     }
     
-    func testUpdatedDataSaver() {
-        let entries = Entries.getFromUserDefaults(withKey: .SavedEntries)
-        print(entries ?? "No saved entries")
+    func testBool() {
+        let x: Int? = nil
+        let notNil = x.hasValue
+        self.measure {
+            if notNil {}
+        }
+    }
+    
+    func testTime() {
+        let x: Int? = nil
+        let notNil = x.hasValue
+        print(TimeMeasurer.measurer.measureTime {
+            if x.hasValue {}
+        })
+        print(TimeMeasurer.measurer.measureTime {
+            if notNil {}
+        })
     }
 
 }

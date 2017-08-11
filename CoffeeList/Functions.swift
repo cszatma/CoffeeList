@@ -8,11 +8,11 @@
 
 import CSKit
 
-func sortEntryType<T: EntryHandler>(array: [T]) -> [T] {
+func sortEntryType<T: CLType>(array: [T]) -> [T] {
     return array.sorted(by: { $0.name < $1.name })
 }
 
-func getDataKey<T: EntryHandler>(ofType: T.Type) -> UserDefaultsKeys {
+func getDataKey<T: CLType>(ofType: T.Type) -> UserDefaultsKeys {
     return T.self is Entry.Type ? UserDefaultsKeys.SavedEntries : UserDefaultsKeys.SavedLists
 }
 

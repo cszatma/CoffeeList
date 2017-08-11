@@ -8,7 +8,7 @@
 
 import CSKit
 
-class ManageCoffeeListsController: UITableViewController, EntryHandlerViewerDelegate {
+class ManageCoffeeListsController: UITableViewController, CLTypeViewerDelegate {
     
     enum EditingAction: String {
         case NewCoffeeList = "newCoffeeList"
