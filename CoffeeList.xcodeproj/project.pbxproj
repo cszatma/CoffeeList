@@ -24,15 +24,15 @@
 		E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E321C9A61D1A20A300D04FB4 /* Entry.swift */; };
 		E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3264BDB1DA74CA40040A02B /* Extensions.swift */; };
 		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
-		E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */; };
+		E32E1B0E1DDCCBFE0018F8BE /* ViewCoffeeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */; };
 		E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */; };
 		E385D1161EE5195900568993 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385D1151EE5195900568993 /* User.swift */; };
 		E385D1231EE70D0000568993 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; };
 		E385D1241EE70D0000568993 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */; };
-		E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */; };
-		E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */; };
-		E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD631DB5C51E0041B60E /* EntryList.swift */; };
+		E3BEDD5F1DB31D640041B60E /* ManageCoffeeListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD5E1DB31D640041B60E /* ManageCoffeeListsController.swift */; };
+		E3BEDD621DB54ACD0041B60E /* EditCoffeeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD611DB54ACD0041B60E /* EditCoffeeListController.swift */; };
+		E3BEDD641DB5C51E0041B60E /* CoffeeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */; };
 		E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768551D1D735800E4FCB3 /* EditEntryController.swift */; };
 		E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */; };
 		F1549D1A2BDD20D69E0CE373 /* Pods_CoffeeListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA531BEE1FE7A90CC009A0F /* Pods_CoffeeListTests.framework */; };
@@ -99,14 +99,14 @@
 		E321C9A61D1A20A300D04FB4 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		E3264BDB1DA74CA40040A02B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
-		E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryListController.swift; sourceTree = "<group>"; };
+		E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCoffeeListController.swift; sourceTree = "<group>"; };
 		E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextFieldCell.swift; sourceTree = "<group>"; };
 		E385D1151EE5195900568993 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E385D1221EE70D0000568993 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
-		E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntryListsController.swift; sourceTree = "<group>"; };
-		E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryListController.swift; sourceTree = "<group>"; };
-		E3BEDD631DB5C51E0041B60E /* EntryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryList.swift; sourceTree = "<group>"; };
+		E3BEDD5E1DB31D640041B60E /* ManageCoffeeListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageCoffeeListsController.swift; sourceTree = "<group>"; };
+		E3BEDD611DB54ACD0041B60E /* EditCoffeeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoffeeListController.swift; sourceTree = "<group>"; };
+		E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeList.swift; sourceTree = "<group>"; };
 		E3C768551D1D735800E4FCB3 /* EditEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryController.swift; sourceTree = "<group>"; };
 		E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryController.swift; sourceTree = "<group>"; };
 		F1D3FCAC9C2407E806DC657B /* Pods_CoffeeListUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeListUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
-				E3BEDD631DB5C51E0041B60E /* EntryList.swift */,
+				E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */,
 				E385D1151EE5195900568993 /* User.swift */,
 			);
 			name = Classes;
@@ -266,9 +266,9 @@
 		E33179821EE88318008E0187 /* EntryList */ = {
 			isa = PBXGroup;
 			children = (
-				E3BEDD5E1DB31D640041B60E /* ManageEntryListsController.swift */,
-				E32E1B0D1DDCCBFE0018F8BE /* ViewEntryListController.swift */,
-				E3BEDD611DB54ACD0041B60E /* EditEntryListController.swift */,
+				E3BEDD5E1DB31D640041B60E /* ManageCoffeeListsController.swift */,
+				E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */,
+				E3BEDD611DB54ACD0041B60E /* EditCoffeeListController.swift */,
 			);
 			name = EntryList;
 			sourceTree = "<group>";
@@ -571,9 +571,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3BEDD5F1DB31D640041B60E /* ManageEntryListsController.swift in Sources */,
-				E32E1B0E1DDCCBFE0018F8BE /* ViewEntryListController.swift in Sources */,
-				E3BEDD621DB54ACD0041B60E /* EditEntryListController.swift in Sources */,
+				E3BEDD5F1DB31D640041B60E /* ManageCoffeeListsController.swift in Sources */,
+				E32E1B0E1DDCCBFE0018F8BE /* ViewCoffeeListController.swift in Sources */,
+				E3BEDD621DB54ACD0041B60E /* EditCoffeeListController.swift in Sources */,
 				E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */,
 				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
 				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
@@ -586,7 +586,7 @@
 				E321C9771D179E6200D04FB4 /* AppDelegate.swift in Sources */,
 				E301819A1E73AD6700C72FED /* EntryHandler.swift in Sources */,
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
-				E3BEDD641DB5C51E0041B60E /* EntryList.swift in Sources */,
+				E3BEDD641DB5C51E0041B60E /* CoffeeList.swift in Sources */,
 				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,
 				E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */,
 				E385D1161EE5195900568993 /* User.swift in Sources */,
