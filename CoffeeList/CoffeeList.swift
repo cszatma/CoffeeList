@@ -1,5 +1,5 @@
 //
-//  EntryList.swift
+//  CoffeeList.swift
 //  CoffeeList
 //
 //  Created by Christopher Szatmary on 2016-10-17.
@@ -8,10 +8,10 @@
 
 import CSKit
 
-typealias EntryLists = [EntryList]
+typealias CoffeeLists = [CoffeeList]
 typealias CoffeeDictionary = [String: Int]
 
-class EntryList: NSObject, NSCoding, EntryHandler {
+class CoffeeList: NSObject, NSCoding, EntryHandler {
     
     typealias dataKey = UserDefaultsKeys
     
@@ -42,7 +42,7 @@ class EntryList: NSObject, NSCoding, EntryHandler {
         aCoder.encode(uid.uuidString, forKey: "uid")
     }
     
-    ///String representation of EntryList class
+    ///String representation of CoffeeList class
     override var description: String {
         guard entries.hasValue else {
             return "\(name): nil entries"
@@ -50,15 +50,15 @@ class EntryList: NSObject, NSCoding, EntryHandler {
         return "\(name): \(entries!.count) entries"
     }
     
-    static func ==(lhs: EntryList, rhs: EntryList) -> Bool {
+    static func ==(lhs: CoffeeList, rhs: CoffeeList) -> Bool {
         return lhs.uid == rhs.uid
     }
     
-    static func !=(lhs: EntryList, rhs: EntryList) -> Bool {
+    static func !=(lhs: CoffeeList, rhs: CoffeeList) -> Bool {
         return !(lhs == rhs)
     }
     
-    func isEqual(to: EntryList) -> Bool {
+    func isEqual(to: CoffeeList) -> Bool {
         return self.name == to.name && self.entries == to.entries && self.notes == to.notes
     }
     

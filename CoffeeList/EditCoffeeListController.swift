@@ -1,5 +1,5 @@
 //
-//  EditEntryListController.swift
+//  EditCoffeeListController.swift
 //  CoffeeList
 //
 //  Created by Christopher Szatmary on 2016-10-17.
@@ -8,21 +8,23 @@
 
 import CSKit
 
-class EditEntryListController: UITableViewController {
+class EditCoffeeListController: UITableViewController {
     
     var listName: String!
-    var list: EntryList?
+    var list: CoffeeList?
     var selectedEntries = [Entry]() //Entries that user selects
     
     var entryHandlerDelegate: EntryHandlerViewerDelegate?
+    private var cellId = "listPropertyCell"
     
     //Sets up view controller
     override  func  viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditEntryListController.dismissView))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryListController.save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(EditCoffeeListController.dismissView))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditCoffeeListController.save))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.title = "Select Entries"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         setUpView()
     }
     
@@ -35,7 +37,7 @@ class EditEntryListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "addEntryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let usedEntry  = User.instance.entries[indexPath.item]
         cell.textLabel?.text = usedEntry.name
         return cell
@@ -64,10 +66,10 @@ class EditEntryListController: UITableViewController {
             list?.entries = selectedEntries
             entryHandlerDelegate?.updateEntryType()
         } else {
-            let newList = EntryList(listName: listName, entries: selectedEntries)
-            User.instance.entryLists.append(newList)
+            let newList = CoffeeList(listName: listName, entries: selectedEntries, notes: "")
+            User.instance.coffeeLists.append(newList)
         }
-        User.instance.save(selection: .EntryLists)
+        User.instance.save(selection: .CoffeeLists)
         dismissView()
     }
     

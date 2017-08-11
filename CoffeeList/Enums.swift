@@ -15,7 +15,7 @@ public enum UserDefaultsKeys: String {
 
 enum UserDefaultsError: Error {
     case NoEntriesSaved
-    case NoEntryListsSaved
+    case NoCoffeeListsSaved
 }
 
 enum AnimationType: String {

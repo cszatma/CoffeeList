@@ -31,7 +31,7 @@ func == (left: Entry?, right: Entry?) -> Bool {
     return false
 }
 
-func == (left: EntryList?, right: EntryList?) -> Bool {
+func == (left: CoffeeList?, right: CoffeeList?) -> Bool {
     if !(left.hasValue) && !(right.hasValue) {
         return true //Both are nil
     } else if left.hasValue && !(right.hasValue) || !(left.hasValue) && right.hasValue {

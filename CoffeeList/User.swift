@@ -12,17 +12,17 @@ class User {
     
     enum UserData {
         case Entries
-        case EntryLists
+        case CoffeeLists
         case All
     }
     
     static let instance = User()
     var entries: Entries
-    var entryLists: EntryLists
+    var coffeeLists: CoffeeLists
     
     private init() {
         entries = Entries.getFromUserDefaults(withKey: .SavedEntries) ?? Entries()
-        entryLists = EntryLists.getFromUserDefaults(withKey: .SavedLists) ?? EntryLists()
+        coffeeLists = CoffeeLists.getFromUserDefaults(withKey: .SavedLists) ?? CoffeeLists()
     }
     
     func reload(selection: UserData) throws {
@@ -33,11 +33,11 @@ class User {
             entries = savedEntries
         }
         
-        if selection == .EntryLists || selection == .All {
-            guard let savedEntryLists = EntryLists.getFromUserDefaults(withKey: .SavedLists) else {
-                throw UserDefaultsError.NoEntryListsSaved
+        if selection == .CoffeeLists || selection == .All {
+            guard let savedCoffeeLists = CoffeeLists.getFromUserDefaults(withKey: .SavedLists) else {
+                throw UserDefaultsError.NoCoffeeListsSaved
             }
-            entryLists = savedEntryLists
+            coffeeLists = savedCoffeeLists
         }
     }
     
@@ -47,9 +47,9 @@ class User {
             entries.saveToUserDefaults(withKey: .SavedEntries)
         }
         
-        if selection == .EntryLists || selection == .All {
-            entryLists = sortEntryType(array: entryLists)
-            entryLists.saveToUserDefaults(withKey: .SavedLists)
+        if selection == .CoffeeLists || selection == .All {
+            coffeeLists = sortEntryType(array: coffeeLists)
+            coffeeLists.saveToUserDefaults(withKey: .SavedLists)
         }
     }
     
@@ -58,8 +58,8 @@ class User {
             entries.remove(at: index)
         }
         
-        if selection == .EntryLists || selection == .All {
-            entryLists.remove(at: index)
+        if selection == .CoffeeLists || selection == .All {
+            coffeeLists.remove(at: index)
         }
         
         if shouldSave {

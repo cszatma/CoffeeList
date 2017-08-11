@@ -57,7 +57,7 @@ class MenuViewController: UIViewController {
     
     /// Handles the touch events for each button.
     func handleButtonTouch(_ sender: UIButton) {
-        let viewController = sender == entriesButton ? ManageEntriesController() : ManageEntryListsController()
+        let viewController = sender == entriesButton ? ManageEntriesController() : ManageCoffeeListsController()
         present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }
 }
