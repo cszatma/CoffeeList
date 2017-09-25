@@ -6,4 +6,12 @@
 //  Copyright © 2017 SzatmaryInc. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol TableViewCompatible {
+    
+    static var reuseIdentifier: String { get }
+    
+    func cellForTableView(_ tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell
+    
+}
