@@ -26,6 +26,7 @@
 		E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0B1DDCC65F0018F8BE /* Equality.swift */; };
 		E32E1B0E1DDCCBFE0018F8BE /* ViewCoffeeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */; };
 		E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */; };
+		E35194621F3E888F00A03C0A /* TableViewCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35194611F3E888F00A03C0A /* TableViewCompatible.swift */; };
 		E385D1161EE5195900568993 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385D1151EE5195900568993 /* User.swift */; };
 		E385D1231EE70D0000568993 /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; };
 		E385D1241EE70D0000568993 /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E385D1221EE70D0000568993 /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -35,6 +36,7 @@
 		E3BEDD641DB5C51E0041B60E /* CoffeeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */; };
 		E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768551D1D735800E4FCB3 /* EditEntryController.swift */; };
 		E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */; };
+		E3F7E0451F4385490056193B /* CLTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F7E0441F4385490056193B /* CLTableViewDataSource.swift */; };
 		F1549D1A2BDD20D69E0CE373 /* Pods_CoffeeListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA531BEE1FE7A90CC009A0F /* Pods_CoffeeListTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,7 @@
 		E32E1B0B1DDCC65F0018F8BE /* Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equality.swift; sourceTree = "<group>"; };
 		E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCoffeeListController.swift; sourceTree = "<group>"; };
 		E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextFieldCell.swift; sourceTree = "<group>"; };
+		E35194611F3E888F00A03C0A /* TableViewCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCompatible.swift; sourceTree = "<group>"; };
 		E385D1151EE5195900568993 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E385D1221EE70D0000568993 /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeList.swift; sourceTree = "<group>"; };
 		E3C768551D1D735800E4FCB3 /* EditEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEntryController.swift; sourceTree = "<group>"; };
 		E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewEntryController.swift; sourceTree = "<group>"; };
+		E3F7E0441F4385490056193B /* CLTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLTableViewDataSource.swift; sourceTree = "<group>"; };
 		F1D3FCAC9C2407E806DC657B /* Pods_CoffeeListUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeListUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,7 @@
 			children = (
 				E30181991E73AD6700C72FED /* CLType.swift */,
 				E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */,
+				E35194611F3E888F00A03C0A /* TableViewCompatible.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			children = (
 				E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */,
 				E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */,
+				E3F7E0441F4385490056193B /* CLTableViewDataSource.swift */,
 			);
 			name = CSViews;
 			sourceTree = "<group>";
@@ -450,9 +456,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeList/Pods-CoffeeList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TinyConstraints.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -480,13 +489,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeListUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C49BCAC9E28385E304B7FDC /* [CP] Check Pods Manifest.lock */ = {
@@ -495,13 +507,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeListTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9DB3BA03C31899B4C6F925D2 /* [CP] Embed Pods Frameworks */ = {
@@ -555,13 +570,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeList-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -571,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3F7E0451F4385490056193B /* CLTableViewDataSource.swift in Sources */,
 				E3BEDD5F1DB31D640041B60E /* ManageCoffeeListsController.swift in Sources */,
 				E32E1B0E1DDCCBFE0018F8BE /* ViewCoffeeListController.swift in Sources */,
 				E3BEDD621DB54ACD0041B60E /* EditCoffeeListController.swift in Sources */,
@@ -580,6 +599,7 @@
 				E31D86B91E4E782200417867 /* Functions.swift in Sources */,
 				E301819C1E74D4F300C72FED /* CLTypeViewerDelegate.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */,
+				E35194621F3E888F00A03C0A /* TableViewCompatible.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
 				E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */,
 				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
@@ -751,6 +771,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -770,6 +791,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SzatmaryInc.Apps.CoffeeList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
