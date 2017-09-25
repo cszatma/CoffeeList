@@ -38,7 +38,7 @@ extension UITableViewCell {
     
 }
 
-extension Array: UserDefaultsHandler {
+extension Array: UserDefaultsStorable {
     public typealias dataKey = UserDefaultsKeys
 }
 

@@ -13,7 +13,7 @@ class MenuViewController: UIViewController {
     
     // *** Views *** //
     let entriesButton: UIButton = {
-        let button = CSButton()
+        let button = UIButton()
         button.setTitle("Entries", for: .normal)
         button.backgroundColor = .lightGray
         button.cornerRadius = 40
@@ -22,7 +22,7 @@ class MenuViewController: UIViewController {
     }()
     
     let listsButton: UIButton = {
-        let button = CSButton()
+        let button = UIButton()
         button.setTitle("Lists", for: .normal)
         button.backgroundColor = .lightGray
         button.cornerRadius = 40
@@ -56,7 +56,7 @@ class MenuViewController: UIViewController {
     }
     
     /// Handles the touch events for each button.
-    func handleButtonTouch(_ sender: UIButton) {
+    @objc func handleButtonTouch(_ sender: UIButton) {
         let viewController = sender == entriesButton ? ManageEntriesController() : ManageCoffeeListsController()
         present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }

@@ -24,8 +24,12 @@ class ManageEntriesController: UITableViewController, CLTypeViewerDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presentController(index: indexPath.row)
     }
+    
+    @objc func back() {
+        dismiss(animated: true, completion: nil)
+    }
 
-    func handleAddEntry() {
+    @objc func handleAddEntry() {
         presentController(index: nil)
     }
 

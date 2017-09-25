@@ -55,7 +55,7 @@ class ViewCoffeeListController: UITableViewController, SegueHandler, CLTypeViewe
         }
     }
     
-    func edit() {
+    @objc func edit() {
         performSegue(withIdentifier: .ShowEditSelectedList, sender: nil)
     }
     

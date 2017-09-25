@@ -80,8 +80,12 @@ class ManageCoffeeListsController: UITableViewController, CLTypeViewerDelegate {
         return actions
     }
     
+    @objc func back() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     ///Called when user wants to add new CoffeeList
-    func add() {
+    @objc func add() {
         showAlert(editingAction: .NewCoffeeList, index: nil)
     }
     
@@ -171,7 +175,7 @@ class ManageCoffeeListsController: UITableViewController, CLTypeViewerDelegate {
 //    }
     
     ///Checks whether text has been entered and enables/disables the save button accordingly
-    func textChanged(sender: UITextField) {
+    @objc func textChanged(sender: UITextField) {
         actionToEnable?.isEnabled = !sender.text!.isEmpty //FIX
     }
     

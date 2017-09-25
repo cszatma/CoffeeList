@@ -96,14 +96,14 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     // *** End TableView Setup *** //
     
     ///Exit editing viewcontroller without saving
-    func dismissView() {
+    @objc func dismissView() {
         self.dismissKeyboard()
         let animationType: AnimationType? = entry.hasValue ? .fade : .push
         navigationController?.popViewController(animationType: animationType)
     }
     
     ///Saves the entry and any changes made to it
-    func save() {
+    @objc func save() {
         if entry.hasValue {
             entry?.update(name: nameTextField.trimmedText, coffeeType: coffeeTypeTextField.trimmedText, favCoffeeShop: favCoffeeShopTextField.trimmedText, notes: notesTextView.text)
         } else {
@@ -130,7 +130,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
-    func textChanged(sender: UITextField) {
+    @objc func textChanged(sender: UITextField) {
         // Make sure textField isn't empty and that text isn't equal to entry property.
         switch sender {
         case nameTextField:

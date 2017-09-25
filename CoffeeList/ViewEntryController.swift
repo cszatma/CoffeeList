@@ -111,7 +111,7 @@ class ViewEntryController: UIViewController, CLTypeViewerDelegate {
     }
     
     ///Called when the user touches the edit button
-    func handleEditEntry() {
+    @objc func handleEditEntry() {
         let viewController = EditEntryController()
         viewController.entry = selectedEntry
         viewController.delegate = self

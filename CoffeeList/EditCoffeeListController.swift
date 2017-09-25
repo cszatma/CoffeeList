@@ -65,7 +65,7 @@ class EditCoffeeListController: UITableViewController {
         
     }
     
-    func save() {
+    @objc func save() {
         
         if list.hasValue {
             list?.entries = selectedEntries
@@ -78,7 +78,7 @@ class EditCoffeeListController: UITableViewController {
         dismissView()
     }
     
-    func dismissView() {
+    @objc func dismissView() {
         _ = self.navigationController?.popViewController(animated: !list.hasValue)
     }
     

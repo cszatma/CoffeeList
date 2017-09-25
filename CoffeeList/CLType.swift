@@ -9,12 +9,12 @@
 import CSKit
 
 ///The CLType Protocol provides the foundation for classes that represent a type of entry.
-protocol CLType: class, UserDefaultsHandler, TableViewCompatible {
+protocol CLType: class, UserDefaultsStorable, TableViewCompatible where dataKey == UserDefaultsKeys {
     
     var name: String { get set }
     var notes: String { get set }
     var uid: UUID { get }
-    typealias dataKey = UserDefaultsKeys
+    
     static var userDataType: User.UserData { get }
     
     ///Compares two CLType instances of the same type. Comparision is based on all instance
