@@ -10,11 +10,16 @@ import CSKit
 
 class EditCoffeeListController: UITableViewController {
     
-    var listName: String!
+    // *** Views *** //
+    var nameTextField: UITextField!
+    var notesTextView: UITextView!
+    // *** End Views *** //
+    
     var list: CoffeeList?
     var selectedEntries = [Entry]() //Entries that user selects
-    
-    var entryHandlerDelegate: CLTypeViewerDelegate?
+    weak var saveBarButton: UIBarButtonItem?
+    var delegate: CLTypeViewerDelegate?
+    private var propertyStatus = (false, false, false)
     private var cellId = "listPropertyCell"
     
     //Sets up view controller
@@ -64,9 +69,9 @@ class EditCoffeeListController: UITableViewController {
         
         if list.hasValue {
             list?.entries = selectedEntries
-            entryHandlerDelegate?.updateEntryType()
+            delegate?.updateEntryType()
         } else {
-            let newList = CoffeeList(listName: listName, entries: selectedEntries, notes: "")
+            let newList = CoffeeList(listName: nameTextField.trimmedText, entries: selectedEntries, notes: "")
             User.instance.coffeeLists.append(newList)
         }
         User.instance.save(selection: .CoffeeLists)
