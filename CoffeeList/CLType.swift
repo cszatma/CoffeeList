@@ -9,12 +9,13 @@
 import CSKit
 
 ///The CLType Protocol provides the foundation for classes that represent a type of entry.
-protocol CLType: class, UserDefaultsHandler {
+protocol CLType: class, UserDefaultsHandler, TableViewCompatible {
     
     var name: String { get set }
     var notes: String { get set }
     var uid: UUID { get }
     typealias dataKey = UserDefaultsKeys
+    static var userDataType: User.UserData { get }
     
     ///Compares two CLType instances of the same type. Comparision is based on all instance
     ///values being identical except for uid.
@@ -36,6 +37,11 @@ extension CLType {
         return !(self.isEqual(to: to))
     }
     
+    func cellForTableView(_ tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Self.reuseIdentifier, for: indexPath)
+        cell.textLabel?.text = self.name
+        return cell
+    }
 }
 
 
