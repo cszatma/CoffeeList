@@ -36,18 +36,18 @@ class CoffeeListTests: XCTestCase {
     }
     
     func testGetIndex() {
-        let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", comments: nil)
+        let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", notes: "")
+        let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", notes: "")
+        let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", notes: "")
         let array: [Entry]? = [john!, john2!, eddy]
         print(array?.index(of: john2!) ?? "Not in array")
         
     }
     
     func testCLType() {
-        let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", comments: nil)
-        let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", comments: nil)
+        let john: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", notes: "")
+        let john2: Entry? = Entry(name: "john", coffeeType: "DD", favCoffeeShop: "Tims", notes: "")
+        let eddy = Entry(name: "eddy", coffeeType: "2C", favCoffeeShop: "Tims", notes: "")
         //debugPrint(message: "john identical to john2", dataValue: john == john2)
         debugPrint("john? identical to john2?: \(john == john2)")
         debugPrint("john identical to eddy: \(john == eddy)")
