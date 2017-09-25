@@ -66,4 +66,17 @@ class User {
             save(selection: selection)   
         }
     }
+    
+    func count(of selection: UserData) -> Int {
+        var count = 0
+        if selection == .Entries || selection == .All {
+            count += entries.count
+        }
+        
+        if selection == .CoffeeLists || selection == .All {
+            count += coffeeLists.count
+        }
+        
+        return count
+    }
 }
