@@ -14,6 +14,8 @@ typealias Entries = [Entry]
 class Entry : NSObject, NSCoding, CLType {
     
     typealias dataKey = UserDefaultsKeys
+    static let reuseIdentifier = "entry"
+    static let userDataType: User.UserData = .Entries
     
     var name: String
     var coffeeType: String

@@ -14,6 +14,8 @@ typealias CoffeeDictionary = [String: Int]
 class CoffeeList: NSObject, NSCoding, CLType {
     
     typealias dataKey = UserDefaultsKeys
+    static let reuseIdentifier = "coffeeList"
+    static let userDataType: User.UserData = .CoffeeLists
     
     var name: String
     var entries: Entries?
