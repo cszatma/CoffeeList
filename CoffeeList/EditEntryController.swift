@@ -149,7 +149,6 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         let newSize = textView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
         
         if size.height != newSize.height {
-            print("resizing")
             UIView.setAnimationsEnabled(false)
             tableView.beginUpdates()
             textView.scrollRangeToVisible(NSMakeRange(textView.text.characters.count-1, 0))
