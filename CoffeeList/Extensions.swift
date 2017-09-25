@@ -42,6 +42,12 @@ extension Array: UserDefaultsHandler {
     public typealias dataKey = UserDefaultsKeys
 }
 
+extension Array where Element: CLType {
+    var reuseIdentifier: String {
+        return Element.reuseIdentifier
+    }
+}
+
 extension UINavigationController {
     
     func present(viewController: UIViewController, animationType: AnimationType?, duration: CFTimeInterval = 0.5) {
