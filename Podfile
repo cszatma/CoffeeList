@@ -7,6 +7,8 @@ target 'CoffeeList' do
   
   # Pods for CoffeeList 
   pod 'TinyConstraints', '~> 3.0'
+  pod 'SwiftySweetness', '~> 1.0'
+  pod 'RealmSwift', '~> 3.0.0-beta.4'
 
   target 'CoffeeListTests' do
     inherit! :search_paths
