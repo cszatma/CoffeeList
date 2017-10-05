@@ -27,6 +27,11 @@
 		E32E1B0E1DDCCBFE0018F8BE /* ViewCoffeeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */; };
 		E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */; };
 		E35194621F3E888F00A03C0A /* TableViewCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35194611F3E888F00A03C0A /* TableViewCompatible.swift */; };
+		E36186851F86FB11005D93A1 /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36186841F86FB11005D93A1 /* Persistable.swift */; };
+		E36186871F86FB4B005D93A1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36186861F86FB4B005D93A1 /* Container.swift */; };
+		E361868B1F86FB71005D93A1 /* WriteTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36186881F86FB70005D93A1 /* WriteTransaction.swift */; };
+		E361868C1F86FB71005D93A1 /* FetchedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36186891F86FB70005D93A1 /* FetchedResults.swift */; };
+		E361868D1F86FB71005D93A1 /* RealmOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361868A1F86FB70005D93A1 /* RealmOperator.swift */; };
 		E37DAED51F79ABA7004BA0DC /* CSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37DAED41F79ABA7004BA0DC /* CSKit.framework */; };
 		E37DAED61F79ABA7004BA0DC /* CSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E37DAED41F79ABA7004BA0DC /* CSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E385D1161EE5195900568993 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385D1151EE5195900568993 /* User.swift */; };
@@ -104,6 +109,11 @@
 		E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCoffeeListController.swift; sourceTree = "<group>"; };
 		E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTableViewTextFieldCell.swift; sourceTree = "<group>"; };
 		E35194611F3E888F00A03C0A /* TableViewCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCompatible.swift; sourceTree = "<group>"; };
+		E36186841F86FB11005D93A1 /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		E36186861F86FB4B005D93A1 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		E36186881F86FB70005D93A1 /* WriteTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTransaction.swift; sourceTree = "<group>"; };
+		E36186891F86FB70005D93A1 /* FetchedResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResults.swift; sourceTree = "<group>"; };
+		E361868A1F86FB70005D93A1 /* RealmOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmOperator.swift; sourceTree = "<group>"; };
 		E37DAED41F79ABA7004BA0DC /* CSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSKit.framework; path = SDKs/CSKit.framework; sourceTree = "<group>"; };
 		E385D1151EE5195900568993 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEntriesController.swift; sourceTree = "<group>"; };
@@ -168,36 +178,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E30181981E73AA6E00C72FED /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				E30181991E73AD6700C72FED /* CLType.swift */,
-				E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */,
-				E35194611F3E888F00A03C0A /* TableViewCompatible.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		E301EA101F227F04001945F7 /* CSViews */ = {
-			isa = PBXGroup;
-			children = (
-				E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */,
-				E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */,
-				E3F7E0441F4385490056193B /* CLTableViewDataSource.swift */,
-			);
-			name = CSViews;
-			sourceTree = "<group>";
-		};
-		E31D86BA1E4E783000417867 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
-				E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */,
-				E385D1151EE5195900568993 /* User.swift */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		E321C96A1D179E6100D04FB4 = {
 			isa = PBXGroup;
 			children = (
@@ -225,10 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				E321C9761D179E6200D04FB4 /* AppDelegate.swift */,
-				E3BEDD601DB31D770041B60E /* View Controllers */,
-				E301EA101F227F04001945F7 /* CSViews */,
-				E31D86BA1E4E783000417867 /* Classes */,
-				E30181981E73AA6E00C72FED /* Protocols */,
+				E36186931F86FD3F005D93A1 /* ViewControllers */,
+				E361868F1F86FCF2005D93A1 /* Models */,
+				E36186921F86FD1F005D93A1 /* Protocols */,
 				E3264BDB1DA74CA40040A02B /* Extensions.swift */,
 				E30A7EE81E7630F70041166F /* Enums.swift */,
 				E31D86B81E4E782200417867 /* Functions.swift */,
@@ -259,34 +238,86 @@
 			path = CoffeeListUITests;
 			sourceTree = "<group>";
 		};
-		E33179811EE88307008E0187 /* Entry */ = {
+		E361868F1F86FCF2005D93A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E36186911F86FD05005D93A1 /* Structs */,
+				E36186901F86FD00005D93A1 /* Classes */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E36186901F86FD00005D93A1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E385D1151EE5195900568993 /* User.swift */,
+				E36186861F86FB4B005D93A1 /* Container.swift */,
+				E36186891F86FB70005D93A1 /* FetchedResults.swift */,
+				E361868A1F86FB70005D93A1 /* RealmOperator.swift */,
+				E36186881F86FB70005D93A1 /* WriteTransaction.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E36186911F86FD05005D93A1 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
+				E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		E36186921F86FD1F005D93A1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E30181991E73AD6700C72FED /* CLType.swift */,
+				E301819B1E74D4F300C72FED /* CLTypeViewerDelegate.swift */,
+				E35194611F3E888F00A03C0A /* TableViewCompatible.swift */,
+				E36186841F86FB11005D93A1 /* Persistable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E36186931F86FD3F005D93A1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E321C9781D179E6200D04FB4 /* MenuViewController.swift */,
+				E36186941F86FD85005D93A1 /* Entry */,
+				E36186951F86FDA7005D93A1 /* CoffeeList */,
+				E36186961F86FDB5005D93A1 /* CSViews */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E36186941F86FD85005D93A1 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
 				E3A746EB1D1CD5E3000946ED /* ManageEntriesController.swift */,
 				E3C768571D1DBA9A00E4FCB3 /* ViewEntryController.swift */,
 				E3C768551D1D735800E4FCB3 /* EditEntryController.swift */,
 			);
-			name = Entry;
+			path = Entry;
 			sourceTree = "<group>";
 		};
-		E33179821EE88318008E0187 /* EntryList */ = {
+		E36186951F86FDA7005D93A1 /* CoffeeList */ = {
 			isa = PBXGroup;
 			children = (
 				E3BEDD5E1DB31D640041B60E /* ManageCoffeeListsController.swift */,
 				E32E1B0D1DDCCBFE0018F8BE /* ViewCoffeeListController.swift */,
 				E3BEDD611DB54ACD0041B60E /* EditCoffeeListController.swift */,
 			);
-			name = EntryList;
+			path = CoffeeList;
 			sourceTree = "<group>";
 		};
-		E3BEDD601DB31D770041B60E /* View Controllers */ = {
+		E36186961F86FDB5005D93A1 /* CSViews */ = {
 			isa = PBXGroup;
 			children = (
-				E321C9781D179E6200D04FB4 /* MenuViewController.swift */,
-				E33179811EE88307008E0187 /* Entry */,
-				E33179821EE88318008E0187 /* EntryList */,
+				E33D118F1F2039CF0068C75D /* CSTableViewTextFieldCell.swift */,
+				E301EA0E1F227E9C001945F7 /* CSTableViewTextViewCell.swift */,
+				E3F7E0441F4385490056193B /* CLTableViewDataSource.swift */,
 			);
-			name = "View Controllers";
+			path = CSViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,10 +633,14 @@
 				E3C768561D1D735800E4FCB3 /* EditEntryController.swift in Sources */,
 				E3C768581D1DBA9A00E4FCB3 /* ViewEntryController.swift in Sources */,
 				E3264BDC1DA74CA40040A02B /* Extensions.swift in Sources */,
+				E361868D1F86FB71005D93A1 /* RealmOperator.swift in Sources */,
 				E31D86B91E4E782200417867 /* Functions.swift in Sources */,
+				E36186851F86FB11005D93A1 /* Persistable.swift in Sources */,
 				E301819C1E74D4F300C72FED /* CLTypeViewerDelegate.swift in Sources */,
+				E361868B1F86FB71005D93A1 /* WriteTransaction.swift in Sources */,
 				E321C9791D179E6200D04FB4 /* MenuViewController.swift in Sources */,
 				E35194621F3E888F00A03C0A /* TableViewCompatible.swift in Sources */,
+				E361868C1F86FB71005D93A1 /* FetchedResults.swift in Sources */,
 				E32E1B0C1DDCC65F0018F8BE /* Equality.swift in Sources */,
 				E301EA0F1F227E9C001945F7 /* CSTableViewTextViewCell.swift in Sources */,
 				E321C9A71D1A20A300D04FB4 /* Entry.swift in Sources */,
@@ -613,6 +648,7 @@
 				E301819A1E73AD6700C72FED /* CLType.swift in Sources */,
 				E3A746EC1D1CD5E3000946ED /* ManageEntriesController.swift in Sources */,
 				E3BEDD641DB5C51E0041B60E /* CoffeeList.swift in Sources */,
+				E36186871F86FB4B005D93A1 /* Container.swift in Sources */,
 				E30A7EE91E7630F70041166F /* Enums.swift in Sources */,
 				E33D11901F2039CF0068C75D /* CSTableViewTextFieldCell.swift in Sources */,
 				E385D1161EE5195900568993 /* User.swift in Sources */,
