@@ -252,9 +252,6 @@
 			children = (
 				E385D1151EE5195900568993 /* User.swift */,
 				E36186861F86FB4B005D93A1 /* Container.swift */,
-				E36186891F86FB70005D93A1 /* FetchedResults.swift */,
-				E361868A1F86FB70005D93A1 /* RealmOperator.swift */,
-				E36186881F86FB70005D93A1 /* WriteTransaction.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,6 +261,9 @@
 			children = (
 				E321C9A61D1A20A300D04FB4 /* Entry.swift */,
 				E3BEDD631DB5C51E0041B60E /* CoffeeList.swift */,
+				E36186891F86FB70005D93A1 /* FetchedResults.swift */,
+				E361868A1F86FB70005D93A1 /* RealmOperator.swift */,
+				E36186881F86FB70005D93A1 /* WriteTransaction.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
