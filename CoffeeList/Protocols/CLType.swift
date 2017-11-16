@@ -6,37 +6,44 @@
 //  Copyright © 2017 SzatmaryInc. All rights reserved.
 //
 
-import CSKit
+import UIKit
+
+infix operator ?==: ComparisonPrecedence
+infix operator ?!=: ComparisonPrecedence
 
 ///The CLType Protocol provides the foundation for classes that represent a type of entry.
-protocol CLType: class, UserDefaultsStorable, TableViewCompatible where dataKey == UserDefaultsKeys {
-    
+protocol CLType: TableViewCompatible, Comparable {
+
     var name: String { get set }
     var notes: String { get set }
-    var uid: UUID { get }
-    
-    static var userDataType: User.UserData { get }
-    
-    ///Compares two CLType instances of the same type. Comparision is based on all instance
-    ///values being identical except for uid.
-    /// - parameter to: The CLType object the current instance is being compared to.
-    func isEqual(to: Self) -> Bool
-    /// - parameter to: The CLType object the current instance is being compared to.
-    func isNotEqual(to: Self) -> Bool
-    
-    static func ==(lhs: Self, rhs: Self) -> Bool
-    static func !=(left: Self, right: Self) -> Bool
+    var id: String { get }
+
+    /// Compares two CLType instances of the same type. Comparision is based on all instance
+    /// values being identical except for uid.
+    static func ?== (lhs: Self, rhs: Self) -> Bool
+    static func ?!= (lhs: Self, rhs: Self) -> Bool
 }
 
 extension CLType {
-    
-    /// Returns a Boolean value that indicates whether the receiver and a given entry type's properties are not equal.
-    /// - parameter to: The entry type to compare the receiver to.
-    /// - returns: `true` if the properties are not equal, `false` if they are.
-    func isNotEqual(to: Self) -> Bool {
-        return !(self.isEqual(to: to))
+
+    static func < (lhs: Self, rhs: Self) -> Bool {
+        return lhs.name < rhs.name
     }
-    
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    static func != (lhs: Self, rhs: Self) -> Bool {
+        return !(lhs == rhs)
+    }
+
+    /// Returns a Boolean value that indicates whether the receiver and a given entry type's properties are not equal.
+    /// - returns: `true` if the properties are not equal, `false` if they are.
+    static func ?!= (lhs: Self, rhs: Self) -> Bool {
+        return !(lhs ?== rhs)
+    }
+
     func cellForTableView(_ tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.reuseIdentifier, for: indexPath)
         cell.textLabel?.text = self.name
