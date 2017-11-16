@@ -6,31 +6,26 @@
 //  Copyright © 2017 SzatmaryInc. All rights reserved.
 //
 
-import CSKit
 import TinyConstraints
 
 class CSTableViewTextViewCell: UITableViewCell {
-    
-    let label: UILabel = UILabel()
-    let textView: UITextView = UITextView()
-    
-    init(labelText: String?, reuseIdentifier: String?, textViewHeight: CGFloat = 56) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+    let label = UILabel()
+    let textView = UITextView()
+
+    convenience init(labelText: String?, reuseIdentifier: String?, textViewHeight: CGFloat = 56) {
+        self.init(style: .default, reuseIdentifier: reuseIdentifier)
         label.text = labelText
-        self.addSubview(label)
-        self.addSubview(textView)
-        label.centerX(to: self)
-        label.top(to: self)
-        label.width(to: self, multiplier: 0.9)
+        addSubview(label)
+        addSubview(textView)
+        label.centerXToSuperview()
+        label.topToSuperview()
+        label.widthToSuperview(multiplier: 0.9)
         label.height(44)
-        textView.centerX(to: self)
+        textView.centerXToSuperview()
         textView.topToBottom(of: label)
-        textView.bottom(to: self)
-        textView.width(to: self, multiplier: 0.9)
+        textView.bottomToSuperview()
+        textView.widthToSuperview(multiplier: 0.9)
         textView.isScrollEnabled = false
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

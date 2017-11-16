@@ -6,23 +6,18 @@
 //  Copyright © 2017 SzatmaryInc. All rights reserved.
 //
 
-import CSKit
+import TinyConstraints
 
 class CSTableViewTextFieldCell: UITableViewCell {
-    
-    let textField: UITextField = UITextField()
-    
-    init(placeholder: String?, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+
+    let textField = UITextField()
+
+    convenience init(placeholder: String?, reuseIdentifier: String?) {
+        self.init(style: .default, reuseIdentifier: reuseIdentifier)
         textField.placeholder = placeholder
-        self.addSubview(textField)
-        textField.center(in: self)
-        textField.width(to: self, multiplier: 0.9)
-        textField.height(to: self)
+        addSubview(textField)
+        textField.centerInSuperview()
+        textField.widthToSuperview(multiplier: 0.9)
+        textField.heightToSuperview()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
