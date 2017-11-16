@@ -461,7 +461,7 @@ public:
     ///
     /// The passed file descriptor must have the file descriptor flag FD_CLOEXEC
     /// set.
-    void assign(int fd, bool in_blocking_mode) noexcept;
+    void assign(native_handle_type fd, bool in_blocking_mode) noexcept;
     void close() noexcept;
 
     bool is_open() const noexcept;
@@ -487,7 +487,7 @@ public:
     void ensure_nonblocking_mode();
 
 private:
-    int m_fd = -1;
+    native_handle_type m_fd = -1;
     bool m_in_blocking_mode; // Not in nonblocking mode
 
 #if REALM_HAVE_EPOLL || REALM_HAVE_KQUEUE
@@ -698,12 +698,14 @@ private:
     enum opt_enum {
         opt_ReuseAddr, ///< `SOL_SOCKET`, `SO_REUSEADDR`
         opt_Linger,    ///< `SOL_SOCKET`, `SO_LINGER`
+        opt_NoDelay,   ///< `IPPROTO_TCP`, `TCP_NODELAY` (disable the Nagle algorithm)
     };
 
     template<class, int, class> class Option;
 
 public:
     using reuse_address = Option<bool, opt_ReuseAddr, int>;
+    using no_delay      = Option<bool, opt_NoDelay,   int>;
 
     // linger struct defined by POSIX sys/socket.h.
     struct linger_opt;
@@ -1685,7 +1687,7 @@ inline Service::Descriptor::~Descriptor() noexcept
         close();
 }
 
-inline void Service::Descriptor::assign(int fd, bool in_blocking_mode) noexcept
+inline void Service::Descriptor::assign(native_handle_type fd, bool in_blocking_mode) noexcept
 {
     REALM_ASSERT(!is_open());
     m_fd = fd;

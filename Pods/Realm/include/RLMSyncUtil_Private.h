@@ -43,10 +43,6 @@ typedef NSString* RLMServerPath;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RLMRealmConfiguration (RealmSync)
-+ (instancetype)managementConfigurationForUser:(RLMSyncUser *)user;
-@end
-
 extern RLMIdentityProvider const RLMIdentityProviderAccessToken;
 extern RLMIdentityProvider const RLMIdentityProviderRealm;
 
@@ -55,6 +51,8 @@ extern NSString *const kRLMSyncDataKey;
 extern NSString *const kRLMSyncErrorJSONKey;
 extern NSString *const kRLMSyncErrorStatusCodeKey;
 extern NSString *const kRLMSyncIdentityKey;
+extern NSString *const kRLMSyncIsAdminKey;
+extern NSString *const kRLMSyncNewPasswordKey;
 extern NSString *const kRLMSyncPasswordKey;
 extern NSString *const kRLMSyncPathKey;
 extern NSString *const kRLMSyncTokenKey;
@@ -63,10 +61,6 @@ extern NSString *const kRLMSyncProviderIDKey;
 extern NSString *const kRLMSyncRegisterKey;
 extern NSString *const kRLMSyncUnderlyingErrorKey;
 extern NSString *const kRLMSyncUserIDKey;
-
-/// Convert sync management object status code (nil, 0 and others) to
-/// RLMSyncManagementObjectStatus enum
-FOUNDATION_EXTERN RLMSyncManagementObjectStatus RLMMakeSyncManagementObjectStatus(NSNumber<RLMInt> * _Nullable statusCode);
 
 #define RLM_SYNC_UNINITIALIZABLE \
 - (instancetype)init __attribute__((unavailable("This type cannot be created directly"))); \

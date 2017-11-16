@@ -133,14 +133,7 @@ open class Object: RLMObjectBase, ThreadConfined, RealmCollectionValue {
 
     /**
      WARNING: This is an internal helper method not intended for public use.
-     :nodoc:
-     */
-    public override final class func className() -> String {
-        return super.className()
-    }
-
-    /**
-     WARNING: This is an internal helper method not intended for public use.
+     It is not considered part of the public API.
      :nodoc:
      */
     public override final class func objectUtilClass(_ isSwift: Bool) -> AnyClass {
@@ -428,7 +421,11 @@ public class ObjectUtil: NSObject {
         // one named 'x', and another that is optional and is named 'x.storage'. Note
         // that '.' is illegal in either a Swift or Objective-C property name.
         if let storageRange = name.range(of: ".storage", options: [.anchored, .backwards]) {
-            return name.substring(to: storageRange.lowerBound)
+            #if swift(>=4.0)
+                return String(name[..<storageRange.lowerBound])
+            #else
+                return name.substring(to: storageRange.lowerBound)
+            #endif
         }
         return nil
     }
@@ -466,7 +463,7 @@ public class ObjectUtil: NSObject {
 
     // Build optional property metadata for a given property.
     // swiftlint:disable:next cyclomatic_complexity
-    private static func getOptionalPropertyMetadata(for child: Mirror.Child, at index: Int) -> RLMGenericPropertyMetadata? {
+    private static func getOptionalPropertyMetadata(for child: Mirror.Child, at index: Int) -> RLMSwiftPropertyMetadata? {
         guard let name = child.label else {
             return nil
         }
@@ -497,26 +494,26 @@ public class ObjectUtil: NSObject {
             throwRealmException("'\(type)' is not a valid RealmOptional type.")
             code = .int // ignored
         } else if mirror.displayStyle == .optional || type is ExpressibleByNilLiteral.Type {
-            return RLMGenericPropertyMetadata(forNilLiteralOptionalProperty: name, index: index)
+            return RLMSwiftPropertyMetadata(forNilLiteralOptionalProperty: name)
         } else {
             return nil
         }
-        return RLMGenericPropertyMetadata(forOptionalProperty: name, type: Int(code.rawValue), index: index)
+        return RLMSwiftPropertyMetadata(forOptionalProperty: name, type: code)
     }
 
-    @objc private class func getSwiftGenericProperties(_ object: Any) -> [RLMGenericPropertyMetadata] {
+    @objc private class func getSwiftProperties(_ object: Any) -> [RLMSwiftPropertyMetadata] {
         return getNonIgnoredMirrorChildren(for: object).enumerated().flatMap { idx, prop in
             if let value = prop.value as? LinkingObjectsBase {
-                return RLMGenericPropertyMetadata(forLinkingObjectsProperty: prop.label!,
-                                                  className: value.objectClassName,
-                                                  linkedPropertyName: value.propertyName,
-                                                  index: idx)
+                return RLMSwiftPropertyMetadata(forLinkingObjectsProperty: prop.label!,
+                                                className: value.objectClassName,
+                                                linkedPropertyName: value.propertyName)
             } else if prop.value is RLMListBase {
-                return RLMGenericPropertyMetadata(forListProperty: prop.label!, index: idx)
+                return RLMSwiftPropertyMetadata(forListProperty: prop.label!)
             } else if let optional = getOptionalPropertyMetadata(for: prop, at: idx) {
                 return optional
+            } else {
+                return RLMSwiftPropertyMetadata(forOtherProperty: prop.label!)
             }
-            return nil
         }
     }
 
@@ -544,12 +541,18 @@ extension Object: AssistedObjectiveCBridgeable {
 
 // MARK: - Migration assistance
 
+extension Object {
+    /// :nodoc:
+    @available(*, unavailable, renamed: "observe()")
+    public func addNotificationBlock(_ block: @escaping (ObjectChange) -> Void) -> NotificationToken {
+        fatalError()
+    }
+
 #if os(OSX)
 #else
-extension Object {
     /// :nodoc:
     @available(*, unavailable, renamed: "isSameObject(as:)") public func isEqual(to object: Any?) -> Bool {
         fatalError()
     }
-}
 #endif
+}

@@ -18,38 +18,15 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
-import UIKit
+import Foundation
 
-public extension UIView {
-    
-    // - MARK: Properties
-    
-    /// The cornerRadius of the view.
-    @IBInspectable public var cornerRadius: CGFloat {
-        get { return self.layer.cornerRadius }
-        set {
-            layer.cornerRadius = newValue
-            layer.masksToBounds = true
-        }
-    }
-    
-    /// The width of the view.
-    public var width: CGFloat {
-        get { return frame.width }
-        set { frame.size.width = newValue }
-    }
-    
-    /// The height of the view.
-    public var height: CGFloat {
-        get { return frame.height }
-        set { frame.size.height = newValue }
-    }
-    
-    // - MARK: Methods
-    
-    /// Sets the width and color of the layer's border.
-    public func setBorder(width: CGFloat, color: UIColor) {
-        layer.borderWidth = width
-        layer.borderColor = color.cgColor
-    }
-}
+/// Represents any function with one parameter.
+public typealias UnaryFunction<A, X> = (A) -> X
+
+/// Represents any function with two parameters.
+public typealias BinaryFunction<A, B, X> = (A, B) -> X
+
+/// Represents any function with three parameters.
+public typealias TernaryFunction<A, B, C, X> = (A, B, C) -> X
+
+public typealias Property = (label: String, value: Any)

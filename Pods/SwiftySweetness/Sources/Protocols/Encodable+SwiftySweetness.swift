@@ -20,15 +20,18 @@
 
 import Foundation
 
-public extension CGRect {
+public extension Encodable {
     
-    /// Creates a square with origin and side length specified as CGFloat values.
-    public init(origin: CGPoint, side: CGFloat) {
-        self.init(origin: origin, size: CGSize(width: side, height: side))
-    }
-    
-    /// Creates a square with coordinates and side length specified as CGFloat values.
-    public init(x: CGFloat, y: CGFloat, side: CGFloat) {
-        self.init(x: x, y: y, width: side, height: side)
+    /// Encodes the instance in the given format.
+    /// - parameter type: The format in which the data should be encoded.
+    /// - throws: An error if the type cannot be encoded in the given format.
+    /// - returns: The instance encoded in the given format.
+    public func encode(to type: DataRepresentation) throws -> Data {
+        switch type {
+        case .json:
+            return try JSONEncoder().encode(self)
+        case .plist:
+            return try PropertyListEncoder().encode(self)
+        }
     }
 }

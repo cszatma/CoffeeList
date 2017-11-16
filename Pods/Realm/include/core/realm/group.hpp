@@ -658,6 +658,10 @@ private:
     void child_accessor_destroyed(Table*) noexcept override;
 
     // Overriding method in Table::Parent
+    std::recursive_mutex* get_accessor_management_lock() noexcept override
+    { return nullptr; } // we don't need locking for group!
+
+    // Overriding method in Table::Parent
     Group* get_parent_group() noexcept override;
 
     class TableWriter;
@@ -757,6 +761,8 @@ private:
     ///   7 Introduced "history schema version" as 10th entry in top array.
     ///
     ///   8 Subtables can now have search index.
+    ///
+    ///   9 Replication instruction values shuffled, instr_MoveRow added.
     ///
     /// IMPORTANT: When introducing a new file format version, be sure to review
     /// the file validity checks in Group::open() and SharedGroup::do_open, the file
@@ -1395,6 +1401,9 @@ struct CascadeState : Group::CascadeNotification {
     /// If false, the links field is not needed, so any work done just for that
     /// can be skipped.
     bool track_link_nullifications = false;
+
+    /// If false, weak links are followed too
+    bool only_strong_links = true;
 };
 
 inline bool Group::CascadeNotification::row::operator==(const row& r) const noexcept

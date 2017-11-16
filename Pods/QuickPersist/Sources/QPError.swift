@@ -20,13 +20,7 @@
 
 import Foundation
 
-public extension Decodable {
-    
-    /// Decodes a JSON object and returns a value of the specified type.
-    /// - parameter json: The JSON object to decode.
-    /// - throws: An error if the JSON cannot be decoded.
-    /// - returns: A value of the specified type decoded from the JSON object.
-    public static func decodeFrom(json: Data) throws -> Self {
-        return try JSONDecoder().decode(Self.self, from: json)
-    }
+public enum QPError: Error {
+    case unableToDelete
 }
+

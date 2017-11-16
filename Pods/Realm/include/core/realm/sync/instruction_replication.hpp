@@ -77,6 +77,7 @@ public:
     void erase_rows(const Table*, size_t row_ndx, size_t num_rows_to_erase, size_t prior_num_rowsp,
                             bool is_move_last_over) override;
     void swap_rows(const Table*, size_t row_ndx_1, size_t row_ndx_2) override;
+    void move_row(const Table*, size_t row_ndx_1, size_t row_ndx_2) override;
     void merge_rows(const Table*, size_t row_ndx, size_t new_row_ndx) override;
     void add_search_index(const Descriptor&, size_t col_ndx) override;
     void remove_search_index(const Descriptor&, size_t col_ndx) override;

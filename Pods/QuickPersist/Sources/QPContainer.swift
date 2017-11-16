@@ -18,14 +18,32 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
-import Foundation
+import RealmSwift
 
-public extension Encodable {
+/// A QPContainer allows any type that is JSON encodable to be persisted to a Realm.
+public class QPContainer: Object {
+    /// JSON encoded data that should be persisted to a Realm.
+    @objc public dynamic var data = Data()
     
-    /// Creates a JSON-encoded representation of the value.
-    /// - throws: An error if the type cannot be encoded as JSON.
-    /// - returns: The type encoded as a JSON.
-    public func encodeToJSON() throws -> Data {
-        return try JSONEncoder().encode(self)
+    /// The name of the type that the encoded data is. Used for retrieving all values.
+    @objc public dynamic var typeName = ""
+    
+    /// The unique identifier for the data. This property is used as the primay key.
+    @objc public dynamic var id = ""
+    
+    /// Creates a new QPContainer instance from the given data.
+    /// - parameter data: The encode json data to be persisted.
+    /// - parameter typeName: The type name of the data.
+    /// - parameter id: The unique identifier for the data so it can be retreived later.
+    public convenience init(data: Data, typeName: String, id: String) {
+        self.init()
+        self.data = data
+        self.typeName = typeName
+        self.id = id
+    }
+    
+    public override static func primaryKey() -> String? {
+        return "id"
     }
 }
+

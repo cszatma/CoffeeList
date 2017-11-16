@@ -112,10 +112,12 @@ namespace sync {
 //  20 Added support for log compaction in DOWNLOAD message.
 //
 //  21 Removed "class_" prefix in instructions referencing tables.
+//
+//  22 Fixed a bug in the merge rule of MOVE vs SWAP.
 
 constexpr int get_current_protocol_version() noexcept
 {
-    return 21;
+    return 22;
 }
 
 /// \brief Protocol errors discovered by the server, and reported to the client
@@ -158,6 +160,7 @@ enum class ProtocolError {
     diverging_histories          = 211, // Diverging histories (IDENT)
     bad_changeset                = 212, // Bad changeset (UPLOAD)
     disabled_session             = 213, // Disabled session
+    partial_sync_disabled        = 214, // Partial sync disabled (BIND)
 };
 
 inline constexpr bool is_session_level_error(ProtocolError error)

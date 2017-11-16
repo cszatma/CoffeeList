@@ -18,33 +18,48 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
-import UIKit
+import RealmSwift
 
-public extension UIViewController {
+/// `QPResults` is a collection of Persistable types returned from a query. When an element is accessed it is returned as its original type.
+public struct QPResults<T: Persistable> {
+    private let results: Results<QPContainer>
     
-    /// Used to dismiss the keyboard when the user taps the screen.
-    public func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+    /// Creates a new instance from a collection of Realm Results.
+    public init(results: Results<QPContainer>) {
+        self.results = results
     }
     
-    /// Automatically dismisses an active keyboard.
-    @objc public func dismissKeyboard() {
-        view.endEditing(true)
+    /// Returns the value at the given index.
+    public func value(at index: Int) -> T? {
+        return try? T.create(fromContainer: results[index])
     }
     
-    /**
-     Displays a UIAlertController with given title, message and actions.
-     
-     - parameters:
-     - title: The title of the Alert.
-     - message: The message to be displayed to the user.
-     - buttonTitle: The title of the button displayed.
-     */
-    public func displayAlertController(title: String, message: String, actions: [UIAlertAction], completion: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        actions.forEach({ alert.addAction($0) })
-        self.present(alert, animated: true, completion: completion)
+    /// Returns the value at the given index.
+    public subscript(index: Int) -> T? {
+        return value(at: index)
     }
-    
 }
+
+extension QPResults: Collection {
+    
+    public var startIndex: Int {
+        return results.startIndex
+    }
+    
+    public var endIndex: Int {
+        return results.endIndex
+    }
+    
+    public func index(after i: Int) -> Int {
+        return results.index(after: i)
+    }
+    
+    public var count: Int {
+        return results.count
+    }
+    
+    public var isEmpty: Bool {
+        return results.isEmpty
+    }
+}
+

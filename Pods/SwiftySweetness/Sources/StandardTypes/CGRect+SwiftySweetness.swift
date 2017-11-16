@@ -18,35 +18,17 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
-import UIKit
+import CoreGraphics
 
-public extension UIButton {
+public extension CGRect {
     
-    /// The borderWidth of the UIButton.
-    @IBInspectable public var borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        
-        set {
-            layer.borderWidth = newValue
-        }
+    /// Creates a square with origin and side length specified as CGFloat values.
+    public init(origin: CGPoint, side: CGFloat) {
+        self.init(origin: origin, size: CGSize(width: side, height: side))
     }
     
-    /// The borderColor of the UIButton.
-    @IBInspectable public var borderColor: CGColor? {
-        get {
-            return layer.borderColor
-        }
-        
-        set {
-            layer.borderColor = newValue
-        }
-    }
-    
-    /// The current text that is displayed by the button.
-    public var text: String {
-        get { return self.titleLabel?.text ?? "" }
-        set { titleLabel?.text = newValue }
+    /// Creates a square with coordinates and side length specified as CGFloat values.
+    public init(x: CGFloat, y: CGFloat, side: CGFloat) {
+        self.init(x: x, y: y, width: side, height: side)
     }
 }

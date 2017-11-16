@@ -175,13 +175,27 @@ public:
         std::function<void(std::string, bool)> slave_status_callback;
 
         /// The feature token is used by the server to gate access to various
-        /// features. At the moment, the only gated feature is backup.
+        /// features.
         util::Optional<std::string> feature_token;
 
         /// The server can try to eliminate redundant instructions from
         /// changesets before sending them to clients, minimizing download sizes
         /// at the expense of server CPU usage.
         bool enable_download_log_compaction = true;
+
+        /// The accumulated size of changesets that are included in download
+        /// messages. The size of the changesets is calculated before log
+        /// compaction (if enabled). A larger value leads to more efficient
+        /// log compaction and download, at the expense of higher memory pressure,
+        /// higher latency for sending the first changeset, and a higher probability
+        /// for the need to resend the same changes after network disconnects.
+        size_t max_download_size = 0x20000; // 128 KB
+
+        /// Set the `TCP_NODELAY` option on all TCP/IP sockets. This disables
+        /// the Nagle algorithm. Disabling it, can in some cases be used to
+        /// decrease latencies, but possibly at the expense of scalability. Be
+        /// sure to research the subject before you enable this option.
+        bool tcp_no_delay = false;
     };
 
     Server(const std::string& root_dir, util::Optional<PKey> public_key, Config = {});

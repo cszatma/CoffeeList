@@ -122,6 +122,12 @@ public:
         /// transaction. Log compaction increeses CPU usage and memory
         /// consumption.
         bool enable_upload_log_compaction = true;
+
+        /// Set the `TCP_NODELAY` option on all TCP/IP sockets. This disables
+        /// the Nagle algorithm. Disabling it, can in some cases be used to
+        /// decrease latencies, but possibly at the expense of scalability. Be
+        /// sure to research the subject before you enable this option.
+        bool tcp_no_delay = false;
     };
 
     /// \throw util::EventLoop::Implementation::NotAvailable if no event loop
@@ -632,6 +638,12 @@ public:
     /// the session object is destroyed. Please see "Callback semantics" section
     /// under Session for more on this.
     void set_error_handler(std::function<ErrorHandler>);
+
+    /// \brief Override the server address and port.
+    ///
+    /// This causes a reconnection, if the session has an connection object
+    /// associated with it.
+    void override_server(std::string address, port_type port);
 
     /// @{ \brief Bind this session to the specified server side Realm.
     ///

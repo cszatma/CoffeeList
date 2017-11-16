@@ -33,21 +33,6 @@ using namespace realm;
 
 namespace {
 
-NSError *translate_permission_exception_to_error(std::exception_ptr ptr, bool get) {
-    NSError *error = nil;
-    try {
-        std::rethrow_exception(ptr);
-    } catch (PermissionChangeException const& ex) {
-        error = (get
-                 ? make_permission_error_get(@(ex.what()), ex.code)
-                 : make_permission_error_change(@(ex.what()), ex.code));
-    }
-    catch (const std::exception &exp) {
-        RLMSetErrorOrThrow(RLMMakeError(RLMErrorFail, exp), &error);
-    }
-    return error;
-}
-
 bool keypath_is_valid(NSString *keypath)
 {
     static NSSet<NSString *> *valid = nil;
@@ -115,10 +100,26 @@ RLMSyncPermissionSortProperty const RLMSyncPermissionSortPropertyUpdated    = @"
     if ([path rangeOfString:@"~"].location != NSNotFound) {
         path = [path stringByReplacingOccurrencesOfString:@"~" withString:object.identity];
     }
-    // Build the predicate. (Don't match the actual permission flags; path and identity identify a permission.)
-    NSPredicate *p = [NSPredicate predicateWithFormat:@"%K = %@ AND %K = %@",
+    NSString *topPrivilege;
+    switch (object.accessLevel) {
+        case RLMSyncAccessLevelNone:
+            // Deleted permissions are removed from the permissions Realm by ROS.
+            return NSNotFound;
+        case RLMSyncAccessLevelRead:
+            topPrivilege = @"mayRead";
+            break;
+        case RLMSyncAccessLevelWrite:
+            topPrivilege = @"mayWrite";
+            break;
+        case RLMSyncAccessLevelAdmin:
+            topPrivilege = @"mayManage";
+            break;
+    }
+    // Build the predicate.
+    NSPredicate *p = [NSPredicate predicateWithFormat:@"%K = %@ AND %K = %@ AND %K == YES",
                       RLMSyncPermissionSortPropertyPath, path,
-                      RLMSyncPermissionSortPropertyUserID, object.identity];
+                      RLMSyncPermissionSortPropertyUserID, object.identity,
+                      topPrivilege];
     return [self indexOfObjectWithPredicate:p];
 }
 
@@ -160,7 +161,7 @@ RLMSyncPermissionSortProperty const RLMSyncPermissionSortPropertyUpdated    = @"
                                                         NSError *error))block {
     auto cb = [=](const realm::CollectionChangeSet& changes, std::exception_ptr ptr) {
         if (ptr) {
-            NSError *error = translate_permission_exception_to_error(std::move(ptr), true);
+            NSError *error = translateSyncExceptionPtrToError(std::move(ptr), RLMPermissionActionTypeGet);
             REALM_ASSERT(error);
             block(nil, nil, error);
         } else {

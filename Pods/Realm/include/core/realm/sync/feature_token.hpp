@@ -22,7 +22,7 @@
 
 #include <realm/util/features.h>
 
-#if !REALM_MOBILE && !defined(REALM_EXCLUDE_FEATURE_TOKENS) && !defined(_WIN32)
+#if !REALM_MOBILE && !defined(REALM_EXCLUDE_FEATURE_TOKENS)
 #define REALM_HAVE_FEATURE_TOKENS 1
 #else
 #define REALM_HAVE_FEATURE_TOKENS 0
@@ -46,6 +46,9 @@ public:
     // that has bad syntax, is not signed by Realm, or is 
     // expired.
     FeatureGate(StringData token);
+
+    // Constructs a feature gate without any features.
+    FeatureGate();
     ~FeatureGate();
 
     FeatureGate(FeatureGate&&);

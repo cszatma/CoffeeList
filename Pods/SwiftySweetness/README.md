@@ -52,6 +52,18 @@ let str = "      \n\nMy String\n\n    \n"
 str.trimmed // "My String"
 ```
 
+`splitCamelCase()` splits a camel cased string.
+```swift
+let str = "thisIsACamelCasedString"
+str.splitCamelCase() // "this Is A Camel Cased String"
+```
+
+`initials()` returns the first letter of each word in the string.
+```swift
+let str = "Hello World"
+str.initials() // "HW"
+```
+
 ### Encodable & Decodable
 Swift 4 makes encoding and decoding JSON easy with the `Encodable` and `Decodable` protocols:
 ```swift
@@ -60,8 +72,8 @@ let decodedStruct = JSONDecoder().decode(MyStruct.self, from: json)
 ```
 But `SwiftySweetness` makes this even easier:
 ```swift
-let json = myStruct.encodeToJSON()
-let decodedStruct = MyStruct.decodeFrom(json: json)
+let json = myStruct.encode(to: .json)
+let decodedStruct = MyStruct.decode(from: json, ofType: .json)
 ```
 
 ### UIColor
@@ -70,7 +82,7 @@ Construct a `UIColor` with rgb values from 0 to 255:
 let color = UIColor(r: 5 g: 185, b: 255)
 ```
 
-Construct a UIColor from a hex number:
+Construct a `UIColor `from a hex number:
 ```swift
 let color = UIColor(hex: 0x02B8FF)
 ```
@@ -101,14 +113,64 @@ var actions = [UIAlertActions]()
 ...
 viewController.displayAlertController(title: "Important", message: "This is an alert!", actions: actions) // A completion closure can be added if necessary
 ```
+
+### PropertyRepresentable
+The `PropertyRepresentable` allows any conforming type to generate an array containing all its properties.
+```swift
+struct Person: PropertyRepresentable {
+    var name: String
+    var age: Int
+}
+
+let person = Person(name: "John Doe", age: "20")
+person.properties() // [(label: "name", value: "John Doe"), (label: "age", value: 20)]
+person.propertyLabels() // ["name", "age"]
+person.propertyValues() // ["John Doe", 20]
+person.propertiesDictionary() // ["name": "John Doe", "age": 20]
+```
+
+### Pipes
+SwiftySweetness offers multiple pipe operators. Piping is supported for all unary, binary, and ternary functions.
+`|>` is the standard pipe operator. It will pipe the input on the left to the function on the right.
+```swift
+func add(_ x: Int, _ y: Int) -> Int {
+    return x + y
+}
+
+let num = 4
+num |> (add, -10) |> abs // 6
+```
+
+The `|>?` operator takes an optional and either pipes it to the given function if it has a value or returns nil if the value is nil. Note that the value returned is an optional.
+```swift
+let optional1: Int? = 4
+optional1 |>? (add, 6) // 10 NOTE: This is of type Int?
+
+let optional2: Int? = nil
+optional2 |>? (add, 6) // nil
+```
+
+The `|>!` operator force-unwraps an optional and then pipes it to the given function. This should only be used when you are certain the value is not nil!
+```swift
+let optional1: Int? = 4
+optional1 |>! (add, 6) // 10 NOTE: This is of type Int since the value was unwrapped
+
+let optional2: Int? = nil
+optional2 |>! (add, 6) // fatal error: unexpectedly found nil while unwrapping an Optional value
+```
+
 ### And much more!
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Use it in a project to see what's available.
 
 ## Installation
 
 ### Requirements
-* iOS 9.0+
+* iOS 8.0+
+* macOS 10.9+
+* tvOS 9.0+
+* watchOS  2.0+
+* Linux
 * Swift 4
 
 ### CocoaPods
@@ -117,7 +179,7 @@ SwiftySweetness is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SwiftySweetness'
+pod 'SwiftySweetness', '~> 1.3'
 ```
 
 ### Swift Package Manager
@@ -131,7 +193,7 @@ import PackageDescription
 let package = Package(
     name: "MyProject",
     dependencies: [
-        .package(url: "https://github.com/cszatma/SwiftySweetness.git", from: "1.1.0")
+        .package(url: "https://github.com/cszatma/SwiftySweetness.git", from: "1.3.0")
     ]
 )
 ```
