@@ -8,17 +8,12 @@
 
 import Foundation
 
-public enum UserDefaultsKeys: String {
-    case SavedEntries = "savedEntries"
-    case SavedLists = "savedLists"
-}
-
-enum UserDefaultsError: Error {
-    case NoEntriesSaved
-    case NoCoffeeListsSaved
-}
-
 enum AnimationType: String {
     case push = "push"
     case fade = "fade"
+}
+
+enum PersistableError: Error {
+    case unableToFetch
+    case unableToDelete
 }
