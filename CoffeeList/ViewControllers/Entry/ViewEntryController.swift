@@ -6,9 +6,9 @@
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import CSKit
+import UIKit
 
-class ViewEntryController: UIViewController, CLTypeViewerDelegate {
+class ViewEntryController: UIViewController {
     
     // *** Views *** //
     let nameLabel: UILabel = {
@@ -60,16 +60,44 @@ class ViewEntryController: UIViewController, CLTypeViewerDelegate {
     }
     // *** End Views *** //
     
-    var selectedEntry: Entry!
+    var entry: Entry!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(ViewEntryController.handleEditEntry))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(handleEditEntry))
         view.backgroundColor = .white
         setupView()
         loadEntry()
     }
     
+    ///Will load the selected entry
+    func loadEntry() {
+        nameLabel.text = entry.name
+        coffeeTypeLabel.text = entry.coffeeType
+        favCoffeeShopLabel.text = entry.favCoffeeShop
+        notesTextView.text = entry.notes
+    }
+    
+    ///Called when the user touches the edit button
+    @objc func handleEditEntry() {
+        let viewController = EditEntryController()
+        viewController.entry = entry
+        viewController.delegate = self
+        navigationController?.present(viewController: viewController, animationType: .fade)
+    }
+}
+
+extension ViewEntryController: EntryDelegate {
+    ///Notifies the ViewController to update the displayed values for the entry.
+    func update(newValue: Entry) {
+        entry = newValue
+        loadEntry()
+        (navigationController?.viewControllers[0] as! ManageEntriesController).update(newValue: newValue)
+    }
+}
+
+// MARK: - Setup views and constraints.
+extension ViewEntryController {
     func setupView() {
         let topOffset = view.height / 16
         // nameLabel
@@ -98,30 +126,7 @@ class ViewEntryController: UIViewController, CLTypeViewerDelegate {
         notesTextView.centerX(to: view)
         notesTextView.topToBottom(of: favCoffeeShopLabel, offset: topOffset)
         notesTextView.width(to: nameLabel)
-//        notesTextView.height(to: nameLabel, multiplier: 2)
+        //        notesTextView.height(to: nameLabel, multiplier: 2)
         notesTextView.bottom(to: view, offset: -30)
     }
-    
-    ///Will load the selected entry
-    func loadEntry() {
-        nameLabel.text = selectedEntry?.name
-        coffeeTypeLabel.text = selectedEntry?.coffeeType
-        favCoffeeShopLabel.text = selectedEntry?.favCoffeeShop
-        notesTextView.text = selectedEntry?.notes
-    }
-    
-    ///Called when the user touches the edit button
-    @objc func handleEditEntry() {
-        let viewController = EditEntryController()
-        viewController.entry = selectedEntry
-        viewController.delegate = self
-        navigationController?.present(viewController: viewController, animationType: .fade)
-    }
-    
-    ///Notifies the ViewController to update the displayed values for the entry.
-    func updateEntryType() {
-        loadEntry()
-        (navigationController?.viewControllers[0] as! ManageEntriesController).updateEntryType()
-    }
-    
 }

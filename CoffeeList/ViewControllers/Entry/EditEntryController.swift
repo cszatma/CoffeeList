@@ -6,11 +6,12 @@
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import UIKit
+import SwiftySweetness
+import RealmSwift
 
 typealias PropertyStatus = (Bool, Bool, Bool, Bool)
 
-class EditEntryController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
+class EditEntryController: UITableViewController {
     
     // *** Views *** //
     var nameTextField: UITextField!
@@ -21,35 +22,85 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
     
     var entry: Entry?
     weak var saveBarButton: UIBarButtonItem?
-    var delegate: CLTypeViewerDelegate?
+    weak var delegate: EntryDelegate?
     private var propertyStatus: PropertyStatus = (false, false, false, false)
     private let cellId = "entryPropertyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set up tableview
+        setupTableView()
+        view.backgroundColor = .white
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        saveBarButton = navigationItem.rightBarButtonItem
+        saveBarButton?.isEnabled = false
+        title = entry.hasValue ? "Edit Entry" : "Add Entry"
+        hideKeyboardWhenTappedAround()
+        propertyStatus.3 = entry.hasValue ? false : true
+    }
+    
+    func setupTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.allowsSelection = false
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(CSTableViewTextFieldCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    ///Exit editing viewcontroller without saving
+    @objc func dismissView() {
+        dismissKeyboard()
+        let animationType: AnimationType = entry.hasValue ? .fade : .push
+        navigationController?.popViewController(animationType: animationType)
+    }
+    
+    ///Saves the entry and any changes made to it
+    @objc func save() {
+        let entryToSave: Entry
+        if let entry = entry {
+            entryToSave = entry.update(name: nameTextField.text!.trimmed, coffeeType: coffeeTypeTextField.text!.trimmed, favCoffeeShop: favCoffeeShopTextField.text!.trimmed, notes: notesTextView.text)
+        } else {
+            entryToSave = Entry(name: nameTextField.text!.trimmed, coffeeType: coffeeTypeTextField.text!.trimmed, favCoffeeShop: favCoffeeShopTextField.text!.trimmed, notes: notesTextView.text)
+            let viewController = ViewEntryController()
+            viewController.entry = entryToSave
+            navigationController?.viewControllers.insert(viewController, at: 1)
+        }
         
-        view.backgroundColor = .white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(EditEntryController.dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEntryController.save))
-        saveBarButton = navigationItem.rightBarButtonItem
-        saveBarButton?.isEnabled = false
-        title = entry.hasValue ? "Edit Entry" : "Add Entry"
-        self.hideKeyboardWhenTappedAround()
-        propertyStatus.3 = entry.hasValue ? false : true
+        do {
+            try entryToSave.save(to: Realm(), update: true)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        delegate?.update(newValue: entryToSave)
+        dismissView()
     }
     
-    // *** TableView Setup *** //
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    @objc func textChanged(sender: UITextField) {
+        // Make sure textField isn't empty and that text isn't equal to entry property.
+        switch sender {
+        case nameTextField:
+            propertyStatus.0 = entry.hasValue ? nameTextField.text! != entry?.name && !nameTextField.text!.isEmpty : !nameTextField.text!.isEmpty
+        case coffeeTypeTextField:
+            propertyStatus.1 = entry.hasValue ? coffeeTypeTextField.text! != entry?.coffeeType && !coffeeTypeTextField.text!.isEmpty : !coffeeTypeTextField.text!.isEmpty
+        default:
+            propertyStatus.2 = entry.hasValue ? favCoffeeShopTextField.text! != entry?.favCoffeeShop && !favCoffeeShopTextField.text!.isEmpty : !favCoffeeShopTextField.text!.isEmpty
+        }
+        
+        checkChanges()
     }
     
+    func checkChanges() {
+        if entry.hasValue {
+            saveBarButton?.isEnabled = propertyStatus == (false, false, false, false) ? false : true
+        } else {
+            saveBarButton?.isEnabled = propertyStatus == (true, true, true, true) ? true : false
+        }
+    }
+
+}
+
+// MARK: - UITableViewDataSource methods
+extension EditEntryController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -75,7 +126,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
             textField = favCoffeeShopTextField
             favCoffeeShopTextField.text = entry?.favCoffeeShop
         default:
-            cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: nil)
+            cell = CSTableViewTextViewCell(labelText: "Comments", reuseIdentifier: cellId)
             notesTextView = (cell as! CSTableViewTextViewCell).textView
             notesTextView.font = UIFont.systemFont(ofSize: 17)
             notesTextView.text = entry?.notes
@@ -93,31 +144,9 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         }
         return 44
     }
-    // *** End TableView Setup *** //
-    
-    ///Exit editing viewcontroller without saving
-    @objc func dismissView() {
-        self.dismissKeyboard()
-        let animationType: AnimationType? = entry.hasValue ? .fade : .push
-        navigationController?.popViewController(animationType: animationType)
-    }
-    
-    ///Saves the entry and any changes made to it
-    @objc func save() {
-        if entry.hasValue {
-            entry?.update(name: nameTextField.trimmedText, coffeeType: coffeeTypeTextField.trimmedText, favCoffeeShop: favCoffeeShopTextField.trimmedText, notes: notesTextView.text)
-        } else {
-            entry = Entry(name: nameTextField.trimmedText, coffeeType: coffeeTypeTextField.trimmedText, favCoffeeShop: favCoffeeShopTextField.trimmedText, notes: notesTextView.text)
-            User.instance.entries.append(entry!)
-            let viewController = ViewEntryController()
-            viewController.selectedEntry = entry
-            navigationController?.viewControllers.insert(viewController, at: 1)
-        }
-        User.instance.save(selection: .Entries)
-        delegate?.updateEntryType()
-        dismissView()
-    }
-    
+}
+
+extension EditEntryController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case nameTextField:
@@ -129,21 +158,9 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         }
         return true
     }
-    
-    @objc func textChanged(sender: UITextField) {
-        // Make sure textField isn't empty and that text isn't equal to entry property.
-        switch sender {
-        case nameTextField:
-            propertyStatus.0 = entry.hasValue ? nameTextField.text! != entry?.name && !nameTextField.text!.isEmpty : !nameTextField.text!.isEmpty
-        case coffeeTypeTextField:
-            propertyStatus.1 = entry.hasValue ? coffeeTypeTextField.text! != entry?.coffeeType && !coffeeTypeTextField.text!.isEmpty : !coffeeTypeTextField.text!.isEmpty
-        default:
-            propertyStatus.2 = entry.hasValue ? favCoffeeShopTextField.text! != entry?.favCoffeeShop && !favCoffeeShopTextField.text!.isEmpty : !favCoffeeShopTextField.text!.isEmpty
-        }
-        
-        checkChanges()
-    }
-    
+}
+
+extension EditEntryController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         let size = textView.bounds.size
         let newSize = textView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
@@ -151,7 +168,7 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             tableView.beginUpdates()
-            textView.scrollRangeToVisible(NSMakeRange(textView.text.characters.count-1, 0))
+            textView.scrollRangeToVisible(NSMakeRange(textView.text.count-1, 0))
             tableView.endUpdates()
             UIView.setAnimationsEnabled(true)
             tableView.scrollToRow(at: IndexPath(row: 3, section: 0), at: .bottom, animated: false)
@@ -161,13 +178,4 @@ class EditEntryController: UITableViewController, UITextFieldDelegate, UITextVie
         
         checkChanges()
     }
-    
-    func checkChanges() {
-        if entry.hasValue {
-            saveBarButton?.isEnabled = propertyStatus == (false, false, false, false) ? false : true
-        } else {
-            saveBarButton?.isEnabled = propertyStatus == (true, true, true, true) ? true : false
-        }
-    }
-
 }
