@@ -31,8 +31,7 @@ class EditCoffeeListController: UITableViewController {
         saveBarButton = navigationItem.rightBarButtonItem
         saveBarButton?.isEnabled = false
         title = coffeeList.hasValue ? "Edit Entry" : "Add Entry"
-        hideKeyboardWhenTappedAround()
-        view.gestureRecognizers?.last!.cancelsTouchesInView = false
+        hideKeyboardWhenTappedAround(cancelsTouches: false)
         selectedEntries = coffeeList.hasValue ? coffeeList!.entries : []
         propertyStatus.2 = coffeeList.hasValue ? false : true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)

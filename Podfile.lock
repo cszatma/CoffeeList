@@ -6,7 +6,7 @@ PODS:
   - Realm/Headers (3.0.2)
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
-  - SwiftySweetness (1.4.1)
+  - SwiftySweetness (1.4.2)
   - TinyConstraints (3.1.0)
 
 DEPENDENCIES:
@@ -19,9 +19,9 @@ SPEC CHECKSUMS:
   QuickPersist: 3f4d294ed7c51f57dac07892f0a8e15edb35d299
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
-  SwiftySweetness: fd5e8461dd546678c4522a91c677a965bd4738f0
+  SwiftySweetness: b8353c536c9d065193bc381c4c196dac9b5e2ba0
   TinyConstraints: 4721a4b303c799328867078ade6560e152df54d1
 
-PODFILE CHECKSUM: e769499eba01f536520d60d0cf3a3e2b987a01ab
+PODFILE CHECKSUM: 4c51336a2e1a228816df4407e22a2bb0ff12c3b8
 
 COCOAPODS: 1.3.1
