@@ -6,7 +6,7 @@
 //  Copyright © 2016 SzatmaryInc. All rights reserved.
 //
 
-import Foundation
+import QuickPersist
 
 typealias Entries = [Entry]
 

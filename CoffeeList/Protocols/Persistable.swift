@@ -7,17 +7,18 @@
 //
 
 import SwiftySweetness
+import RealmSwift
 import QuickPersist
 
 extension Persistable {
     static func fetch(from realm: Realm, withId id: String) -> Self? {
         let op = RealmOperator(realm: realm)
-        return op.value(type: Self.self, withKey: id)
+        return op.value(ofType: Self.self, withPrimaryKey: id)
     }
     
     static func fetchAll(from realm: Realm) throws -> [Self] {
         let op = RealmOperator(realm: realm)
-        let results = op.values(type: Self.self)
+        let results = op.values(ofType: Self.self)
         
         return try results.map { result -> Self in
             guard let val = result else { throw PersistableError.unableToFetch }

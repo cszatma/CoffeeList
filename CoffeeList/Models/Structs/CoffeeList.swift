@@ -7,6 +7,7 @@
 //
 
 import SwiftySweetness
+import QuickPersist
 
 typealias CoffeeLists = [CoffeeList]
 typealias CoffeeDictionary = [String: Int]
